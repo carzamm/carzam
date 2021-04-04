@@ -19,10 +19,10 @@ import torchvision.transforms as transforms
 import time
 import os
 import PIL.Image as Image
-from IPython.display import display
 
-# Define some constants for memory usage of CUDA
+# Define some constants to finetune hyperparameters
 BATCH_SIZE = 16
+EPOCH_COUNT = 10
 
 
 # This part detecs if the device has a GPU capable of running CUDA
@@ -139,18 +139,14 @@ model_ft = model_ft.to(device)
 
 # Not sure what this is doing....
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(model_ft.parameters(), lr=0.01, momentum=0.9)
+optimizer = optim.SGD(model_ft.parameters(), lr=0.005, momentum=0.9)
 
-"""
-probably not the best metric to track, but we are tracking the training accuracy and measuring whether
-it increases by atleast 0.9 per epoch and if it hasn't increased by 0.9 reduce the lr by 0.1x.
-However in this model it did not benefit me.
-"""
+# This line specifically handles learning rate of the AI and causes it to adjust when there is a 'learning plateau'.
 lrscheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', patience=3, threshold = 0.9)
 
 
 # This looks like the actual training model call...
-model_ft, training_losses, training_accs, test_accs = train_model(model_ft, criterion, optimizer, lrscheduler, n_epochs=10)
+model_ft, training_losses, training_accs, test_accs = train_model(model_ft, criterion, optimizer, lrscheduler, n_epochs=EPOCH_COUNT)
 
 
 
@@ -178,21 +174,30 @@ def find_classes(dir):
 # switch the model to evaluation mode to make dropout and batch norm work in eval mode
 model_ft.eval()
 
-# transforms for the input image
-loader = transforms.Compose([transforms.Resize((400, 400)),
-                                transforms.ToTensor(),
-                                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-image = Image.open(dataset_dir+"verify/2007-chevrolet-silverado-1500.jpg")
-image = loader(image).float()
-image = torch.autograd.Variable(image, requires_grad=True)
-image = image.unsqueeze(0)
-image = image.cuda()
-output = model_ft(image)
-conf, predicted = torch.max(output.data, 1)
+verification_dir=dataset_dir+"verify/"
 
-classes, c_to_idx = find_classes(dataset_dir+"train")
+def test_all_cars():
+    for file in os.listdir(verification_dir):
+        filename = os.fsdecode(file)
 
-# get the class name of the prediction
-display(Image.open(dataset_dir+"verify/2007-chevrolet-silverado-1500.jpg"))
-print(classes[predicted.item()], "confidence: ", conf.item())
+        # transforms for the input image
+        loader = transforms.Compose([transforms.Resize((400, 400)),
+                                        transforms.ToTensor(),
+                                        transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+        image = Image.open(verification_dir+filename)
+        image = loader(image).float()
+        image = torch.autograd.Variable(image, requires_grad=True)
+        image = image.unsqueeze(0)
+        image = image.cuda()
+        output = model_ft(image)
+        conf, predicted = torch.max(output.data, 1)
+
+        classes, c_to_idx = find_classes(dataset_dir+"train")
+
+        # get the class name of the prediction
+        print("\nSupposed to be {}".format(filename))
+        print(classes[predicted.item()], "confidence: ", conf.item())
+
+test_all_cars()
+
 

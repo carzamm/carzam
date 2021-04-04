@@ -2,7 +2,8 @@
 Author: George Kochera
 Date: 4/4/21
 File: exp.py
-Description: File to test the functionality of PyTorch.
+Description: File to test the functionality of PyTorch. Have been working with this based on images scraped from Autotrader instead of the Stanford Data Set. The Stanford Dataset doesn't break each vehicle down to make/model/year in its downloadable TAR files.
+Source: Codebase is based on the PyTorch Car Classifier. https://www.kaggle.com/deepbear/pytorch-car-classifier-90-accuracy
 """
 
 import matplotlib.pyplot as plt
@@ -20,27 +21,41 @@ import os
 import PIL.Image as Image
 from IPython.display import display
 
+# Define some constants for memory usage of CUDA
+BATCH_SIZE = 16
+
+
+# This part detecs if the device has a GPU capable of running CUDA
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 print(device)
 print(torch.cuda.get_device_name(device))
 
+# Clear the CUDA Memory
+# print(torch.cuda.memory_summary(device=0, abbreviated=False))
+
+
+# Define where the data is held
 dataset_dir = "./input/"
 
-train_tfms = transforms.Compose([transforms.Resize((400, 400)),
+# This specifies how the data will be transformed from the image to what Torch will recognize
+train_tfms = transforms.Compose([transforms.Resize((500, 500)),
                                  transforms.RandomHorizontalFlip(),
                                  transforms.RandomRotation(15),
                                  transforms.ToTensor(),
                                  transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-test_tfms = transforms.Compose([transforms.Resize((400, 400)),
+test_tfms = transforms.Compose([transforms.Resize((500, 500)),
                                 transforms.ToTensor(),
                                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
+# This defines the dataset location and then loads the data
 dataset = torchvision.datasets.ImageFolder(root=dataset_dir+"train", transform = train_tfms)
-trainloader = torch.utils.data.DataLoader(dataset, batch_size = 32, shuffle=True, num_workers = 2)
+trainloader = torch.utils.data.DataLoader(dataset, batch_size = BATCH_SIZE, shuffle=True, num_workers = 2)
 
 dataset2 = torchvision.datasets.ImageFolder(root=dataset_dir+"test", transform = test_tfms)
-testloader = torch.utils.data.DataLoader(dataset2, batch_size = 32, shuffle=False, num_workers = 2)
+testloader = torch.utils.data.DataLoader(dataset2, batch_size = BATCH_SIZE, shuffle=False, num_workers = 2)
 
+
+# TODO: This looks like how you train against a model...
 def train_model(model, criterion, optimizer, scheduler, n_epochs = 5):
     
     losses = []
@@ -92,6 +107,7 @@ def train_model(model, criterion, optimizer, scheduler, n_epochs = 5):
     print('Finished Training')
     return model, losses, accuracies, test_accuracies
 
+# TODO: Looks like this is how you evaluate against a model...
 def eval_model(model):
     correct = 0.0
     total = 0.0
@@ -113,6 +129,7 @@ def eval_model(model):
         test_acc))
     return test_acc
 
+# Has to do with models and using a pretrained versus a trained one, need to evaulate further...
 model_ft = models.resnet34(pretrained=True)
 num_ftrs = model_ft.fc.in_features
 
@@ -120,15 +137,7 @@ num_ftrs = model_ft.fc.in_features
 model_ft.fc = nn.Linear(num_ftrs, 196)
 model_ft = model_ft.to(device)
 
-# uncomment this block for half precision model
-"""
-model_ft = model_ft.half()
-
-
-for layer in model_ft.modules():
-    if isinstance(layer, nn.BatchNorm2d):
-        layer.float()
-"""
+# Not sure what this is doing....
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(model_ft.parameters(), lr=0.01, momentum=0.9)
 
@@ -140,6 +149,7 @@ However in this model it did not benefit me.
 lrscheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', patience=3, threshold = 0.9)
 
 
+# This looks like the actual training model call...
 model_ft, training_losses, training_accs, test_accs = train_model(model_ft, criterion, optimizer, lrscheduler, n_epochs=10)
 
 
@@ -152,7 +162,6 @@ axarr[0, 0].set_title("Training loss")
 axarr[0, 1].plot(training_accs)
 axarr[0, 1].set_title("Training acc")
 axarr[1, 0].plot(test_accs)
-
 axarr[1, 0].set_title("Test acc")
 
 # tie the class indices to their names
@@ -173,7 +182,7 @@ model_ft.eval()
 loader = transforms.Compose([transforms.Resize((400, 400)),
                                 transforms.ToTensor(),
                                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
-image = Image.open(dataset_dir+"test/2013 Jeep Wrangler Unlimited/acccf387fc03ad150cb665388acb0a3f.jpg")
+image = Image.open(dataset_dir+"verify/2007-chevrolet-silverado-1500.jpg")
 image = loader(image).float()
 image = torch.autograd.Variable(image, requires_grad=True)
 image = image.unsqueeze(0)
@@ -184,6 +193,6 @@ conf, predicted = torch.max(output.data, 1)
 classes, c_to_idx = find_classes(dataset_dir+"train")
 
 # get the class name of the prediction
-display(Image.open(dataset_dir+"test/2013 Jeep Wrangler Unlimited/acccf387fc03ad150cb665388acb0a3f.jpg"))
+display(Image.open(dataset_dir+"verify/2007-chevrolet-silverado-1500.jpg"))
 print(classes[predicted.item()], "confidence: ", conf.item())
 

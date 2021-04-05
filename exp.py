@@ -23,6 +23,7 @@ import PIL.Image as Image
 # Define some constants to finetune hyperparameters
 BATCH_SIZE = 16
 EPOCH_COUNT = 10
+TRAINING_EPOCHS = 10
 
 
 # This part detecs if the device has a GPU capable of running CUDA
@@ -56,7 +57,7 @@ testloader = torch.utils.data.DataLoader(dataset2, batch_size = BATCH_SIZE, shuf
 
 
 # TODO: This looks like how you train against a model...
-def train_model(model, criterion, optimizer, scheduler, n_epochs = 5):
+def train_model(model, criterion, optimizer, scheduler, n_epochs = TRAINING_EPOCHS):
     
     losses = []
     accuracies = []
@@ -139,7 +140,7 @@ model_ft = model_ft.to(device)
 
 # Not sure what this is doing....
 criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(model_ft.parameters(), lr=0.005, momentum=0.9)
+optimizer = optim.SGD(model_ft.parameters(), lr=0.001, momentum=0.9)
 
 # This line specifically handles learning rate of the AI and causes it to adjust when there is a 'learning plateau'.
 lrscheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', patience=3, threshold = 0.9)
@@ -159,6 +160,9 @@ axarr[0, 1].plot(training_accs)
 axarr[0, 1].set_title("Training acc")
 axarr[1, 0].plot(test_accs)
 axarr[1, 0].set_title("Test acc")
+plt.show()
+
+
 
 # tie the class indices to their names
 

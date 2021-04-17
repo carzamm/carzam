@@ -37,6 +37,9 @@ app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 # Max File Size Before Upload Is Aborted
 app.config['MAX_CONTENT_LENGTH'] = 16 * 1024 * 1024
 
+# Disable Cache To Display New Image On Overwrite
+app.config['SEND_FILE_MAX_AGE_DEFAULT'] = 0
+
 # 
 # Helper Functions
 #
@@ -65,9 +68,21 @@ def home_page():
             flash('No selected file')
             return redirect(request.url)
         if file and allowed_file(file.filename):
-            filename = secure_filename(file.filename)
+            filename = secure_filename("image.png")
+
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            print('filename = ' + filename)
+
+			# Load Trained resnet50 Model
+            # Using resnet50 as Heroko's free tier size is 512mb, and resnet50
+            # is on the smaller size for pretrained models while still offering
+            # performance
+      		#       model_transfer = models.resnet50(pretrained=False)
+		    # model_transfer.classifier=nn.Sequential(nn.Linear(1024,512),
+		    #                                     nn.ReLU(),
+		    #                                     nn.Dropout(0.2),
+		    #                                    nn.Linear(512,133))
+		    # model_transfer.load_state_dict(torch.load('model_transfer.pt',map_location='cpu'))
+
             return render_template('index.html', filename = filename)
 
     # return redirect(request.url)
@@ -78,7 +93,11 @@ def home_page():
 # https://roytuts.com/upload-and-display-image-using-python-flask/
 @app.route('/display/<filename>')
 def display_image(filename):
-	return redirect(url_for('static', filename = 'uploads/' + filename), code = 301)
+	return redirect(url_for('static', filename = 'uploads/' + filename), code = 307)
+
+# # Prediction Route
+# @app.route('/predict',methods=['POST'])
+# def predict():
 
 # run app.py on local host port 8080
 if __name__ == "__main__":               

@@ -22,7 +22,7 @@ indir = './data/testimages/'
 outdir = './data/outimages/'
 imgs = [indir + f for f in os.listdir(indir)]  # batched list of images
 
-crop_instructions = [] # list of 5-tuples (filename, x-left, y-top, x-right, y-bottom)
+crop_instructions = [] # list of 6-tuples (filename, index, x-left, y-top, x-right, y-bottom)
 
 for img in imgs:
 
@@ -54,22 +54,33 @@ for img in imgs:
             print("\tBottom-Right (x,y): {}, {}".format(x_right, y_bottom))
 
             # Add this to the crop instructions so the image cropper can generate the new pictures
-            crop_instructions.append((str(img), x_left, y_top, x_right, y_bottom))
+            crop_instructions.append((str(img), index, x_left, y_top, x_right, y_bottom))
 
 #
 #   IMAGE CROPPER SECTION ---------------------------------------------------------------------
 #
 
+
+# Iterate through every tuple in crop_instructions
 for instruction in crop_instructions:
     
+    # Open the file, convert to RGB (handles JPG and PNG)
     main_image = Image.open(instruction[0]).convert("RGB")
 
-    left = instruction[1]
-    top = instruction[2]
-    right = instruction[3]
-    bottom = instruction[4]
+    # Save the index number for filename
+    index = instruction[1]
+
+    # Save the coordinates
+    left = instruction[2]
+    top = instruction[3]
+    right = instruction[4]
+    bottom = instruction[5]
     
+    # Save the filename without the path
     filename = instruction[0].split('/')[-1]
 
+    # Crop the image using the given coordinates
     cropped_image = main_image.crop((left, top, right, bottom))
-    cropped_image.save(outdir + filename, "JPEG")
+
+    # Save the new file
+    cropped_image.save(outdir + filename + "_{}".format(index), "JPEG")

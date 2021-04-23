@@ -4,3 +4,4 @@
 /stanford
 /yolov5
 /data/outimages/**
+/__pycache__

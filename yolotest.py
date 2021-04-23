@@ -6,6 +6,11 @@ import numpy as np
 from PIL import Image
 import os
 
+
+#
+#   IMAGE DETECTOR SECTION ----------------------------------------------------------
+#
+
 # Model
 model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
 
@@ -13,33 +18,48 @@ model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
 indir = './data/testimages/'
 outdir = './data/outimages/'
 imgs = [indir + f for f in os.listdir(indir)]  # batched list of images
-filenames = [fn for fn in os.listdir(indir)]
 
-image_locations = imgs.copy() # since imgs gets overwritten later, we need to copy the file paths for cropping
+crop_instructions = [] # list of 5-tuples (filename, x-left, y-top, x-right, y-bottom)
 
-# Inference
-results = model(imgs)
+for img in imgs:
 
-# Extract the coordinates of the bounding box from the YOLOv5 results
-rough_coordinates = list(results.xyxy[2].cpu().numpy())
+    # Inference
+    results = model(img).tolist()
 
-# Create a list of coordinate lists we can pass to the Photo Cropper
-coordinate_list = []
-for row in rough_coordinates:
-    row = list(row)
-    row = row[:4]
-    coordinate_list.append(row)
+    # Clean up the results by converting from Tensor to List
+    for result in results:
 
-# Crop each image
+        # Bring the 'xyxy' tensors off the GPU back to the CPU and convert to a list
+        location = result.xyxy.cpu().numpy().tolist()
 
+        # Set some variables to track the pixel coordinates
+        x_left = int(location[0][0])
+        y_top = int(location[0][1])
+        x_right = int(location[0][2])
+        y_bottom = int(location[0][3])
 
+        # Output the finding to the console
+        print("\nFile ---> {}".format(img))
+        print("\tTop-Left (x,y): {},{}".format(x_left, y_top))
+        print("\tBottom-Right (x,y): {}, {}".format(x_right, y_bottom))
 
-main_image = Image.open(image_locations[2]).convert("RGB")
+        # Add this to the crop instructions so the image cropper can generate the new pictures
+        crop_instructions.append((str(img), x_left, y_top, x_right, y_bottom))
 
-left = coordinate_list[0][0]
-top = coordinate_list[0][1]
-right = coordinate_list[0][2]
-bottom = coordinate_list[0][3]
+#
+#   IMAGE CROPPER SECTION ---------------------------------------------------------------------
+#
 
-cropped_image = main_image.crop((left, top, right, bottom))
-cropped_image.save(outdir + filenames[2], "JPEG")
+for instruction in crop_instructions:
+    
+    main_image = Image.open(instruction[0]).convert("RGB")
+
+    left = instruction[1]
+    top = instruction[2]
+    right = instruction[3]
+    bottom = instruction[4]
+    
+    filename = instruction[0].split('/')[-1]
+
+    cropped_image = main_image.crop((left, top, right, bottom))
+    cropped_image.save(outdir + filename, "JPEG")

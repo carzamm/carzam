@@ -3,3 +3,4 @@
 .pylintrc
 /stanford
 /yolov5
+/data/outimages/**

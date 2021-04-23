@@ -1,5 +1,9 @@
 """
-yolotest.py
+Project: Carzam - CS 467 Capstone
+Filename: yolotest.py
+Description: Identifies all photographs in ./data/testimages and uses YOLOv5 to identify the cars and trucks in the 
+picture. The coordinates of the bounding boxes are returned by the model, recorded and passed to the Python Image
+Library, which crops the original photographs, and saves the cropped vehicles in new files located in ./data/testimages
 """
 import torch
 import numpy as np

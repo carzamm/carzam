@@ -78,9 +78,10 @@ for instruction in crop_instructions:
     
     # Save the filename without the path
     filename = instruction[0].split('/')[-1]
+    name, extension = filename.rsplit('.')
 
     # Crop the image using the given coordinates
     cropped_image = main_image.crop((left, top, right, bottom))
 
     # Save the new file
-    cropped_image.save(outdir + filename + "_{}".format(index), "JPEG")
+    cropped_image.save(outdir + name + "_{}.".format(index) + extension, "JPEG")

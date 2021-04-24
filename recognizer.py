@@ -3,20 +3,29 @@ Project: Carzam - CS 467 Capstone
 Filename: recognizer.py
 Description: Uses the YOLOv5 library to detect car and truck objects in a photograph.
 """
+
 import torch
-import numpy as np
-import os
+
 
 def recognize_objects(path_to_image: str):
+    """
+    recognize_objects takes one argument, the path to the image it will be recognizing
+    objects in. It will run the image through the YOLOv5 AI and will return a list of
+    tuples in the format of:
+
+    [(filename, index, x-left, y-top, x-right, y-bottom), ...]
+
+    This datatype is referred to as crop_instructions
+    """
 
     # Model
     model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
 
     # Set YOLO to only detect cars (id = 2) and trucks (id = 7)
     model.classes = [2, 7]
-    
+
     # This will be list of 6-tuples (filename, index, x-left, y-top, x-right, y-bottom)
-    crop_instructions = [] 
+    crop_instructions = []
 
     # Inference
     # results will be a list of Detection objects (cars, trucks, etc.)
@@ -24,7 +33,7 @@ def recognize_objects(path_to_image: str):
 
     # For each detection object, go through all the objects detected for that class of detection
     for detection in results:
-        
+
         # Print the relevant filename
         print("\nFile ---> {}".format(path_to_image))
 
@@ -49,4 +58,3 @@ def recognize_objects(path_to_image: str):
             crop_instructions.append((str(path_to_image), index, x_left, y_top, x_right, y_bottom))
 
     return crop_instructions
-

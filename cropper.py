@@ -10,11 +10,20 @@ and outputs cropped image files using those coordinates
 
 from PIL import Image
 
+
 def generate_cropped_images(out_directory: str, crop_instructions: list):
+    """
+    Main function for cropper.py. Generates the cropped images from an list crop_instructions
+    out_directory should be the path as a string to where the output files should be placed
+    crop_instructions will be a list of tuples in the format of:
+
+    [(filename, index, x-left, y-top, x-right, y-bottom), ...]
+
+    """
 
     # Iterate through every tuple in crop_instructions
     for instruction in crop_instructions:
-        
+
         # Open the file, convert to RGB (handles JPG and PNG)
         main_image = Image.open(instruction[0]).convert("RGB")
 
@@ -26,9 +35,9 @@ def generate_cropped_images(out_directory: str, crop_instructions: list):
         top = instruction[3]
         right = instruction[4]
         bottom = instruction[5]
-        
+
         # Save the filename without the path
-        print(instruction[0])
+
         filename = instruction[0].split('/')[-1]
         name, extension = filename.rsplit('.')
 

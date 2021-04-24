@@ -5,3 +5,4 @@
 /yolov5
 /data/outimages/**
 /__pycache__
+yolov5s.pt

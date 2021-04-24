@@ -6,3 +6,4 @@
 /data/outimages/**
 /__pycache__
 yolov5s.pt
+/ai-classifier/datasets

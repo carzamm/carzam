@@ -1,8 +1,8 @@
-from recognizer import recognize_objects
-from cropper import generate_cropped_images
+from observer import directory_observer
 
-path_to_file = "./data/testimages/2020-acura-mdx.jpg"
-out_directory = "./data/outimages/"
+OUT_DIRECTORY = "./data/outimages/"
+IN_DIRECTORY = "./data/testimages/"
 
-crop_instructions = recognize_objects(path_to_file)
-generate_cropped_images(out_directory, crop_instructions)
+observer = directory_observer(IN_DIRECTORY, OUT_DIRECTORY)
+observer.start()
+observer.join()

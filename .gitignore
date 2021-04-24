@@ -1,0 +1,8 @@
+/venv
+/input
+.pylintrc
+/stanford
+/yolov5
+/data/outimages/**
+/__pycache__
+yolov5s.pt

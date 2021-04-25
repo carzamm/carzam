@@ -16,7 +16,8 @@ from werkzeug.utils import secure_filename
 from flask import send_from_directory
 from werkzeug.middleware.shared_data import SharedDataMiddleware
 from pathlib import Path
-from observer import directory_observer
+from cropper import generate_cropped_images
+from recognizer import recognize_objects
 
 # just for printing results to console
 import sys
@@ -33,11 +34,6 @@ Path(OUT_DIRECTORY).mkdir(parents=True, exist_ok=True)
 PATH = os.getcwd()
 UPLOAD_FOLDER = os.path.join(PATH, IN_DIRECTORY[2:])
 
-# Create the observer to scan IN_DIRECTORY and then output to OUT_DIRECTORY
-observer = directory_observer(IN_DIRECTORY, OUT_DIRECTORY)
-observer.start()
-print("observer has been started", file=sys.stdout)
-# observer.join()
 
 #
 # Create And Configure Flask Instance
@@ -83,18 +79,23 @@ def home_page():
         if file.filename == '':
             flash('No selected file')
             return redirect(request.url)
+
+        # This looks like the case when the file was uploaded and it was valid
         if file and allowed_file(file.filename):
             # is saving it default as "image.png" saving it 
             # as the filename that is entered
             # could also save it using the date that the 
             # user submitted the file
             filename = secure_filename(file.filename)
+            print(file)
             # need to check whether that file already exists in folder
             print(file.filename, file=sys.stdout)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             print("file has been saved", file=sys.stdout)
+            
             # wait for file to appear in outfolder
             time.sleep(10)
+
             # while(len(list(Path(OUT_DIRECTORY).glob('*.jpg'))) < len(list(Path(IN_DIRECTORY).glob('*.jpg')))):
             #   print("out directory ", len(list(Path(OUT_DIRECTORY).glob('*.jpg'))))
             #   print("in directory ", len(list(Path(IN_DIRECTORY).glob('*.jpg'))))

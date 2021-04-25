@@ -11,12 +11,9 @@
     <h3>Version 0.1</h3>
     <h3>Upload new File</h3>
 
-    <!-- 
-        Reference: 
-        https://roytuts.com/upload-and-display-image-using-python-flask/ 
-    -->
     {% if filename %}
         <div>
+            <p>{{filename}}</p>
             <img src="{{ url_for('display_image', filename=filename) }}">
         </div>
     {% endif %}

@@ -12,7 +12,8 @@ import os
 import glob
 import time
 from flask import Flask, flash, request, redirect, url_for, render_template
-from werkzeug.utils import secure_filename   
+from werkzeug.datastructures import FileStorage
+from werkzeug.utils import secure_filename
 from flask import send_from_directory
 from werkzeug.middleware.shared_data import SharedDataMiddleware
 from pathlib import Path
@@ -57,6 +58,13 @@ def allowed_file(filename):
 	return '.' in filename and \
 		filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS          
 
+# Saves the uploaded file to the upload_folder and returns a string
+# representative of the path to the file
+def save_file_to_upload_directory(file: FileStorage):
+    filename = secure_filename(file.filename)
+    file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+    return os.path.join(app.config['UPLOAD_FOLDER'], filename)
+
 #
 # Routing
 #
@@ -65,10 +73,10 @@ def allowed_file(filename):
 @app.route("/", methods=['GET', 'POST'])
 def home_page():
     if request.method == 'POST':
-        print(OUT_DIRECTORY)
+        # print(OUT_DIRECTORY)
         # hard coded for jpg
-        filecount = len(list(Path(OUT_DIRECTORY).glob('*.jpg')))
-        print(len(list(Path(OUT_DIRECTORY).glob('*.jpg'))))
+        # filecount = len(list(Path(OUT_DIRECTORY).glob('*.jpg')))
+        # print(len(list(Path(OUT_DIRECTORY).glob('*.jpg'))))
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file')
@@ -86,24 +94,27 @@ def home_page():
             # as the filename that is entered
             # could also save it using the date that the 
             # user submitted the file
-            filename = secure_filename(file.filename)
-            print(file)
+            # 
+            # print(file)
             # need to check whether that file already exists in folder
-            print(file.filename, file=sys.stdout)
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            print("file has been saved", file=sys.stdout)
-            
+            # print(file.filename, file=sys.stdout)
+            # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # print("file has been saved", file=sys.stdout)
+            path_to_file = save_file_to_upload_directory(file)
+            crop_instructions = recognize_objects(path_to_file)
+            cropped_file_list = generate_cropped_images(OUT_DIRECTORY, crop_instructions)
+            print(cropped_file_list)
             # wait for file to appear in outfolder
-            time.sleep(10)
-
+            # time.sleep(10)
             # while(len(list(Path(OUT_DIRECTORY).glob('*.jpg'))) < len(list(Path(IN_DIRECTORY).glob('*.jpg')))):
             #   print("out directory ", len(list(Path(OUT_DIRECTORY).glob('*.jpg'))))
             #   print("in directory ", len(list(Path(IN_DIRECTORY).glob('*.jpg'))))
             #   time.sleep(20)
             # the file sometimes doesn't load (doesn't fully finish processing the cropper.py)
-            getrecentfile = max(glob.glob(OUT_DIRECTORY + '*.jpg'), key=os.path.getctime)
-            print(getrecentfile)
-            return render_template('index.html', filename = getrecentfile)
+            # getrecentfile = max(glob.glob(OUT_DIRECTORY + '*.jpg'), key=os.path.getctime)
+            # print(getrecentfile)
+            # return render_template('index.html', filename = getrecentfile)
+            return str(cropped_file_list)
 
     # return redirect(request.url)
     return render_template('index.html')

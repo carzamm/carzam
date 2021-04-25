@@ -61,3 +61,4 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
 
             # Save the new file
             cropped_image.save(path_to_save_file, "JPEG")
+            print("image has been saved")

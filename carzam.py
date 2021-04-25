@@ -64,7 +64,7 @@ def home_page():
     if request.method == 'POST':
         # check if the post request has the file part
         if 'file' not in request.files:
-            flash('No file part')
+            flash('No file')
             return redirect(request.url)
         file = request.files['file']
         # if user does not select file, browser also
@@ -75,7 +75,6 @@ def home_page():
         if file and allowed_file(file.filename):
             filename = secure_filename("image.png")
 
-            # print(f"BEFORE SAVE, UPLOAD FOLDER = {UPLOAD_FOLDER}")
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
 
             return render_template('index.html', filename = filename)
@@ -84,8 +83,6 @@ def home_page():
     return render_template('index.html')
 
 # Route To Serve Image
-# Reference: 
-# https://roytuts.com/upload-and-display-image-using-python-flask/
 @app.route('/display/<filename>')
 def display_image(filename):
 	return redirect(url_for('static', filename = 'testimages/' + filename), code = 307)

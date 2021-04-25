@@ -1,2 +1,10 @@
-.DS_Store
 /venv
+/input
+.pylintrc
+/stanford
+/yolov5
+/data/outimages/**
+/__pycache__
+yolov5s.pt
+.DS_Store
+.git

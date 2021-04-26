@@ -8,8 +8,6 @@ and then waits for new files to be added, processing them as they are
 # Reference: 
 # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
 import os
-# added glob
-import glob
 import time
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.datastructures import FileStorage
@@ -19,9 +17,6 @@ from werkzeug.middleware.shared_data import SharedDataMiddleware
 from pathlib import Path
 from cropper import generate_cropped_images
 from recognizer import recognize_objects
-
-# just for printing results to console
-import sys
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
@@ -73,10 +68,6 @@ def save_file_to_upload_directory(file: FileStorage):
 @app.route("/", methods=['GET', 'POST'])
 def home_page():
     if request.method == 'POST':
-        # print(OUT_DIRECTORY)
-        # hard coded for jpg
-        # filecount = len(list(Path(OUT_DIRECTORY).glob('*.jpg')))
-        # print(len(list(Path(OUT_DIRECTORY).glob('*.jpg'))))
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file')
@@ -90,31 +81,26 @@ def home_page():
 
         # This looks like the case when the file was uploaded and it was valid
         if file and allowed_file(file.filename):
-            # is saving it default as "image.png" saving it 
-            # as the filename that is entered
-            # could also save it using the date that the 
-            # user submitted the file
-            # 
-            # print(file)
-            # need to check whether that file already exists in folder
-            # print(file.filename, file=sys.stdout)
-            # file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            # print("file has been saved", file=sys.stdout)
             path_to_file = save_file_to_upload_directory(file)
             crop_instructions = recognize_objects(path_to_file)
             cropped_file_list = generate_cropped_images(OUT_DIRECTORY, crop_instructions)
+            print(file.filename)
             print(cropped_file_list)
-            # wait for file to appear in outfolder
-            # time.sleep(10)
-            # while(len(list(Path(OUT_DIRECTORY).glob('*.jpg'))) < len(list(Path(IN_DIRECTORY).glob('*.jpg')))):
-            #   print("out directory ", len(list(Path(OUT_DIRECTORY).glob('*.jpg'))))
-            #   print("in directory ", len(list(Path(IN_DIRECTORY).glob('*.jpg'))))
-            #   time.sleep(20)
-            # the file sometimes doesn't load (doesn't fully finish processing the cropper.py)
-            # getrecentfile = max(glob.glob(OUT_DIRECTORY + '*.jpg'), key=os.path.getctime)
-            # print(getrecentfile)
-            # return render_template('index.html', filename = getrecentfile)
-            return str(cropped_file_list)
+            # sending a list of files to index.html
+            # need a list to send the unformatted result in the event
+            # no cropping was done
+            list_for_image = []
+            # in the event that the list is empty
+            if not cropped_file_list:
+                print("there are no pictures in the list")
+                file_to_get = IN_DIRECTORY + file.filename
+                print(IN_DIRECTORY + file.filename)
+                list_for_image.append(file_to_get)
+                return render_template('index.html', filename = list_for_image)
+            else:
+                # all the images are placed in a table and shown to user
+                return render_template('index.html', filename = cropped_file_list)
+            #return str(cropped_file_list)
 
     # return redirect(request.url)
     return render_template('index.html')

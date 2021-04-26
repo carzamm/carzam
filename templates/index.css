@@ -1,0 +1,18 @@
+div#content {
+    display: block;
+}
+
+div#loading {
+    top: 200 px;
+    margin: auto;
+    position: absolute;
+    z-index: 1000;
+    width: 160px;
+    height: 24px;
+    background: url(loadingimage.gif) no-repeat;
+    cursor: wait;
+}
+
+table {
+    width: 100%
+}

@@ -7,3 +7,5 @@
 /project-progress
 /__pycache__
 yolov5s.pt
+/static/outimages**
+/static/testimages**

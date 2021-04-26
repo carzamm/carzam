@@ -9,3 +9,4 @@
 yolov5s.pt
 /static/outimages**
 /static/testimages**
+.DS_Store

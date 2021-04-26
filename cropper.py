@@ -27,6 +27,9 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
     min_size is a tuple in the format (min_width_pixes, min_height_pixels)
     """
 
+    # List object that holds strings which point to the cropped files
+    cropped_files = []
+
     # Iterate through every tuple in crop_instructions
     for instruction in crop_instructions:
 
@@ -61,3 +64,8 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
 
             # Save the new file
             cropped_image.save(path_to_save_file, "JPEG")
+            cropped_files.append(path_to_save_file)
+    
+    # Return the list of file paths of the cropped files
+    return cropped_files
+            

@@ -3,6 +3,10 @@
 .pylintrc
 /stanford
 /yolov5
-/data/outimages/**
+/data
+/project-progress
 /__pycache__
 yolov5s.pt
+/static/outimages**
+/static/testimages**
+.DS_Store

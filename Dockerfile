@@ -1,15 +1,7 @@
 # define base docker image for the app
-# we are choosing latest image of alpine for our base image
-# alpine is a lightweight linux system
-# from alpine:latest
+# we are choosing python base image, version 3.7-slim
+# python 3.7-slim includes pip3
 from python:3.7-slim
-
-# add the python3 development package and pip 3 to the docker image
-# apk is package manager for alpine linux
-# --no-cache flag, we don't want cache increasing image size
-# py3-pip adds pip3 to the docker image
-# RUN apk add --no-cache python3-dev py3-pip && \ 
-#	pip3 install --upgrade pip
 
 # create working directory inside the docker image
 WORKDIR /app
@@ -21,6 +13,17 @@ COPY . /app
 
 # install dependencies in the docker image
 # it is installing from the interal docker image "/app" directory
-# --no-chache-dir will help keep docker image size smaller
-RUN pip3 --no-cache-dir install -r requirements.txt
+# add --no-chache-dir to keep docker image size smaller, build fails with out it
+# RUN pip3 --no-cache-dir install -r requirements.txt
 
+# expose port 8080 inside the docker image
+EXPOSE 8080
+
+# make containers created from this docker image executable
+# ENTRYPOINT makes the container executable
+# [ ] holds commands we want to run when creating container
+# CMD [ ] containers arguments to pass to ENTRYPOINT command 
+# CMD can pass multiple arguments... [ "<arg1>", "<arg2>"]
+ENTRYPOINT ["python3"]
+#CMD ["app.py"]
+CMD ["test.py"]

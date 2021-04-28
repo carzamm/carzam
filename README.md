@@ -20,28 +20,28 @@ Dowload and install Docker:
 > https://docs.docker.com/get-docker/
 
 
-Ensure the docker cli is working:
+Ensure the Docker cli is working:
 > docker --version
 
 
 Basic Docker workflow (handled in the Dockerfile):
-> 1. Install python 3 in docker image
-> 2. Install pip3 in docker image
-> 3. Copy app source code in docker image
-> 4. Install dependencies in docker image
-> 5. Expose port in docker image
-> 6. Create the docker image
-> 7. Run the docker image to create a container instance
+> 1. Install python 3 in Docker image
+> 2. Install pip3 in Docker image
+> 3. Copy app source code in Docker image
+> 4. Install dependencies in Docker image
+> 5. Expose port in Docker image
+> 6. Create the Docker image
+> 7. Run the Docker image to create a container instance
 
 ### Workflow for testing locally:
-> - Testing locally without docker still works with "python3 app.y", you just want to make sure you test the docker build and run steps when you are ready to make a pull request.
+> - Testing locally without docker still works with "python3 app.y", you just want to make sure you test the Docker build and run steps when you are ready to make a pull request.
 
 When ready for a pull request:
-> 1. Build the docker image
-> 2. Run the docker image to create a container
-> 3. View app on local host to confirm docker container is functional
+> 1. Build the Docker image
+> 2. Run the Docker image to create a container
+> 3. View app on local host to confirm Docker container is functional
 > 4. Use the Docker desktop app to view Docker server logs when an issue arises
-> 5. Occassionally clean up dangling docker images from old deployments
+> 5. Occassionally clean up dangling Docker images from old deployments
 
 ### Docker CLI Commands:
 
@@ -49,10 +49,10 @@ Build the docker image:
 > docker build -t flaskapp:latest .
 
 > docker build -t <new image name>:<image version> .
-> 1. docker: calls docker client
-> 2. builder: used to create a new docker image
+> 1. docker: calls Docker client
+> 2. builder: used to create a new Docker image
 > 3. -t: flag that defines the name of the image we are going to create
-> dot notation at the end: docker will look for the Dockerfile in the current folder
+> dot notation at the end: Docker will look for the Dockerfile in the current folder
 
 Run a docker image in demo mode and bind local host to the exposed docker port:
 > docker run -it -d -p 8080:8080 flaskapp
@@ -72,10 +72,10 @@ Check what containers are currently running on your system:
 Stop a container running as an executable (running in perpetuity):
 > docker stop <container id>
 
-Exit a container not running as an executable:
+Exit a container not running as an executable (running in the foreground of shell):
 > exit
 
-See all docker container's (stopped and running):
+See all container's (stopped and running):
 > docker ps -a
 
 ### Docker CLI Clearnup Commands:

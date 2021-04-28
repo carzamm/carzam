@@ -54,7 +54,7 @@ Build the docker image:
 > 3. -t: flag that defines the name of the image we are going to create
 > dot notation at the end: Docker will look for the Dockerfile in the current folder
 
-Run a docker image in demo mode and bind local host to the exposed docker port:
+Run a docker image in demo mode:
 > docker run -it -d -p 8080:8080 flaskapp
 
 > docker run -it -d -p <local port>:<exposed container port> <image name>
@@ -63,7 +63,7 @@ Run a docker image in demo mode and bind local host to the exposed docker port:
 > 3. <local port>: this can be any port number you want for local host
 > 4. <exposed container port>: not sure this is required with dynamic host allocation, will have to test
 
-Show docker images present on local system (after creating some):
+Show docker images present on local system:
 > docker images
 
 Check what containers are currently running on your system:

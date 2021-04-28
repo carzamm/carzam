@@ -3,11 +3,11 @@ The CS467 Capstone Project at Oregon State University in the Spring of 2021. Car
 
  #### To test:
  Ideally, you should setup a virtual environment before running this:
- python3 -m venv venv  
- source ./venv/bin/activate  
+ > python3 -m venv venv  
+ > source ./venv/bin/activate  
 
- Install dependencies by doing
- pip3 install -r requirements.txt
+ Install dependencies by doing  
+ > pip3 install -r requirements.txt
 
- Then run by doing
- python3 app.py
+ Then run by doing  
+ > python3 app.py

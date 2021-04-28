@@ -31,4 +31,26 @@ Basic Docker workflow (handled by Dockerfile):
 > 6. Create the docker image
 > 7. Run the docker image to create a container instance
 
-#### Docker CLI Notes:
+#### Docker CLI Commands:
+
+Build the docker image:
+> docker build -t flaskapp:latest .
+
+> docker build -t <new image name>:<image version> .
+> 1. docker: calls docker client
+> 2. builder: used to create a new docker image
+> 3. -t: flag that defines the name of the image we are going to create
+> dot notation at the end: docker will look for the Dockerfile in the current folder
+
+Show docker images present on local system (after creating some):
+> docker images
+
+Run a docker image in demo mode and bind local host to the exposed docker port:
+> docker run -it -d -p 8080:8080 flaskapp
+
+> docker run -it -d -p <local port>:<exposed container port> flaskapp
+> 1. -d: demo flag
+> 2. -p: publish flag, publishing containers exposed port to host, allowing host port to bind to container port
+> 3. <local port>: this can be any port number you want for local host
+> 4. <exposed container port>: not sure this is required with dynamic host allocation, will have to test
+

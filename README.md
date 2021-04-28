@@ -14,7 +14,7 @@ The CS467 Capstone Project at Oregon State University in the Spring of 2021. Car
 
 ## Docker Reference:
 
-#### Getting set up:
+### Getting set up:
 
 Dowload and install Docker:
 > https://docs.docker.com/get-docker/
@@ -33,14 +33,14 @@ Basic Docker workflow (handled in the Dockerfile):
 > 6. Create the docker image
 > 7. Run the docker image to create a container instance
 
-#### Workflow for testing locally:
+### Workflow for testing locally:
 > 1. Rebuild the docker image
 > 2. Run the docker image to create a container
 > 3. View app on local host
 > 4. Use the Docker desktop app to view Docker server logs when an issue arises
 > 5. Occassionally clean up dangling docker images from old deployments
 
-#### Docker CLI Commands:
+### Docker CLI Commands:
 
 Build the docker image:
 > docker build -t flaskapp:latest .
@@ -75,7 +75,7 @@ Exit a container not running as an executable:
 See all docker container's (stopped and running):
 > docker ps -a
 
-#### **Docker CLI Clearnup Commands:**
+### Docker CLI Clearnup Commands:
 
 Clean up images/containers and other resources that are dangling:
 > docker system prune

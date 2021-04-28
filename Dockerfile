@@ -14,7 +14,13 @@ COPY . /app
 # install dependencies in the docker image
 # it is installing from the interal docker image "/app" directory
 # add --no-chache-dir to keep docker image size smaller, build fails with out it
-# RUN pip3 --no-cache-dir install -r requirements.txt
+RUN pip3 --no-cache-dir install -r requirements.txt
+#RUN pip3 install -r requirements.txt
+
+# solves "ImportError: libGL.so.1: cannot open shared object file: No such file or directory"
+#https://stackoverflow.com/questions/55313610/importerror-libgl-so-1-cannot-open-shared-object-file-no-such-file-or-directo
+RUN apt-get update ##[edited]
+RUN apt-get install ffmpeg libsm6 libxext6  -y
 
 # expose port 8080 inside the docker image
 EXPOSE 8080
@@ -25,5 +31,4 @@ EXPOSE 8080
 # CMD [ ] containers arguments to pass to ENTRYPOINT command 
 # CMD can pass multiple arguments... [ "<arg1>", "<arg2>"]
 ENTRYPOINT ["python3"]
-#CMD ["app.py"]
-CMD ["test.py"]
+CMD ["app.py"]

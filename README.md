@@ -37,7 +37,8 @@ Basic Docker workflow (handled in the Dockerfile):
 > 1. Rebuild the docker image
 > 2. Run the docker image to create a container
 > 3. View app on local host
-> 4. Note: occassionally clean up dangling docker images from old deployments
+> 4. Use the Docker desktop app to view Docker server logs when an issue arises
+> 5. Occassionally clean up dangling docker images from old deployments
 
 #### Docker CLI Commands:
 

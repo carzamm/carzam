@@ -12,7 +12,7 @@ The CS467 Capstone Project at Oregon State University in the Spring of 2021. Car
  Then run by doing:  
  > python3 app.py
 
-## Docker Notes
+## Docker Reference:
 
 #### Getting set up:
 

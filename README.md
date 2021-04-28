@@ -23,13 +23,13 @@ Ensure the docker cli is working:
 > docker --version
 
 Basic Docker workflow (handled by Dockerfile):
-> 1. Install python 3 in docker image
-> 2. Install pip3 in docker image
-> 3. Copy app source code in docker image
-> 4. Install dependencies in docker image
-> 5. Expose port in docker image
-> 6. Create the docker image
-> 7. Run the docker image to create a container instance
+- [x] 1. Install python 3 in docker image [x]
+- [x] 2. Install pip3 in docker image
+- [x] 3. Copy app source code in docker image
+- [x] 4. Install dependencies in docker image
+- [x] 5. Expose port in docker image
+- [x] 6. Create the docker image
+- [x] 7. Run the docker image to create a container instance
 
 #### Docker CLI Commands:
 

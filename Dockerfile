@@ -22,8 +22,13 @@ RUN pip3 --no-cache-dir install -r requirements.txt
 RUN apt-get update ##[edited]
 RUN apt-get install ffmpeg libsm6 libxext6  -y
 
+# not respected by heroku, may need for aws
 # expose port 8080 inside the docker image
-EXPOSE 8080
+# EXPOSE 8080 
+
+# required by heroku documentation
+# binds to a dynamic port determined by heroku
+CMD gunicorn --bind 0.0.0.0:$PORT wsgi
 
 # make containers created from this docker image executable
 # ENTRYPOINT makes the container executable

@@ -80,5 +80,14 @@ def display_image(filename):
 	return redirect(url_for('static', filename = filename), code = 307)
 
 # run app.py on local host port 8080
-if __name__ == "__main__":               
-    app.run(host='127.0.0.1',port = 8080) 
+if __name__ == "__main__":           
+#    app.debug = True
+	
+    # bind to dynamic PORT if defined, otherwise default to 8080
+    # host '0.0.0.0' allows external programs to access the container
+    envPort = int(os.environ.get('PORT', 8080))
+    app.run(host='0.0.0.0', port = envPort)
+    
+    # host '127.0.0.1' is not accessible to Mac OS
+    # however, it may be required for other OS's
+    #app.run(host='127.0.0.1',port = 8080)

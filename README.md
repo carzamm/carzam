@@ -40,7 +40,7 @@ Basic Docker workflow (handled in the Dockerfile):
 > 1. Build the Docker image
 > 2. Run the Docker image to create a container
 > 3. View app on local host to confirm Docker container is functional
-> 4. Use the Docker desktop app to view Docker server logs when an issue arises
+> 4. Use the Docker desktop app to view Docker server logs if an issue arises
 > 5. Occassionally clean up dangling Docker images from old deployments
 
 ### Docker CLI Commands:

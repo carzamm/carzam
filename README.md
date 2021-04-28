@@ -20,7 +20,7 @@ Dowload and install Docker:
 > https://docs.docker.com/get-docker/
 
 
-Ensure the Docker cli is working:
+Ensure the Docker CLI is working:
 > docker --version
 
 

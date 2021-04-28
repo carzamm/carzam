@@ -48,9 +48,31 @@ Show docker images present on local system (after creating some):
 Run a docker image in demo mode and bind local host to the exposed docker port:
 > docker run -it -d -p 8080:8080 flaskapp
 
-> docker run -it -d -p <local port>:<exposed container port> flaskapp
+> docker run -it -d -p <local port>:<exposed container port> <image name>
 > 1. -d: demo flag
 > 2. -p: publish flag, publishing containers exposed port to host, allowing host port to bind to container port
 > 3. <local port>: this can be any port number you want for local host
 > 4. <exposed container port>: not sure this is required with dynamic host allocation, will have to test
 
+Check what containers are currently running on your system:
+> docker ps
+
+Stop a container running as an executable (running in perpetuity):
+> docker stop <container id>
+
+Exit a container not running as an executable:
+> exit
+
+See all docker container's (stopped and running):
+> docker ps -a
+
+#### Docker CLI Clearnup Commands:
+
+Clean up images/containers and other resources that are dangling:
+> docker system prune
+
+Delete a specific image:
+> docker rmi <image id>
+
+Delete multiple images:
+> docker rmi <image id> <image id>

@@ -19,19 +19,26 @@ The CS467 Capstone Project at Oregon State University in the Spring of 2021. Car
 Dowload and install Docker:
 > https://docs.docker.com/get-docker/
 
+
 Ensure the docker cli is working:
 > docker --version
 
+
 Basic Docker workflow (handled by Dockerfile):
-- [x] 1. Install python 3 in docker image
-- [x] 2. Install pip3 in docker image
-- [x] 3. Copy app source code in docker image
-- [x] 4. Install dependencies in docker image
-- [x] 5. Expose port in docker image
-- [x] 6. Create the docker image
-- [x] 7. Run the docker image to create a container instance
+> 1. Install python 3 in docker image
+> 2. Install pip3 in docker image
+> 3. Copy app source code in docker image
+> 4. Install dependencies in docker image
+> 5. Expose port in docker image
+> 6. Create the docker image
+> 7. Run the docker image to create a container instance
 
 #### Docker CLI Commands:
+
+CLI commands for testing app locally (more information on the commands below):
+> 1. docker build -t flaskapp:latest .
+> 2. docker run -it -d -p 8080:8080 flaskapp
+
 
 Build the docker image:
 > docker build -t flaskapp:latest .
@@ -42,8 +49,6 @@ Build the docker image:
 > 3. -t: flag that defines the name of the image we are going to create
 > dot notation at the end: docker will look for the Dockerfile in the current folder
 
-Show docker images present on local system (after creating some):
-> docker images
 
 Run a docker image in demo mode and bind local host to the exposed docker port:
 > docker run -it -d -p 8080:8080 flaskapp
@@ -54,14 +59,21 @@ Run a docker image in demo mode and bind local host to the exposed docker port:
 > 3. <local port>: this can be any port number you want for local host
 > 4. <exposed container port>: not sure this is required with dynamic host allocation, will have to test
 
+
+Show docker images present on local system (after creating some):
+> docker images
+
+
 Check what containers are currently running on your system:
 > docker ps
+
 
 Stop a container running as an executable (running in perpetuity):
 > docker stop <container id>
 
 Exit a container not running as an executable:
 > exit
+
 
 See all docker container's (stopped and running):
 > docker ps -a
@@ -71,8 +83,10 @@ See all docker container's (stopped and running):
 Clean up images/containers and other resources that are dangling:
 > docker system prune
 
+
 Delete a specific image:
 > docker rmi <image id>
+
 
 Delete multiple images:
 > docker rmi <image id> <image id>

@@ -83,14 +83,11 @@ def display_image(filename):
 if __name__ == "__main__":           
 #    app.debug = True
 	
-    # bind to PORT if defined, otherwise default to 8080
+    # bind to dynamic PORT if defined, otherwise default to 8080
+    # host '0.0.0.0' allows external programs to access the container
     envPort = int(os.environ.get('PORT', 8080))
     app.run(host='0.0.0.0', port = envPort)
     
-    # host 0.0.0.0 is required on mac os
-    # to bind the EXPOSED Dockerfile port
-    # 8080 to local host.
-    # I do not know if this will work for
-    # other operating systems.
-    #app.run(host='0.0.0.0', port = 8080)
+    # host '127.0.0.1' is not accessible to Mac OS
+    # however, it may be required for other OS's
     #app.run(host='127.0.0.1',port = 8080)

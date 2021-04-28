@@ -1,11 +1,12 @@
 # define base docker image for the app
 # we are choosing python base image, version 3.7-slim
-# python 3.7-slim includes pip3
+# python:3.7-slim speeds up dependency installation
 from python:3.7-slim
 
 # create working directory inside the docker image
 WORKDIR /app
 
+# copy carzam app into docker image
 # dot notation says source for copy is all files in current directory
 # current directory is the external directory Dockerfile is located
 # destination is the internal docker image directory "/app"
@@ -15,19 +16,15 @@ COPY . /app
 # it is installing from the interal docker image "/app" directory
 # add --no-chache-dir to keep docker image size smaller, build fails with out it
 RUN pip3 --no-cache-dir install -r requirements.txt
-#RUN pip3 install -r requirements.txt
 
 # solves "ImportError: libGL.so.1: cannot open shared object file: No such file or directory"
 #https://stackoverflow.com/questions/55313610/importerror-libgl-so-1-cannot-open-shared-object-file-no-such-file-or-directo
-RUN apt-get update ##[edited]
+RUN apt-get update
 RUN apt-get install ffmpeg libsm6 libxext6  -y
 
-# not respected by heroku, may need for aws
-# expose port 8080 inside the docker image
-# EXPOSE 8080 
-
 # required by heroku documentation
-# binds to a dynamic port determined by heroku
+# exposes a dynamic port to the outside world 
+# port is determined by heroku
 CMD gunicorn --bind 0.0.0.0:$PORT wsgi
 
 # make containers created from this docker image executable

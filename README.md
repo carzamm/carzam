@@ -66,7 +66,7 @@ Exit a container not running as an executable:
 See all docker container's (stopped and running):
 > docker ps -a
 
-#### Docker CLI Clearnup Commands:
+#### **Docker CLI Clearnup Commands:**
 
 Clean up images/containers and other resources that are dangling:
 > docker system prune

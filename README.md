@@ -36,7 +36,7 @@ Basic Docker workflow (handled in the Dockerfile):
 ### Workflow for testing locally:
 > - Testing locally without docker still works with "python3 app.y", you just want to make sure you test the docker build and run steps when you are ready to make a pull request.
 
-> When ready for a pull request:
+When ready for a pull request:
 > 1. Build the docker image
 > 2. Run the docker image to create a container
 > 3. View app on local host to confirm docker container is functional

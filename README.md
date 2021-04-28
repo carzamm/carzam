@@ -24,7 +24,7 @@ Ensure the docker cli is working:
 > docker --version
 
 
-Basic Docker workflow (handled by Dockerfile):
+Basic Docker workflow (handled in the Dockerfile):
 > 1. Install python 3 in docker image
 > 2. Install pip3 in docker image
 > 3. Copy app source code in docker image

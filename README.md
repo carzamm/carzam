@@ -34,11 +34,12 @@ Basic Docker workflow (handled in the Dockerfile):
 > 7. Run the docker image to create a container instance
 
 ### Workflow for testing locally:
-> 1. Rebuild the docker image
-> 2. Run the docker image to create a container
-> 3. View app on local host
-> 4. Use the Docker desktop app to view Docker server logs when an issue arises
-> 5. Occassionally clean up dangling docker images from old deployments
+> 1. Testing locally without docker still works with "python3 app.y", you just want to make sure you test the docker build and run steps when you are ready to make a pull request.
+> 2. Rebuild the docker image
+> 3. Run the docker image to create a container
+> 4. View app on local host
+> 5. Use the Docker desktop app to view Docker server logs when an issue arises
+> 6. Occassionally clean up dangling docker images from old deployments
 
 ### Docker CLI Commands:
 

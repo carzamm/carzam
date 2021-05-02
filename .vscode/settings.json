@@ -1,0 +1,5 @@
+{
+    "python.linting.pylintArgs": [
+        "--generated-members=numpy.* ,torch.*"
+        ]        
+}

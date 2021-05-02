@@ -27,37 +27,6 @@ def find_classes(dir):
     class_to_idx = {classes[i]: i for i in range(len(classes))}
     return classes, class_to_idx
 
-
-# This part detecs if the device has a GPU capable of running CUDA
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-# device = torch.device("cpu")
-
-# Clear the CUDA Memory
-# print(torch.cuda.memory_summary(device=0, abbreviated=False))
-
-# Define where the data is held
-dataset_dir = "./input/"
-
-# This specifies the model 'Resnet34' which is pretrained, we only want to change the last layer
-# which is the output layer.
-model_ft = models.resnet34(pretrained=True)
-num_ftrs = model_ft.fc.in_features
-
-# replace the last fc layer with an untrained one (requires grad by default)
-model_ft.fc = nn.Linear(num_ftrs, QTY_CLASSES)
-model_ft = model_ft.to(device)
-
-# Load the saved weights so we can utilize our pre-trained data for vehicles
-MODEL_FILENAME = "saved_model.pt"
-loaded_weights = torch.load(MODEL_FILENAME)
-model_ft.load_state_dict(loaded_weights)
-
-# switch the model to evaluation mode to make dropout and batch norm work in eval mode
-model_ft.eval()
-
-verification_dir=dataset_dir+"verify/"
-
-
 # This is a custom function that will go through every file in ./input/verify and just see if the model
 # comes up with the right answer.
 def test_all_cars():
@@ -82,4 +51,35 @@ def test_all_cars():
         print("\nSupposed to be {}".format(filename))
         print(classes[predicted.item()], "confidence: ", conf.item())
 
-test_all_cars()
+if __name__ == "__main__":
+
+    # This part detecs if the device has a GPU capable of running CUDA
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cpu")
+
+    # Clear the CUDA Memory
+    # print(torch.cuda.memory_summary(device=0, abbreviated=False))
+
+    # Define where the data is held
+    dataset_dir = "./input/"
+
+    # This specifies the model 'Resnet34' which is pretrained, we only want to change the last layer
+    # which is the output layer.
+    model_ft = models.resnet34(pretrained=True)
+    num_ftrs = model_ft.fc.in_features
+
+    # replace the last fc layer with an untrained one (requires grad by default)
+    model_ft.fc = nn.Linear(num_ftrs, QTY_CLASSES)
+    model_ft = model_ft.to(device)
+
+    # Load the saved weights so we can utilize our pre-trained data for vehicles
+    MODEL_FILENAME = "saved_model.pt"
+    loaded_weights = torch.load(MODEL_FILENAME)
+    model_ft.load_state_dict(loaded_weights)
+
+    # switch the model to evaluation mode to make dropout and batch norm work in eval mode
+    model_ft.eval()
+
+    # evaluate the cars in the verification_dir
+    verification_dir=dataset_dir+"verify/"
+    test_all_cars()

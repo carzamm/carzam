@@ -7,19 +7,21 @@ in those directories creating copies with the same folder structure.
 For complicated photonames, filenames are SHA256 hashes of the original filename.
 """
 
-from cropper import generate_cropped_images
-from recognizer import recognize_objects
 import os
+from cropper import generate_cropped_images
+from recognizer import Recognizer
+
 
 INPUT_DIR = "./ai-classifier/input"
 OUTPUT_DIR = "./ai-classifier/output"
 TARGET_DIRS = ['test', 'train']
 
-def get_largest(crop_instructions):
-    print(crop_instructions)
+def get_largest(instructions):
+    """ Gets the largest picture in the crop instructions """
+
     maxheight, maxwidth = 0, 0
     best = None
-    for instruction in crop_instructions:
+    for instruction in instructions:
         _, _, leftx, topy, rightx, bottomy = instruction
         height = bottomy - topy
         width = rightx - leftx
@@ -28,26 +30,30 @@ def get_largest(crop_instructions):
             maxwidth = width
             best = instruction
     return [best]
-        
 
-for basedir in os.listdir(INPUT_DIR):
-    if basedir in TARGET_DIRS:
-        print(basedir)
-        for subdir in os.listdir(os.path.join(INPUT_DIR, basedir)):
-            print("\t{}".format(subdir))
-            for (dirpath, dirnames, filenames) in os.walk(os.path.join(INPUT_DIR, basedir, subdir)):
-                for file in filenames:
-                    print("\t\t{}".format(file))
-                    print("Processing File...")
-                    image_loc = os.path.join(INPUT_DIR, basedir, subdir, file)
-                    print(image_loc)
-                    if os.path.isfile(image_loc):
-                        crop_instructions = recognize_objects(image_loc)
-                        crop_instructions = get_largest(crop_instructions)
-                        print(crop_instructions)
-                        if not os.path.exists(os.path.join(OUTPUT_DIR, basedir, subdir)):
-                            os.makedirs(os.path.join(OUTPUT_DIR, basedir, subdir))
-                        generate_cropped_images(os.path.join(OUTPUT_DIR, basedir, subdir), crop_instructions, min_size=(0, 0))
-                    else:
-                        print("NOT A FILE: {}".format(image_loc))
-                    print("Done Processing File!")
+
+
+if __name__ == "__main__":
+    recognizer = Recognizer()
+    imgs_processed = 0
+
+    for basedir in os.listdir(INPUT_DIR):
+        if basedir in TARGET_DIRS:
+
+            for subdir in os.listdir(os.path.join(INPUT_DIR, basedir)):
+
+                for (dirpath, dirnames, filenames) in os.walk(os.path.join(INPUT_DIR, basedir, subdir)):
+
+                    for file in filenames:
+                        image_loc = os.path.join(INPUT_DIR, basedir, subdir, file)
+
+                        if os.path.isfile(image_loc):
+                            crop_instructions = recognizer.recognize_objects(image_loc)
+                            crop_instructions = get_largest(crop_instructions)
+
+                            if not os.path.exists(os.path.join(OUTPUT_DIR, basedir, subdir)):
+                                os.makedirs(os.path.join(OUTPUT_DIR, basedir, subdir))
+
+                            generate_cropped_images(os.path.join(OUTPUT_DIR, basedir, subdir), crop_instructions, min_size=(0, 0), padding=True)
+                            imgs_processed += 1
+    print("Cropped {} images. Done!".format(imgs_processed))

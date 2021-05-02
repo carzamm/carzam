@@ -18,7 +18,7 @@ from hashlib import sha256
 
 MIN_SIZE = 200, 200 # This can be modified to any width, height
 
-def generate_cropped_images(out_directory: str, crop_instructions: list, min_size: tuple=MIN_SIZE):
+def generate_cropped_images(out_directory: str, crop_instructions: list, min_size: tuple=MIN_SIZE, padding: bool=False):
     """
     Main function for cropper.py. Generates the cropped images from an list crop_instructions
     out_directory should be the path as a string to where the output files should be placed
@@ -52,8 +52,18 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
             # Open the file, convert to RGB (handles JPG and PNG)
             main_image = Image.open(instruction[0]).convert("RGB")
 
-            # Save the filename without the path
+            # Get the original image size
+            o_width, o_height = main_image.size
 
+            # Add padding if we want it
+            if padding:
+                padding = 20 # pixels
+                coords["bottom"] = min(coords["bottom"] + padding, o_height)
+                coords["top"] = max(coords["top"] - padding, 0)
+                coords["right"] = min(coords["right"] + padding, o_width)
+                coords["left"] = max(coords["left"] - padding, 0)
+
+            # Save the filename without the path
             filename = instruction[0].split('/')[-1]
 
             # Tries to use the existing filename, if it has weird characters

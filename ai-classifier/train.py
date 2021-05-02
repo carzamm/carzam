@@ -16,14 +16,12 @@ import torchvision
 import torchvision.models as models
 import torchvision.transforms as transforms
 
-import PIL.Image as Image
-
 # Define some constants to finetune hyperparameters
 BATCH_SIZE = 32
-TRAINING_EPOCHS = 20
+TRAINING_EPOCHS = 30
 QTY_CLASSES = 9 # THIS MUST BE THE NUMBER OF POSSIBLE OUTPUTS (MAKE/MODEL combinations)
 
-LEARNING_RATE = 0.005 # Getting 80% accuracy w/ LR=0.01
+LEARNING_RATE = 0.01 # Getting 80% accuracy w/ LR=0.01
 MOMENTUM = 0.9 # Seems like the default for this should be 0.9
 
 # This part detecs if the device has a GPU capable of running CUDA
@@ -34,7 +32,7 @@ device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 # print(torch.cuda.memory_summary(device=0, abbreviated=False))
 
 # Define where the data is held
-dataset_dir = "./input/"
+dataset_dir = "./output/"
 
 # This specifies how the data will be transformed from the image to what PyTorch will recognize
 # these values are specific and shouldn't be changed. They were specified by the PyTorch documentation.

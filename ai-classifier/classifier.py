@@ -23,8 +23,8 @@ BATCH_SIZE = 16
 TRAINING_EPOCHS = 20
 QTY_CLASSES = 10 # THIS MUST BE THE NUMBER OF POSSIBLE OUTPUTS (MAKE/MODEL/*YEAR combinations)
 
-LEARNING_RATE = 0.001
-MOMENTUM = 0.9
+LEARNING_RATE = 0.01
+MOMENTUM = 0.9 # Seems like the default for this should be 0.9
 
 # This part detecs if the device has a GPU capable of running CUDA
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")

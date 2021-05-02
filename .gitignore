@@ -3,7 +3,9 @@
 .pylintrc
 /stanford
 /yolov5
-/data/outimages/**
+/data/**
+/ai-classifier/data/**
 /__pycache__
 yolov5s.pt
-/ai-classifier/datasets
+/ai-classifier/input
+/ai-classifier/output

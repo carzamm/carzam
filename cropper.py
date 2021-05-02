@@ -13,6 +13,8 @@ side will not be processed.
 """
 
 from PIL import Image
+from os import path
+from hashlib import sha256
 
 MIN_SIZE = 200, 200 # This can be modified to any width, height
 
@@ -26,6 +28,7 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
 
     min_size is a tuple in the format (min_width_pixes, min_height_pixels)
     """
+    crypt = sha256()
 
     # Iterate through every tuple in crop_instructions
     for instruction in crop_instructions:
@@ -52,12 +55,24 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
             # Save the filename without the path
 
             filename = instruction[0].split('/')[-1]
-            name, extension = filename.rsplit('.')
+
+            # Tries to use the existing filename, if it has weird characters
+            # we just give it a random alphanumeric string as filename
+            try:
+                name, extension = filename.rsplit('.')
+            except ValueError:
+                crypt.update(bytes(filename, 'utf-8'))
+                name = crypt.hexdigest()
+                extension = "jpg"
 
             # Crop the image using the given coordinates
             cropped_image = main_image.crop((coords["left"], coords["top"], \
                 coords["right"], coords["bottom"]))
-            path_to_save_file = out_directory + name + "_{}.".format(index) + extension
+            out_file = name + "_{}.".format(index) + extension
+            out_path = path.join(out_directory, out_file)
 
             # Save the new file
-            cropped_image.save(path_to_save_file, "JPEG")
+            cropped_image.save(out_path, "JPEG")
+
+            # Output where file was written to
+            print("Wrote file to: {}".format(out_path))

@@ -19,7 +19,7 @@ def recognize_objects(path_to_image: str):
     """
 
     # Model
-    model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True)
+    model = torch.hub.load('ultralytics/yolov5', 'yolov5s', pretrained=True, verbose=False)
 
     # Set YOLO to only detect cars (id = 2) and trucks (id = 7)
     model.classes = [2, 7]

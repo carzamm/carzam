@@ -18,10 +18,10 @@ import torchvision.transforms as transforms
 
 # Define some constants to finetune hyperparameters
 BATCH_SIZE = 32
-TRAINING_EPOCHS = 30
+TRAINING_EPOCHS = 12
 QTY_CLASSES = 9 # THIS MUST BE THE NUMBER OF POSSIBLE OUTPUTS (MAKE/MODEL combinations)
 
-LEARNING_RATE = 0.01 # Getting 80% accuracy w/ LR=0.01
+LEARNING_RATE = 0.0121 # Getting 80% accuracy w/ LR=0.01
 MOMENTUM = 0.9 # Seems like the default for this should be 0.9
 
 # This part detecs if the device has a GPU capable of running CUDA
@@ -119,7 +119,7 @@ def train_model(model, criterion, optimizer, scheduler, n_epochs):
         
         # re-set the model to train mode after validating
         model.train()
-        # scheduler.step(test_acc)
+        scheduler.step(test_acc)
         since = time.time()
     print('Finished Training')
     return model, losses, accuracies, test_accuracies

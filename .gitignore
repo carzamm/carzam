@@ -7,6 +7,6 @@
 /ai-classifier/data/**
 /__pycache__
 yolov5s.pt
-/ai-classifier/input/**
-/ai-classifier/output/**
+/ai-classifier/input
+/ai-classifier/output
 /ai-classifier/saved_model.pt

@@ -1,3 +1,12 @@
+"""
+Project: Carzam - CS 467 Capstone
+Filename: _dataset_cropper.py (Utility)
+Description: Scans the input directory /test and /train and crops all photos
+in those directories creating copies with the same folder structure.
+
+For complicated photonames, filenames are SHA256 hashes of the original filename.
+"""
+
 from cropper import generate_cropped_images
 from recognizer import recognize_objects
 import os

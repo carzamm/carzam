@@ -12,7 +12,7 @@ from cropper import generate_cropped_images
 from recognizer import Recognizer
 
 
-INPUT_DIR = "./ai-classifier/input"
+INPUT_DIR = "./ai-classifier/split"
 OUTPUT_DIR = "./ai-classifier/output"
 TARGET_DIRS = ['test', 'train']
 
@@ -49,6 +49,8 @@ if __name__ == "__main__":
 
                         if os.path.isfile(image_loc):
                             crop_instructions = recognizer.recognize_objects(image_loc)
+                            if len(crop_instructions) == 0:
+                                print("File Error: {}".format(image_loc))
                             crop_instructions = get_largest(crop_instructions)
 
                             if not os.path.exists(os.path.join(OUTPUT_DIR, basedir, subdir)):

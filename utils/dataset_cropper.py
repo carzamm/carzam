@@ -8,8 +8,8 @@ For complicated photonames, filenames are SHA256 hashes of the original filename
 """
 
 import os
-from cropper import generate_cropped_images
-from recognizer import Recognizer
+from ..cropper import generate_cropped_images
+from ..recognizer import Recognizer
 
 
 INPUT_DIR = "./ai-classifier/split"

@@ -29,9 +29,12 @@
         {% if filename %}
             <table>
                 <tbody>
-                    {% for img_name in filename %}
+                    {% for img_name, img_class, img_conf in filename %}
                         <tr>
                             <td><img src="{{img_name}}"></td>
+                        </tr>
+                        <tr>
+                            <td>{{img_class}} - Confidence: {{img_conf}}</td>
                         </tr>
                     {% endfor %}
                 </tbody>

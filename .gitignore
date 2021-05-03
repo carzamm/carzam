@@ -8,7 +8,7 @@
 .DS_Store
 .pylintrc
 /venv
-/__pycache__
+**/__pycache__
 .vscode
 
 # yolo

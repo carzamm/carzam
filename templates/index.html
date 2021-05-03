@@ -1,0 +1,91 @@
+<!doctype html>
+<html>
+<head>
+    <!-- Required meta tags -->
+    <script src="../static/js/index.js"></script>
+    <link rel="stylesheet" href="../static/css/index.css">
+    <meta charset="utf-8">
+
+    <title>Upload new File</title>
+</head>
+<body>
+    <h1>Carzam</h1>
+    <h3>Version 0.1</h3>
+    <h3>Upload new File</h3>
+
+    <!-- 
+        Reference: 
+        https://roytuts.com/upload-and-display-image-using-python-flask/ 
+    -->
+    
+    <!--{% if filename %}
+        <div>
+            <img src="{{ url_for('display_image', filename=filename) }}">
+        </div>
+    {% endif %}
+    -->
+    <div id="loading"></div>
+    <div id="content">
+        {% if filename %}
+            <table>
+                <tbody>
+                    {% for img_name, img_class, img_conf in filename %}
+                        <tr>
+                            <td><img src="{{img_name}}"></td>
+                        </tr>
+                        <tr>
+                            <td>{{img_class}} - Confidence: {{img_conf}}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+    </div>
+
+    <form method=post action="/" enctype=multipart/form-data>
+        <input type=file name=file required>
+        <input type=submit value=Upload>
+    </form>
+</body>
+</html>
+
+
+
+
+<!-- <!DOCTYPE html>
+<html>
+<head> -->
+    <!-- Required meta tags -->
+   <!--  <meta charset="utf-8">
+    <title>Carzam</title>
+</head>
+<body>
+    <h1>Carzam</h1>
+    <h3>Version 0.1</h3>
+
+    <h5>Select file to upload</h5>
+
+    <p>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <ul class=flashes>
+            {% for message in messages %}
+            <li>{{ message }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+        {% endwith %}
+    </p>
+    <form method="post" action="/" enctype="multipart/form-data">
+        <dl>
+            <p>
+                <input type="file" name="file" autocomplete="off" required>
+            </p>
+        </dl>
+
+        <p>
+            <input type="submit" value="Submit">
+        </p>
+    </form>
+</body>
+</html> -->

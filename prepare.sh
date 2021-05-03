@@ -1,6 +1,6 @@
 # MUST ADD UP TO 100
-TRAIN=70
-TEST=30
+TRAIN=75
+TEST=25
 VALIDATE=0
 
 # Creates necessary directories, runs them through Kevin's splitter

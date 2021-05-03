@@ -29,9 +29,11 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
     min_size is a tuple in the format (min_width_pixes, min_height_pixels)
     """
     crypt = sha256()
+    output = False  # We use this to tell if the generator did anyting
 
     # Iterate through every tuple in crop_instructions
     for instruction in crop_instructions:
+        
 
         # Save the index number for filename
         index = instruction[1]
@@ -48,6 +50,9 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
         min_width, min_height = min_size
         if (min_height <= coords["bottom"] - coords["top"] and \
             min_width <= coords["right"] - coords["left"]):
+
+            # Generator will write a file
+            output = True
 
             # Open the file, convert to RGB (handles JPG and PNG)
             main_image = Image.open(instruction[0]).convert("RGB")
@@ -86,3 +91,4 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
 
             # Output where file was written to
             print("Wrote file to: {}".format(out_path))
+    return output

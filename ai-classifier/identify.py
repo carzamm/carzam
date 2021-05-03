@@ -68,6 +68,10 @@ if __name__ == "__main__":
     model_ft = models.resnet34(pretrained=True)
     num_ftrs = model_ft.fc.in_features
 
+    # Freeze all the layers of the model since it is pretrained, we only want to update the last layer
+    for param in model_ft.parameters():
+        param.requires_grad = False
+
     # replace the last fc layer with an untrained one (requires grad by default)
     model_ft.fc = nn.Linear(num_ftrs, QTY_CLASSES)
     model_ft = model_ft.to(device)

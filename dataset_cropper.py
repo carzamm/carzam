@@ -56,6 +56,7 @@ if __name__ == "__main__":
                             if not os.path.exists(os.path.join(OUTPUT_DIR, basedir, subdir)):
                                 os.makedirs(os.path.join(OUTPUT_DIR, basedir, subdir))
 
-                            generate_cropped_images(os.path.join(OUTPUT_DIR, basedir, subdir), crop_instructions, min_size=(0, 0), padding=True)
-                            imgs_processed += 1
+                            madefile = generate_cropped_images(os.path.join(OUTPUT_DIR, basedir, subdir), crop_instructions, min_size=(400, 400), padding=True)
+                            if (madefile):
+                                imgs_processed += 1
     print("Cropped {} images. Done!".format(imgs_processed))

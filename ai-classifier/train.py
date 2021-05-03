@@ -18,10 +18,10 @@ import torchvision.transforms as transforms
 
 # Define some constants to finetune hyperparameters
 BATCH_SIZE = 32
-TRAINING_EPOCHS = 12
+TRAINING_EPOCHS = 20
 QTY_CLASSES = 9 # THIS MUST BE THE NUMBER OF POSSIBLE OUTPUTS (MAKE/MODEL combinations)
 
-LEARNING_RATE = 0.0121 # Getting 80% accuracy w/ LR=0.01
+LEARNING_RATE = 0.0121 # Getting +80% accuracy w/ 0.01 <= LR <= 0.0121
 MOMENTUM = 0.9 # Seems like the default for this should be 0.9
 
 # This part detecs if the device has a GPU capable of running CUDA

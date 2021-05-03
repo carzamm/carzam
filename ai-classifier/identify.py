@@ -87,6 +87,29 @@ class Identifier:
             # get the class name of the prediction
             print("\nSupposed to be {}".format(filename))
             print(classes[predicted.item()], "confidence: ", conf.item())
+    
+    def test_single_car(path: str):
+            filename = os.fsdecode(file)
+
+            # transforms for the input image
+            loader = transforms.Compose([transforms.Resize((400, 400)),
+                                            transforms.ToTensor(),
+                                            transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
+            image = Image.open(self.verification_dir+filename)
+            image = loader(image).float()
+            image = torch.autograd.Variable(image, requires_grad=True)
+            image = image.unsqueeze(0)
+            image = image.cuda()
+            output = self.model_ft(image)
+            conf, predicted = torch.max(output.data, 1)
+
+            classes, c_to_idx = self.find_classes(self.dataset_dir+"train")
+
+            # get the class name of the prediction
+            print("\nSupposed to be {}".format(filename))
+            print(classes[predicted.item()], "confidence: ", conf.item())
+
+            return (path, classes[predicted.item()], conf.item())
 
 
 if __name__ == "__main__":

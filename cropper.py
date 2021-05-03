@@ -91,8 +91,10 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
 
             # Save the new file
             cropped_image.save(out_path, "JPEG")
+            cropped_files.append(out_path)
+
 
             # Output where file was written to
             print("Wrote file to: {}".format(out_path))
-    return output
+    return output, cropped_files
 

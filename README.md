@@ -1,16 +1,72 @@
 # Carzam
 The CS467 Capstone Project at Oregon State University in the Spring of 2021. Carzam is a web application that leverages an AI to identify vehicles, their make and model in a submitted picture.
 
- ### To test:
- Create and setup a virtual environment:
- > python3 -m venv venv  
- > source ./venv/bin/activate  
+### To test:
+Create and setup a virtual environment:
+> python3 -m venv venv  
+> source ./venv/bin/activate  
 
- Install dependencies:  
- > pip3 install -r requirements.txt
+Install dependencies:  
+> pip3 install -r requirements.txt
 
- Run locally:  
- > python3 app.py
+Run locally:  
+> python3 app.py
+
+### Training
+
+1. Have a dataset that looks like this:
+
+```bash
+dataset
+┣ Car 1
+┃  ┣ anyname.jpg
+┃  ┣ anyname.png
+┃  ┣ anyname2.jpg
+┃  ┗ anyname2.jpg
+┃ 
+┣ Car 2
+┣ Car 3
+┣ Car 4
+┣ Car 5
+┗ Car 6
+```
+
+2. Place it in the `data` directory of the root of this project.
+
+3. Navigate to `common`
+
+4. Run: 
+
+```bash
+prepare.sh [your dateset folder name] [desired output folder name] [test %] [train %] [verify %]
+
+# Example: prepare.sh CARZAM ready 70 30 0
+```
+
+5. At this point, whatever files in the dataset will be cropped, the ones that are smaller than 400x400 are discarded, and then Kevin's splitter will separate them into test/train/verify.
+
+6. You can find your 'clean' dataset in `/data/[output]` where output is whatever you type for desired output folder name when you ran `prepare.sh`
+
+7. Still working in `common` run:
+
+```bash
+python3 train.py [your clean dataset name]
+
+# Example: python3 train.py ready
+```
+
+8. The AI will use your dataset to train 20 iterations, you can change these settings inside of `train.py` if you wish. That's part of the fun. Your saved weights and balances will be written as `saved_model.pt` in the `common` folder.
+
+9. Done! You just trained an AI!
+
+
+### Testing the Model (Identify a Car)
+
+
+
+
+
+
 
 ## Docker Reference:
 

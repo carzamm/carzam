@@ -42,7 +42,7 @@ def mergeSets(destDir):
 
     return 0
 
-def splitSet(destDir, valInt, testInt):
+def splitSet(destDir, verifyInt, testInt):
 
     # get a list of each class directory and iterate over it
     dirList = os.listdir(destDir + '/train')
@@ -53,7 +53,7 @@ def splitSet(destDir, valInt, testInt):
 
             # ensure the class directory exists in both the source and destination
             if path.exists(destDir + "/train/" + directory) \
-                    and path.exists(destDir + "/val/" + directory)\
+                    and path.exists(destDir + "/verify/" + directory)\
                     and path.exists(destDir + "/test/" + directory):
 
                 # get list of photos
@@ -61,7 +61,7 @@ def splitSet(destDir, valInt, testInt):
                 numFiles = len(files)
 
                 # Round float to nearest int
-                numVal = round(numFiles * (valInt / 100))
+                numVerify = round(numFiles * (verifyInt / 100))
                 numTest = round(numFiles * (testInt / 100))
 
                 # iterate each photo in the class directory
@@ -77,10 +77,10 @@ def splitSet(destDir, valInt, testInt):
                     if not f.startswith('.'):
 
                         # Move the appropriate amount of files into the val and test directories
-                        if i < numVal:
-                            shutil.move(destDir + "/train/" + directory + "/" + f, destDir + "/val/" + directory)
-                            files_in_train = i
-                        elif i >= numVal and i < (numVal + numTest):
+                        if i < numVerify:
+                            shutil.move(destDir + "/train/" + directory + "/" + f, destDir + "/verify/" + directory)
+
+                        elif i >= numVerify and i < (numVerify + numTest):
                             shutil.move(destDir + "/train/" + directory + "/" + f, destDir + "/test/" + directory)
                     i += 1
 
@@ -90,9 +90,9 @@ def create_folders(sourceDir, destDir):
 
     # create the output folders
     dest_test = os.path.join(destDir, "test")
-    dest_val = os.path.join(destDir, "val")
+    dest_verify = os.path.join(destDir, "verify")
 
-    for top_level_folder in [dest_test, dest_val]:
+    for top_level_folder in [dest_test, dest_verify]:
         os.makedirs(top_level_folder)
         for car in car_folders:
             os.makedirs(os.path.join(top_level_folder, car))
@@ -102,12 +102,12 @@ def main():
         print(f'### USAGE ###')
         print(f'python3 split_car_data.py source_directory destination_directory train_int validation_int test_int')
         print(f'e.g. "python3 split_car_data.py car_data 70 15 15')
-        print('Note: train, validation, and test must add up to 100')
+        print('Note: train, verify, and test must add up to 100')
         return 0
 
     sourceDir = sys.argv[1]
     destDir = sys.argv[2]
-    valInt = int(sys.argv[4])
+    verifyInt = int(sys.argv[4])
     testInt = int(sys.argv[5])
     
 
@@ -120,10 +120,10 @@ def main():
 
     mergeSets(destDir)
 
-    # create val directory
-    copy_tree(destDir + "/test", destDir + "/val")
+    # create verify directory
+    copy_tree(destDir + "/test", destDir + "/verify")
 
-    splitSet(destDir, valInt, testInt)
+    splitSet(destDir, verifyInt, testInt)
 
 
     return 0

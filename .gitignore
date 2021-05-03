@@ -12,3 +12,4 @@ yolov5s.pt
 /static/.DS_Store
 .DS_Store
 /ai-classifier
+/.vscode

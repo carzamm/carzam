@@ -1,2 +1,6 @@
-.git
-./ai-classfier
+*/.git
+*/ai-classfier
+*/data
+*/venv
+*/static
+*/__pycache__

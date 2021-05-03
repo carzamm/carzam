@@ -12,3 +12,4 @@ mkdir -p .ai-classifier/output/verify
 python3 dataset_cropper.py
 cp -r ./ai-classifier/split/verify ./ai-classifier/output/verify
 rm -r ./ai-classifier/split
+python3 count.py

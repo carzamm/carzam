@@ -20,8 +20,8 @@ yolov5s.pt
 /static/testimages**
 /static/.DS_Store
 
-# ai-classifier
-/ai-classifier/input
-/ai-classifier/output
-/ai-classifier/datasets
-/ai-classifier/data/**
+# identifier
+/identifier/input
+/identifier/output
+/identifier/datasets
+/identifier/data/**

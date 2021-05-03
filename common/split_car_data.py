@@ -47,7 +47,7 @@ def splitSet(destDir, verifyInt, testInt):
     # get a list of each class directory and iterate over it
     dirList = os.listdir(destDir + '/train')
     for directory in sorted(dirList, key=lambda s: s.lower()):
-        print(directory)
+        # print(directory)
         # ignore hidden files
         if not directory.startswith('.'):
 
@@ -69,14 +69,14 @@ def splitSet(destDir, verifyInt, testInt):
 
 
 
-                print(sorted(files))
+                # print(sorted(files))
                 for f in sorted(files):
-                    print(f)
+                    # print(f)
 
                     # ignore hidden files
                     if not f.startswith('.'):
 
-                        # Move the appropriate amount of files into the val and test directories
+                        # Move the appropriate amount of files into the verify and test directories
                         if i < numVerify:
                             shutil.move(destDir + "/train/" + directory + "/" + f, destDir + "/verify/" + directory)
 

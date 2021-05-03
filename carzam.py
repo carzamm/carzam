@@ -19,7 +19,7 @@ from pathlib import Path
 # Our own dependencies
 from cropper import generate_cropped_images
 from recognizer import Recognizer
-from ai-classifier.identify import Identify
+from identifier.identify import Identifier
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
@@ -34,7 +34,7 @@ PATH = os.getcwd()
 UPLOAD_FOLDER = os.path.join(PATH, IN_DIRECTORY[2:])
 
 recognizer = Recognizer()
-identify = 
+identifier = Identifier()
 
 # 
 # Helper Functions
@@ -52,6 +52,9 @@ def parse_file(file):
     # Bool is false if it didn't crop any files (i.e. they were all too small)
     cropped_file_list = generate_cropped_images(OUT_DIRECTORY, crop_instructions)[1]
 
+    # Run the cropped_file_list through the AI Identifer
+    results = identifier.test_all_cars(list_of_paths=cropped_file_list)
+    print(results)
     print(cropped_file_list)
     # in the event that the list is empty
     if not cropped_file_list:
@@ -60,5 +63,5 @@ def parse_file(file):
         file_to_get = os.path.basename(os.path.normpath(file))
         print(IN_DIRECTORY + file_to_get)
         cropped_file_list.append(IN_DIRECTORY + file_to_get)
-    return cropped_file_list
+    return results
 

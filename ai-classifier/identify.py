@@ -88,8 +88,8 @@ class Identifier:
             print("\nSupposed to be {}".format(filename))
             print(classes[predicted.item()], "confidence: ", conf.item())
     
-    def test_single_car(path: str):
-            filename = os.fsdecode(file)
+    def test_single_car(self, path: str):
+            filename = os.fsdecode(path)
 
             # transforms for the input image
             loader = transforms.Compose([transforms.Resize((400, 400)),

@@ -44,9 +44,6 @@ def mergeSets(destDir):
 
 def splitSet(destDir, valInt, testInt):
 
-    # status tracking
-    status = []
-
     # get a list of each class directory and iterate over it
     dirList = os.listdir(destDir + '/train')
     for directory in sorted(dirList, key=lambda s: s.lower()):
@@ -86,8 +83,6 @@ def splitSet(destDir, valInt, testInt):
                         elif i >= numVal and i < (numVal + numTest):
                             shutil.move(destDir + "/train/" + directory + "/" + f, destDir + "/test/" + directory)
                     i += 1
-        status.append((directory, i, (numFiles - numVal - numTest), numTest, numVal))
-    return status
 
 
 def main():
@@ -111,13 +106,8 @@ def main():
     # create val directory
     copy_tree(destDir + "/test", destDir + "/val")
 
-    status = splitSet(destDir, valInt, testInt)
-    header = "Class", "Total Files", "Train", "Test", "Verify"
+    splitSet(destDir, valInt, testInt)
 
-    print("{:40}|{:12}|{:12}|{:12}|{:12}".format(*header))
-    print("-" * 92)
-    for stat in status:
-        print("{:40}|{:12}|{:12}|{:12}|{:12}".format(*stat))
 
     return 0
 

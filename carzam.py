@@ -14,7 +14,7 @@ from flask import send_from_directory
 from werkzeug.middleware.shared_data import SharedDataMiddleware
 from pathlib import Path
 from cropper import generate_cropped_images
-from recognizer import recognize_objects
+from recognizer import Recognizer
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
@@ -28,6 +28,8 @@ Path(OUT_DIRECTORY).mkdir(parents=True, exist_ok=True)
 PATH = os.getcwd()
 UPLOAD_FOLDER = os.path.join(PATH, IN_DIRECTORY[2:])
 
+recognizer = Recognizer()
+
 # 
 # Helper Functions
 #
@@ -38,8 +40,12 @@ def allowed_file(filename):
 		filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS          
 
 def parse_file(file):
-    crop_instructions = recognize_objects(file)
-    cropped_file_list = generate_cropped_images(OUT_DIRECTORY, crop_instructions)
+    crop_instructions = recognizer.recognize_objects(file)
+
+    # Now returns (bool, cropped_file_list) 2-tuple
+    # Bool is false if it didn't crop any files (i.e. they were all too small)
+    cropped_file_list = generate_cropped_images(OUT_DIRECTORY, crop_instructions)[1]
+    
     print(cropped_file_list)
     # in the event that the list is empty
     if not cropped_file_list:

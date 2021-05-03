@@ -10,3 +10,4 @@ yolov5s.pt
 /ai-classifier/input
 /ai-classifier/output
 /ai-classifier/saved_model.pt
+/ai-classifier/datasets

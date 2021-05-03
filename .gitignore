@@ -23,6 +23,5 @@ yolov5s.pt
 # ai-classifier
 /ai-classifier/input
 /ai-classifier/output
-/ai-classifier/saved_model.pt
 /ai-classifier/datasets
 /ai-classifier/data/**

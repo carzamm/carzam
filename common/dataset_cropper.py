@@ -1,8 +1,12 @@
 """
 Project: Carzam - CS 467 Capstone
 Filename: _dataset_cropper.py (Utility)
-Description: Scans the input directory /test and /train and crops all photos
-in those directories creating copies with the same folder structure.
+Description: Utility - Reads a directory from /data and runs all photos through the 
+cropper.
+
+Run: python3 dataset_cropper.py [dataset]
+Example: python dataset_cropper.py carzam
+                                   *Since carzam is located at /data/carzam
 
 For complicated photonames, filenames are SHA256 hashes of the original filename.
 """
@@ -26,7 +30,6 @@ def get_largest(instructions):
             maxwidth = width
             best = instruction
     return [best]
-
 
 
 if __name__ == "__main__":
@@ -80,14 +83,14 @@ if __name__ == "__main__":
                 crop_instructions = get_largest(crop_instructions)
 
                 # Crop the image
-                madefile = generate_cropped_images(
+                did_crop, _ = generate_cropped_images(
                     out_car_dir, 
                     crop_instructions, 
                     min_size=(400, 400), 
                     padding=True)
 
                 # Keep track of successes and failures.
-                if (madefile):
+                if (did_crop):
                     imgs_processed += 1
                 else:
                     imgs_rejected += 1

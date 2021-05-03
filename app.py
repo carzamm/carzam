@@ -7,6 +7,8 @@ Description: The routes for this application. Utilizes Flask and sets up routes 
 
 # Reference: 
 # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
+
+# Outside dependencies we brought it
 import os
 import time
 from flask import Flask, flash, request, redirect, url_for, render_template, send_from_directory
@@ -14,6 +16,9 @@ from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
 from carzam import allowed_file, parse_file
 from pathlib import Path
+
+# Dependencies we created
+# None so far
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
@@ -66,7 +71,9 @@ def home_page():
         if file and allowed_file(file.filename):
             path_to_file = save_file_to_upload_directory(file)
             # pass file to carzam.py
-            cropped_file_list = parse_file(path_to_file)
+            results = parse_file(path_to_file)
+            cropped_file_list = [(path, car, conf) for path, car, conf in results]
+
             return render_template('index.html', filename = cropped_file_list)
             #return str(cropped_file_list)
 

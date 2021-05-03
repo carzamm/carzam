@@ -100,7 +100,7 @@ def create_folders(sourceDir, destDir):
 def main():
     if len(sys.argv) != 6 or int(sys.argv[3]) + int(sys.argv[4]) + int(sys.argv[5]) != 100:
         print(f'### USAGE ###')
-        print(f'python3 split_car_data.py source_directory destination_directory train_int validation_int test_int')
+        print(f'python3 split_car_data.py source_directory destination_directory train_int verify_int test_int')
         print(f'e.g. "python3 split_car_data.py car_data 70 15 15')
         print('Note: train, verify, and test must add up to 100')
         return 0

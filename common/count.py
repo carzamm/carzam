@@ -1,19 +1,19 @@
 import os
+import sys
 
-DATA_DIR = "./ai-classifier/output"
 
 
-def count():
+def count(data_dir):
     status = {}
-    top_level_folders = os.listdir(DATA_DIR)
+    top_level_folders = os.listdir(data_dir)
     for folder in top_level_folders:
         status[folder] = {}
         if folder in ['train','test']:
-            for car_class in os.listdir(os.path.join(DATA_DIR, folder)):
-                if not os.path.isfile(os.path.join(DATA_DIR, folder, car_class)):
-                    status[folder][car_class] = len(os.listdir(os.path.join(DATA_DIR, folder, car_class)))
+            for car_class in os.listdir(os.path.join(data_dir, folder)):
+                if not os.path.isfile(os.path.join(data_dir, folder, car_class)):
+                    status[folder][car_class] = len(os.listdir(os.path.join(data_dir, folder, car_class)))
         if folder in ['verify']:
-            status[folder] = len(os.listdir(os.path.join(DATA_DIR, folder))) 
+            status[folder] = len(os.listdir(os.path.join(data_dir, folder))) 
     return status
 
 def calculate_class_size(data: dict):
@@ -61,8 +61,11 @@ def display_footer(data: dict):
 
 
 if __name__ == "__main__":
-
-    status = count()
+    if len(sys.argv) < 2:
+        print("Missing directory argument. Please provide a directory of a clean dataset.")
+        exit()
+    
+    status = count(sys.argv[1])
     display_header(status)
     display_results(status)
     display_footer(status)

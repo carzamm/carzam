@@ -84,6 +84,18 @@ def splitSet(destDir, valInt, testInt):
                             shutil.move(destDir + "/train/" + directory + "/" + f, destDir + "/test/" + directory)
                     i += 1
 
+def create_folders(sourceDir, destDir):
+    # Get the car names and create that folder structure
+    car_folders = [directory for directory in os.listdir(sourceDir) if os.path.isdir(os.path.join(sourceDir, directory))]
+
+    # create the output folders
+    dest_test = os.path.join(destDir, "test")
+    dest_val = os.path.join(destDir, "val")
+
+    for top_level_folder in [dest_test, dest_val]:
+        os.makedirs(top_level_folder)
+        for car in car_folders:
+            os.makedirs(os.path.join(top_level_folder, car))
 
 def main():
     if len(sys.argv) != 6 or int(sys.argv[3]) + int(sys.argv[4]) + int(sys.argv[5]) != 100:
@@ -97,9 +109,14 @@ def main():
     destDir = sys.argv[2]
     valInt = int(sys.argv[4])
     testInt = int(sys.argv[5])
+    
+
 
     # copy data
-    copy_tree(sourceDir, destDir)
+    copy_tree(sourceDir, os.path.join(destDir, "train"))
+    
+    # create folders
+    create_folders(sourceDir, destDir)
 
     mergeSets(destDir)
 

@@ -66,27 +66,25 @@ class Identifier:
 
     # This is a custom function that will go through every file in ./input/verify and just see if the model
     # comes up with the right answer.
-    def test_all_cars(self):
-        for file in os.listdir(self.verification_dir):
-            filename = os.fsdecode(file)
+    def test_all_cars(self, list_of_paths=None):
 
-            # transforms for the input image
-            loader = transforms.Compose([transforms.Resize((400, 400)),
-                                            transforms.ToTensor(),
-                                            transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
-            image = Image.open(self.verification_dir+filename)
-            image = loader(image).float()
-            image = torch.autograd.Variable(image, requires_grad=True)
-            image = image.unsqueeze(0)
-            image = image.cuda()
-            output = self.model_ft(image)
-            conf, predicted = torch.max(output.data, 1)
+        # Using default variable list_of_paths. Set to None, but can be given a list of paths to 'test all cars'
+        if list_of_paths is None:
+            files = [self.verification_dir + x for x in os.listdir(self.verification_dir)]
+        else:
+            files = list_of_paths
+        
+        # Used to store results of vehicle recognition
+        results = []
 
-            classes, c_to_idx = self.find_classes(self.dataset_dir+"train")
+        # Identify each file
+        for file in files:
+            results.append(self.test_single_car(file))
 
-            # get the class name of the prediction
-            print("\nSupposed to be {}".format(filename))
-            print(classes[predicted.item()], "confidence: ", conf.item())
+        return results
+
+
+
     
     def test_single_car(self, path: str):
             filename = os.fsdecode(path)
@@ -95,7 +93,7 @@ class Identifier:
             loader = transforms.Compose([transforms.Resize((400, 400)),
                                             transforms.ToTensor(),
                                             transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
-            image = Image.open(self.verification_dir+filename)
+            image = Image.open(path)
             image = loader(image).float()
             image = torch.autograd.Variable(image, requires_grad=True)
             image = image.unsqueeze(0)
@@ -103,7 +101,23 @@ class Identifier:
             output = self.model_ft(image)
             conf, predicted = torch.max(output.data, 1)
 
-            classes, c_to_idx = self.find_classes(self.dataset_dir+"train")
+            # classes, c_to_idx = self.find_classes(self.dataset_dir+"train")
+            classes = [
+                'Acura TL', 'Audi A4', 'BMW X3', 'Buick Enclave', 'Cheverolet Silverado 1500',
+                'Ford Crown Victoria', 'Ford Fusion', 'Jeep Wrangler Unlimited', 'Toyota RAV4'
+            ]
+
+            c_to_idx = {
+                'Acura TL': 0,
+                'Audi A4': 1,
+                'BMW X3': 2,
+                'Buick Enclave': 3,
+                'Chevrolet Silverado 1500': 4,
+                'Ford Crown Victoria': 5,
+                'Ford Fusion': 6,
+                'Jeep Wrangler Unlimited': 7,
+                'Toyota RAV4': 8
+            }
 
             # get the class name of the prediction
             print("\nSupposed to be {}".format(filename))

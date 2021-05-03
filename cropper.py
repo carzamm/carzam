@@ -31,6 +31,9 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
     crypt = sha256()
     output = False  # We use this to tell if the generator did anyting
 
+    # List object that holds strings which point to the cropped files
+    cropped_files = []
+
     # Iterate through every tuple in crop_instructions
     for instruction in crop_instructions:
         
@@ -92,3 +95,4 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
             # Output where file was written to
             print("Wrote file to: {}".format(out_path))
     return output
+

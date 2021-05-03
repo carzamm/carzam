@@ -2,56 +2,28 @@
 Project: Carzam - CS 467 Capstone
 Filename: train.py
 Description: AI Vehicle Classifier - Train and Save Model
-Source: Origin of code template is from https://www.kaggle.com/deepbear/pytorch-car-classifier-90-accuracy
+Source: Origin of code template is from 
+    https://www.kaggle.com/deepbear/pytorch-car-classifier-90-accuracy
+
+To Run:     python3 train.py [clean dataset dir in /data]
+Example:    python3 train.py ready
 """
+
+# Python Imports
 import time
 import os
+import sys
 
+# MatPlotLib Imports
 import matplotlib.pyplot as plt
 
+# Torch Imports
 import torch
 import torch.nn as nn
 import torch.optim as optim
 import torchvision
 import torchvision.models as models
 import torchvision.transforms as transforms
-
-# Define some constants to finetune hyperparameters
-BATCH_SIZE = 32
-TRAINING_EPOCHS = 20
-QTY_CLASSES = 9 # THIS MUST BE THE NUMBER OF POSSIBLE OUTPUTS (MAKE/MODEL combinations)
-
-LEARNING_RATE = 0.0121 # Getting +80% accuracy w/ 0.01 <= LR <= 0.0121
-MOMENTUM = 0.9 # Seems like the default for this should be 0.9
-
-# This part detecs if the device has a GPU capable of running CUDA
-device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-# device = torch.device("cpu")
-
-# Clear the CUDA Memory
-# print(torch.cuda.memory_summary(device=0, abbreviated=False))
-
-# Define where the data is held
-dataset_dir = "./output/"
-
-# This specifies how the data will be transformed from the image to what PyTorch will recognize
-# these values are specific and shouldn't be changed. They were specified by the PyTorch documentation.
-
-train_tfms = transforms.Compose([transforms.Resize((400, 400)),
-                                 transforms.RandomHorizontalFlip(),
-                                 transforms.RandomRotation(15),
-                                 transforms.ToTensor(),
-                                 transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
-test_tfms = transforms.Compose([transforms.Resize((400, 400)),
-                                transforms.ToTensor(),
-                                transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
-
-# This defines the dataset location and then loads the data
-dataset = torchvision.datasets.ImageFolder(root=dataset_dir+"train", transform = train_tfms)
-trainloader = torch.utils.data.DataLoader(dataset, batch_size = BATCH_SIZE, shuffle=True, num_workers = 2)
-
-dataset2 = torchvision.datasets.ImageFolder(root=dataset_dir+"test", transform = test_tfms)
-testloader = torch.utils.data.DataLoader(dataset2, batch_size = BATCH_SIZE, shuffle=False, num_workers = 2)
 
 # This takes all the directory names and sets them to equal the class indexes for the model
 def find_classes(dir):
@@ -146,32 +118,76 @@ def eval_model(model):
         test_acc))
     return test_acc
 
-# This specifies the model 'Resnet34' which is pretrained, we only want to change the last layer
-# which is the output layer.
-model_ft = models.resnet34(pretrained=True)
-num_ftrs = model_ft.fc.in_features
+if __name__ == "__main__":
 
-# Freeze all the layers of the model since it is pretrained, we only want to update the last layer
-for param in model_ft.parameters():
-    param.requires_grad = False
+    if len(sys.argv) < 2:
+        print("Insufficient arguments.\nUsage >> python3 train.py [clean dataset dir in /data]")
+        exit()
+    
+    # Define some constants to finetune hyperparameters
+    BATCH_SIZE = 32
+    TRAINING_EPOCHS = 20
+    QTY_CLASSES = 9 # THIS MUST BE THE NUMBER OF POSSIBLE OUTPUTS (MAKE/MODEL combinations)
 
-# replace the last fc layer with an untrained one (requires grad by default)
-model_ft.fc = nn.Linear(num_ftrs, QTY_CLASSES)
-model_ft = model_ft.to(device)
+    LEARNING_RATE = 0.0121 # Getting +80% accuracy w/ 0.01 <= LR <= 0.0121
+    MOMENTUM = 0.9 # Seems like the default for this should be 0.9
 
-# This specifies how the model is optimized between epochs such as learning rate and momentum
-criterion = nn.CrossEntropyLoss()
-optimizer = optim.SGD(model_ft.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM)
+    # This part detecs if the device has a GPU capable of running CUDA
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+    # device = torch.device("cpu")
 
-# This line specifically handles learning rate of the AI and causes it to adjust when there is a 'learning plateau'.
-lrscheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', patience=3, threshold = 0.9)
+    # Clear the CUDA Memory
+    # print(torch.cuda.memory_summary(device=0, abbreviated=False))
 
-# This is the call to train the actual model: It returns the model with some data dervied from training
-model_ft, training_losses, training_accs, test_accs = train_model(model_ft, criterion, optimizer, lrscheduler, n_epochs=TRAINING_EPOCHS)
+    # Define where the data is held
+    dataset_dir = os.path.join("../data", sys.argv[1])
 
-# This plots the results
-plot_ai_results(training_losses, training_accs, test_accs)
+    # This specifies how the data will be transformed from the image to what PyTorch will recognize
+    # these values are specific and shouldn't be changed. They were specified by the PyTorch documentation.
 
-# Save the model to the current directory
-MODEL_FILENAME = "saved_model.pt"
-torch.save(model_ft.state_dict(), MODEL_FILENAME)
+    train_tfms = transforms.Compose([transforms.Resize((400, 400)),
+                                    transforms.RandomHorizontalFlip(),
+                                    transforms.RandomRotation(15),
+                                    transforms.ToTensor(),
+                                    transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
+    test_tfms = transforms.Compose([transforms.Resize((400, 400)),
+                                    transforms.ToTensor(),
+                                    transforms.Normalize((0.485, 0.456, 0.406), (0.229, 0.224, 0.225))])
+
+    # This defines the dataset location and then loads the data
+    dataset = torchvision.datasets.ImageFolder(root=dataset_dir+"/train", transform = train_tfms)
+    trainloader = torch.utils.data.DataLoader(dataset, batch_size = BATCH_SIZE, shuffle=True, num_workers = 2)
+
+    dataset2 = torchvision.datasets.ImageFolder(root=dataset_dir+"/test", transform = test_tfms)
+    testloader = torch.utils.data.DataLoader(dataset2, batch_size = BATCH_SIZE, shuffle=False, num_workers = 2)
+
+
+    # This specifies the model 'Resnet34' which is pretrained, we only want to change the last layer
+    # which is the output layer.
+    model_ft = models.resnet34(pretrained=True)
+    num_ftrs = model_ft.fc.in_features
+
+    # Freeze all the layers of the model since it is pretrained, we only want to update the last layer
+    for param in model_ft.parameters():
+        param.requires_grad = False
+
+    # replace the last fc layer with an untrained one (requires grad by default)
+    model_ft.fc = nn.Linear(num_ftrs, QTY_CLASSES)
+    model_ft = model_ft.to(device)
+
+    # This specifies how the model is optimized between epochs such as learning rate and momentum
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.SGD(model_ft.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM)
+
+    # This line specifically handles learning rate of the AI and causes it to adjust when there is a 'learning plateau'.
+    lrscheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, mode='max', patience=3, threshold = 0.9)
+
+    # This is the call to train the actual model: It returns the model with some data dervied from training
+    model_ft, training_losses, training_accs, test_accs = train_model(model_ft, criterion, optimizer, lrscheduler, n_epochs=TRAINING_EPOCHS)
+
+    # This plots the results
+    plot_ai_results(training_losses, training_accs, test_accs)
+
+    # Save the model to the current directory
+    MODEL_FILENAME = "../saved_model.pt"
+    torch.save(model_ft.state_dict(), MODEL_FILENAME)

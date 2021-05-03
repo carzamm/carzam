@@ -9,6 +9,7 @@
 .pylintrc
 /venv
 /__pycache__
+.vscode
 
 # yolo
 yolov5s.pt

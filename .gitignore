@@ -11,3 +11,5 @@ yolov5s.pt
 /static/testimages**
 /static/.DS_Store
 .DS_Store
+/ai-classifier
+/.vscode

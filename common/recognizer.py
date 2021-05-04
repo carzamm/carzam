@@ -5,7 +5,6 @@ Description: Uses the YOLOv5 library to detect car and truck objects in a photog
 """
 
 import torch
-from werkzeug.utils import secure_filename 
 
 class Recognizer:
     def __init__(self):

@@ -4,8 +4,7 @@
 /data
 
 # IDE
-/static/.DS_Store
-.DS_Store
+**/.DS_Store
 .pylintrc
 /venv
 **/__pycache__
@@ -28,3 +27,4 @@
 # models
 **saved_model.pt
 **yolov5s.pt
+

@@ -12,7 +12,6 @@
 .vscode
 
 # yolo
-yolov5s.pt
 /yolov5
 
 # static
@@ -25,3 +24,7 @@ yolov5s.pt
 /identifier/output
 /identifier/datasets
 /identifier/data/**
+
+# models
+**saved_model.pt
+**yolov5s.pt

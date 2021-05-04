@@ -8,17 +8,23 @@ Description: The routes for this application. Utilizes Flask and sets up routes 
 # Reference: 
 # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
 
-# Outside dependencies we brought it
-import os
-from pathlib import Path
 
+# Need this so the web app can read common directory scripts
+import os
+import sys
+sys.path.append('./common')
+
+# Outside dependencies
+from pathlib import Path
 from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
-from common.carzam import allowed_file, parse_file
+
 
 # Dependencies we created
-# None so far
+from common.carzam import allowed_file, parse_file
+
+
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 

@@ -48,7 +48,7 @@ Basic Docker workflow (handled in the Dockerfile):
 Build the docker image:
 > docker build -t flaskapp:latest .
 
-> docker build -t <new image name>:<image version> .
+> docker build -t 'new image name':'image version' .
 > 1. docker: calls Docker client
 > 2. builder: used to create a new Docker image
 > 3. -t: flag that defines the name of the image we are going to create
@@ -57,7 +57,7 @@ Build the docker image:
 Run a docker image in demo mode:
 > docker run -it -d -p 8080:8080 flaskapp
 
-> docker run -it -d -p <local port>:<exposed container port> <image name>
+> docker run -it -d -p 'local port':'exposed container port' 'image name'
 > 1. -d: demo flag
 > 2. -p: publish flag, publishing containers exposed port to host, allowing host port to bind to container port
 > 3. <local port>: this can be any port number you want for local host
@@ -70,7 +70,7 @@ Check what containers are currently running on your system:
 > docker ps
 
 Stop a container running as an executable (running in perpetuity):
-> docker stop <container id>
+> docker stop 'container id'
 
 Exit a container not running as an executable (running in the foreground of shell):
 > exit
@@ -84,7 +84,7 @@ Clean up images/containers and other resources that are dangling:
 > docker system prune
 
 Delete a specific image:
-> docker rmi <image id>
+> docker rmi 'image id'
 
 Delete multiple images:
-> docker rmi <image id> <image id>
+> docker rmi 'image id' 'image id'

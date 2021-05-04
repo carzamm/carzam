@@ -14,10 +14,11 @@ side will not be processed.
 Catches warnings about improperly formatted files and displays them to the console.
 """
 
-from PIL import Image
+
 from os import path
 from hashlib import sha256
 import warnings
+from PIL import Image
 
 MIN_SIZE = 400, 400 # This can be modified to any width, height
 

@@ -189,5 +189,5 @@ if __name__ == "__main__":
     plot_ai_results(training_losses, training_accs, test_accs)
 
     # Save the model to the current directory
-    MODEL_FILENAME = "../saved_model.pt"
+    MODEL_FILENAME = "saved_model.pt"
     torch.save(model_ft.state_dict(), MODEL_FILENAME)

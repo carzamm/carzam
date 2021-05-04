@@ -25,7 +25,10 @@ class Identifier:
     def __init__(self, weights_and_biases="saved_model.pt", web=False):
 
         # This part detecs if the device has a GPU capable of running CUDA
-        self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
+        if web:
+            self.device = torch.device("cpu")
+        else:
+            self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
         self.web = web
         # Clear the CUDA Memory

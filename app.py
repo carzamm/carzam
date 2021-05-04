@@ -10,12 +10,12 @@ Description: The routes for this application. Utilizes Flask and sets up routes 
 
 # Outside dependencies we brought it
 import os
-import time
-from flask import Flask, flash, request, redirect, url_for, render_template, send_from_directory
+from pathlib import Path
+
+from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
-from carzam import allowed_file, parse_file
-from pathlib import Path
+from common.carzam import allowed_file, parse_file
 
 # Dependencies we created
 # None so far

@@ -5,21 +5,17 @@ Description: The main file for carzam. Creates an observer that watches an input
 and then waits for new files to be added, processing them as they are
 """
 
-# Reference: 
+# Reference:
 # https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
 
 # Dependencies we added from outside sources
 import os
-import time
-from flask import Flask, flash, request, redirect, url_for, render_template
-from flask import send_from_directory
-from werkzeug.middleware.shared_data import SharedDataMiddleware
 from pathlib import Path
 
 # Our own dependencies
 from cropper import generate_cropped_images
 from recognizer import Recognizer
-from identifier.identify import Identifier
+from identify import Identifier
 
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
@@ -34,15 +30,15 @@ PATH = os.getcwd()
 UPLOAD_FOLDER = os.path.join(PATH, IN_DIRECTORY[2:])
 
 recognizer = Recognizer()
-identifier = Identifier()
+identifier = Identifier(weights_and_biases="deployed.pt")
 
-# 
+#
 # Helper Functions
 #
 
 # Confirm extension is valid
 def allowed_file(filename):
-	return '.' in filename and \
+    return '.' in filename and \
 		filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS          
 
 def parse_file(file):

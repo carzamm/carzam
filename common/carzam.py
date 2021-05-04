@@ -30,7 +30,7 @@ PATH = os.getcwd()
 UPLOAD_FOLDER = os.path.join(PATH, IN_DIRECTORY[2:])
 
 recognizer = Recognizer()
-identifier = Identifier(weights_and_biases="deployed.pt")
+identifier = Identifier(weights_and_biases="./common/deployed.pt", web=True)
 
 #
 # Helper Functions

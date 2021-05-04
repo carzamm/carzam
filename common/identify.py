@@ -22,18 +22,20 @@ QTY_CLASSES = 9 # THIS MUST BE THE NUMBER OF POSSIBLE OUTPUTS (MAKE/MODEL combin
 
 class Identifier:
     """ Creates an identifier object so we don't have to load the model multiple times """
-    def __init__(self, weights_and_biases="saved_model.pt"):
+    def __init__(self, weights_and_biases="saved_model.pt", web=False):
 
         # This part detecs if the device has a GPU capable of running CUDA
         self.device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
-        # device = torch.device("cpu")
 
+        self.web = web
         # Clear the CUDA Memory
         # print(torch.cuda.memory_summary(device=0, abbreviated=False))
 
         # Define where the data is held
         # self.dataset_dir = "./input/"
-        self.verification_dir= os.path.join("../data", sys.argv[1] + '/')
+
+        if not self.web:
+            self.verification_dir= os.path.join("../data", sys.argv[1] + '/')
 
         # This specifies the model 'Resnet34' which is pretrained, we only want to change the
         # last layer which is the output layer.
@@ -50,8 +52,11 @@ class Identifier:
         self.model_ft = self.model_ft.to(self.device)
 
         # Load the saved weights so we can utilize our pre-trained data for vehicles
+        if self.web:
+            self.loaded_weights = torch.load(weights_and_biases, map_location=torch.device('cpu'))
+        else:
+            self.loaded_weights = torch.load(weights_and_biases)
 
-        self.loaded_weights = torch.load(weights_and_biases)
         self.model_ft.load_state_dict(self.loaded_weights)
 
         # switch the model to evaluation mode to make dropout and batch norm work in eval mode
@@ -96,7 +101,12 @@ class Identifier:
         image = loader(image).float()
         image = torch.autograd.Variable(image, requires_grad=True)
         image = image.unsqueeze(0)
-        image = image.cuda()
+
+        if self.web:
+            image = image.cpu()
+        else:
+            image = image.cuda()
+
         output = self.model_ft(image)
         conf, predicted = torch.max(output.data, 1)
 

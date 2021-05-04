@@ -4,7 +4,7 @@
 from python:3.7-slim
 
 # create working directory inside the docker image
-WORKDIR /
+WORKDIR .
 
 # install dependencies in the docker image
 # it is installing from the interal docker image "/app" directory

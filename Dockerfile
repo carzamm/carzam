@@ -8,7 +8,7 @@ WORKDIR /srv
 
 # https://stackoverflow.com/questions/25305788/how-to-avoid-reinstalling-packages-when-building-docker-image-for-python-project
 ADD ./requirements.txt /srv/requirements.txt
-RUN pip3 install -r --no-cache-dir requirements.txt
+RUN pip3 --no-cache-dir install -r requirements.txt
 ADD . /srv
 # RUN python setup.py install
 

@@ -56,9 +56,8 @@ def display_footer(data: dict):
     print("Number of Classes: {}".format(calculate_class_size(data)))
     print("Verification Images: {}".format(data["verify"]))
     print("Total Images: {}".format(calculate_total_images(data)))
-
-
-
+    print("Average Photos Per Class: {:.1f}".format((calculate_total_images(data)-data["verify"])/
+                                                    calculate_class_size(data)))
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

@@ -1,15 +1,30 @@
-/venv
+# datasets
 /input
-.pylintrc
 /stanford
-/yolov5
 /data
-/project-progress
-/__pycache__
-yolov5s.pt
+
+# IDE
+**/.DS_Store
+.pylintrc
+/venv
+**/__pycache__
+.vscode
+
+# yolo
+/yolov5
+
+# static
 /static/outimages**
 /static/testimages**
 /static/.DS_Store
-.DS_Store
-/ai-classifier
-/.vscode
+
+# identifier
+/identifier/input
+/identifier/output
+/identifier/datasets
+/identifier/data/**
+
+# models
+**saved_model.pt
+**yolov5s.pt
+

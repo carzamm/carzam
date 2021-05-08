@@ -1,6 +1,8 @@
-*/.git
-*/ai-classfier
-*/data
-*/venv
-*/static
-*/__pycache__
+/venv
+/__pycache__*
+/.vscode
+/data
+/project-progress
+/static
+
+

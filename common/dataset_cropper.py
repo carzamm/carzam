@@ -86,7 +86,7 @@ if __name__ == "__main__":
                 did_crop, _ = generate_cropped_images(
                     out_car_dir, 
                     crop_instructions, 
-                    min_size=(400, 400), 
+                    min_size=(200, 200), 
                     padding=True)
 
                 # Keep track of successes and failures.

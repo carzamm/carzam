@@ -15,6 +15,7 @@ import os
 import sys
 from cropper import generate_cropped_images
 from recognizer import Recognizer
+import shutil
 
 def get_largest(instructions):
     """ Gets the largest picture in the crop instructions """
@@ -94,6 +95,14 @@ if __name__ == "__main__":
                     imgs_processed += 1
                 else:
                     imgs_rejected += 1
+            
+        # check whether the out folder for a certain car file
+        # is empty, if it is then it removes from
+        # the list of directories
+        # (makes splitting easier)
+        if len(os.listdir(out_car_dir)) < 5:
+            shutil.rmtree(out_car_dir)
+            print("Removed directory", out_car_dir, file=sys.stdout)
 
     # Print a status to the screen when the job is done.
     print("Done!\nCropped: {}\tRejected: {}".format(imgs_processed, imgs_rejected))

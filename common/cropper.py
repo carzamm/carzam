@@ -19,6 +19,7 @@ from os import path
 from hashlib import sha256
 import warnings
 from PIL import Image
+import sys
 
 MIN_SIZE = 400, 400 # This can be modified to any width, height
 
@@ -49,68 +50,71 @@ def generate_cropped_images(out_directory: str, crop_instructions: list, min_siz
 
         # Iterate through every tuple in crop_instructions
         for instruction in crop_instructions:
+            # check whether the instruction was of "NoneType"
+            # if it is not, proceeds with the saving of index
+            if instruction != None:
             
-            # Save the index number for filename
-            index = instruction[1]
+                # Save the index number for filename
+                index = instruction[1]
 
-            # Save the coordinates
-            coords ={
-                "left": instruction[2],
-                "top": instruction[3],
-                "right": instruction[4],
-                "bottom": instruction[5]
-            }
+                # Save the coordinates
+                coords ={
+                    "left": instruction[2],
+                    "top": instruction[3],
+                    "right": instruction[4],
+                    "bottom": instruction[5]
+                }
 
-            # Only process the picture if its bigger than a certain size.
-            min_width, min_height = min_size
-            if (min_height <= coords["bottom"] - coords["top"] and \
-                min_width <= coords["right"] - coords["left"]):
+                # Only process the picture if its bigger than a certain size.
+                min_width, min_height = min_size
+                if (min_height <= coords["bottom"] - coords["top"] and \
+                    min_width <= coords["right"] - coords["left"]):
 
-                # Generator will write a file
-                output = True
+                    # Generator will write a file
+                    output = True
 
-                # Open the file, convert to RGB (handles JPG and PNG)
-                try:
-                    main_image = Image.open(instruction[0]).convert("RGB")
-                except UserWarning:
-                    print("Issue with {}. Skipping...".format(instruction[0]))
-                    return (False, [])
-
-                if main_image:
-
-                    # Get the original image size
-                    o_width, o_height = main_image.size
-
-                    # Add padding if we want it
-                    if padding:
-                        padding = 20 # pixels
-                        coords["bottom"] = min(coords["bottom"] + padding, o_height)
-                        coords["top"] = max(coords["top"] - padding, 0)
-                        coords["right"] = min(coords["right"] + padding, o_width)
-                        coords["left"] = max(coords["left"] - padding, 0)
-
-                    # Save the filename without the path
-                    filename = instruction[0].split('/')[-1]
-
-                    # Tries to use the existing filename, if it has weird characters
-                    # we just give it a random alphanumeric string as filename
+                    # Open the file, convert to RGB (handles JPG and PNG)
                     try:
-                        name, extension = filename.rsplit('.')
-                    except ValueError:
-                        crypt.update(bytes(filename, 'utf-8'))
-                        name = crypt.hexdigest()
-                        extension = "jpg"
+                        main_image = Image.open(instruction[0]).convert("RGB")
+                    except UserWarning:
+                        print("Issue with {}. Skipping...".format(instruction[0]))
+                        return (False, [])
 
-                    # Crop the image using the given coordinates
-                    cropped_image = main_image.crop((coords["left"], coords["top"], \
-                        coords["right"], coords["bottom"]))
+                    if main_image:
 
-                    out_file = name + "_{}.".format(index) + extension
-                    out_path = path.join(out_directory, out_file)
+                        # Get the original image size
+                        o_width, o_height = main_image.size
 
-                    # Save the new file
-                    cropped_image.save(out_path, "JPEG")
-                    cropped_files.append(out_path)
+                        # Add padding if we want it
+                        if padding:
+                            padding = 20 # pixels
+                            coords["bottom"] = min(coords["bottom"] + padding, o_height)
+                            coords["top"] = max(coords["top"] - padding, 0)
+                            coords["right"] = min(coords["right"] + padding, o_width)
+                            coords["left"] = max(coords["left"] - padding, 0)
+
+                        # Save the filename without the path
+                        filename = instruction[0].split('/')[-1]
+
+                        # Tries to use the existing filename, if it has weird characters
+                        # we just give it a random alphanumeric string as filename
+                        try:
+                            name, extension = filename.rsplit('.')
+                        except ValueError:
+                            crypt.update(bytes(filename, 'utf-8'))
+                            name = crypt.hexdigest()
+                            extension = "jpg"
+
+                        # Crop the image using the given coordinates
+                        cropped_image = main_image.crop((coords["left"], coords["top"], \
+                            coords["right"], coords["bottom"]))
+
+                        out_file = name + "_{}.".format(index) + extension
+                        out_path = path.join(out_directory, out_file)
+
+                        # Save the new file
+                        cropped_image.save(out_path, "JPEG")
+                        cropped_files.append(out_path)
 
     return output, cropped_files
 

@@ -1,3 +1,10 @@
+/* Color Scheme */
+/* aqua/teal - #3aafa9 */
+/* dark blue/green - #17252A */
+/* slightly off white - #feffff */
+/* red with tint of pink - #D84F68 */
+/* squash - #F7A553 */
+
 div#content {
     display: block;
 }
@@ -15,4 +22,53 @@ div#loading {
 
 table {
     width: 100%
+}
+
+body {
+    background-color: #3aafa9;
+}
+
+.title {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 900;
+    color: #feffff;
+}
+
+.subtitle {
+    color: #17252a;
+}
+
+/* hide original input buttons */
+input[type="file"], input[type="submit"] {
+    display: none;
+}
+
+.custom-input {
+    font-size: 1.25em;
+    font-weight: 700;
+    padding-right: 1rem;
+    padding-left: .6rem;
+    color: white;
+    background-color: #17252a;
+    display: inline-block;
+    cursor: pointer;
+    color: #feffff;
+}
+
+
+
+.custom-input:hover {
+
+    /*maroon*/
+    /*background-color: #723B3F;*/
+
+    /*red pink*/
+    /*background-color: #D84F68;*/
+    /*color: #D84F68;*/
+    background-color: #D84F68;
+} 
+
+.jam-icon {
+    color: white;
+    padding-right: 0rem;
 }

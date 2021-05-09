@@ -18,7 +18,7 @@ import torchvision.transforms as transforms
 
 import PIL.Image as Image
 
-QTY_CLASSES = 9 # THIS MUST BE THE NUMBER OF POSSIBLE OUTPUTS (MAKE/MODEL combinations)
+QTY_CLASSES = 11 # THIS MUST BE THE NUMBER OF POSSIBLE OUTPUTS (MAKE/MODEL combinations)
 
 class Identifier:
     """ Creates an identifier object so we don't have to load the model multiple times """
@@ -116,7 +116,8 @@ class Identifier:
         # classes, c_to_idx = self.find_classes(self.dataset_dir+"train")
         classes = [
             'Acura TL', 'Audi A4', 'BMW X3', 'Buick Enclave', 'Cheverolet Silverado 1500',
-            'Ford Crown Victoria', 'Ford Fusion', 'Jeep Wrangler Unlimited', 'Toyota RAV4'
+            'Ford Crown Victoria', 'Ford Fusion', 'Honda Civic', 'Jeep Wrangler Unlimited', 
+            'Toyota RAV4', 'Volkswagen Jetta'
         ]
 
         # get the class name of the prediction

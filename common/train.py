@@ -13,6 +13,8 @@ Example:    python3 train.py ready
 import time
 import os
 import sys
+import argparse
+import csv
 
 # MatPlotLib Imports
 import matplotlib.pyplot as plt
@@ -118,19 +120,46 @@ def eval_model(model):
         test_acc))
     return test_acc
 
+# Writes the CSV file
+def write_csv(train_loss, train_acc, test_acc):
+    with open("results.csv", "a") as f:
+        writer = csv.writer(f, quoting=csv.QUOTE_MINIMAL)
+        writer.writerow(["Batch Size",
+                        "Learning Rate",
+                        "Momentum",
+                        "Test Accuracy",
+                        "Training Loss",
+                        "Training Accuracy"])
+        for i in range(0, len(train_acc)):
+            writer.writerow([BATCH_SIZE,
+                            LEARNING_RATE,
+                            MOMENTUM,
+                            test_acc[i],
+                            train_loss[i],
+                            train_acc[i]])
+
 if __name__ == "__main__":
 
-    if len(sys.argv) < 2:
-        print("Insufficient arguments.\nUsage >> python3 train.py [clean dataset dir in /data]")
-        exit()
-    
-    # Define some constants to finetune hyperparameters
-    BATCH_SIZE = 32
-    TRAINING_EPOCHS = 20
-    QTY_CLASSES = 9 # THIS MUST BE THE NUMBER OF POSSIBLE OUTPUTS (MAKE/MODEL combinations)
+    # Parse the arguments
+    parser = argparse.ArgumentParser(description='Trains the Vehicle Identification AI.')
 
-    LEARNING_RATE = 0.0121 # Getting +80% accuracy w/ 0.01 <= LR <= 0.0121
-    MOMENTUM = 0.9 # Seems like the default for this should be 0.9
+    parser.add_argument('clean', help='Name of Directory of Clean Dataset in /data')
+    parser.add_argument('-b', default=32, type=int, help='Batch Size')
+    parser.add_argument('-e', default=10, type=int, help='Number of Training Epochs')
+    parser.add_argument('-c', default=9, type=int, help='Number of Different Car Classes in Dataset')
+    parser.add_argument('-l', default=0.01, type=float, help='Learning Rate')
+    parser.add_argument('-m', default=0.9, type=float, help='Momentum')
+    parser.add_argument('-w', action="store_true", help='Write results to "results.csv"')
+    parser.add_argument('-p', action='store_true', help='Plot resutls of training at completion.')
+    args = parser.parse_args()
+
+    # Define some constants to finetune hyperparameters
+    BATCH_SIZE = args.b
+    TRAINING_EPOCHS = args.e
+    QTY_CLASSES = args.c # THIS MUST BE THE NUMBER OF POSSIBLE OUTPUTS (MAKE/MODEL combinations)
+
+    LEARNING_RATE = args.l # Getting +80% accuracy w/ 0.01 <= LR <= 0.0175
+    MOMENTUM = args.m # Seems like the default for this should be 0.9 >= momentum 0.8
 
     # This part detecs if the device has a GPU capable of running CUDA
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
@@ -168,8 +197,8 @@ if __name__ == "__main__":
     num_ftrs = model_ft.fc.in_features
 
     # Freeze all the layers of the model since it is pretrained, we only want to update the last layer
-    for param in model_ft.parameters():
-        param.requires_grad = False
+    # for param in model_ft.parameters():
+    #     param.requires_grad = False
 
     # replace the last fc layer with an untrained one (requires grad by default)
     model_ft.fc = nn.Linear(num_ftrs, QTY_CLASSES)
@@ -186,7 +215,12 @@ if __name__ == "__main__":
     model_ft, training_losses, training_accs, test_accs = train_model(model_ft, criterion, optimizer, lrscheduler, n_epochs=TRAINING_EPOCHS)
 
     # This plots the results
-    plot_ai_results(training_losses, training_accs, test_accs)
+    if args.p:
+        plot_ai_results(training_losses, training_accs, test_accs)
+
+    # Save the CSV file if requested
+    if args.w:
+        write_csv(training_losses, training_accs, test_accs)
 
     # Save the model to the current directory
     MODEL_FILENAME = "saved_model.pt"

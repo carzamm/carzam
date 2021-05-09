@@ -9,7 +9,7 @@
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500;700;900&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap" rel="stylesheet"> 
 
     <!-- CSS -->
     <link rel="stylesheet" href="../static/css/index.css">
@@ -20,45 +20,74 @@
     <title>Upload new File</title>
 </head>
 <body>
-    <h1 class="title">CARZAM</h1>
-    <h3 class="subtitle">Vehicle Recognition</h3>
-    <H6>Instructions:</H6>
-    <ul>
-        <li> The minimum size of the vehicle within the uploaded picture must be greater than 200x200 pixels. </li>
-    </ul>    
 
-    <!-- 
-        Reference: 
-        https://roytuts.com/upload-and-display-image-using-python-flask/ 
-    -->
+    <div class="container">
+        <div class="row">
+            <!-- <div class="col-2"></div> -->
+            <div class="col-12">
 
-    <div id="loading"></div>
-    <div id="content">
-        {% if filename %}
-            <table>
-                <tbody>
-                    {% for img_name, img_class, img_conf in filename %}
-                        <tr>
-                            <td><img src="{{img_name}}"></td>
-                        </tr>
-                        <tr>
-                            <td>{{img_class}} - Confidence: {{img_conf}} SD</td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
+                <div class="d-flex justify-content-center">
+                    <h1 class="title">CARZAM</h1>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <h3 class="subtitle">Vehicle Recognition</h3>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <p>The minimum size of the vehicle within the uploaded picture must be greater than 200x200 pixels.</p>
+                </div>
+
+                <div class="d-flex justify-content-center">
+                    <p>Photo must be in JPG or PNG format.</p>
+                </div>    
+
+                <!-- 
+                    Reference: 
+                    https://roytuts.com/upload-and-display-image-using-python-flask/ 
+                -->
+
+                <div id="loading"></div>
+                <div id="content">
+                    {% if filename %}
+                        <table>
+                            <tbody>
+                                {% for img_name, img_class, img_conf in filename %}
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex justify-content-center">
+                                                <img src="{{img_name}}">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex justify-content-center prediction">
+                                                {{img_class}} - Confidence: {{img_conf}} SD
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    {% endif %}
+                </div>
+
+                
+                <form method=post action="/" enctype=multipart/form-data>
+                    <div class="d-flex justify-content-evenly">
+                        <input id="choose-file" type="file" name="file" required>
+                    
+                        <label class="custom-input" for="choose-file"><span class="jam-icon browse" data-jam="search-folder"></span>Choose a file...</label>
+
+                        <input class="custom-input" id="upload-file" class="btn btn-outline-primary" type=submit value=Upload>
+                        <label class="custom-input upload" for="upload-file"><span class="jam-icon upload" data-jam="upload"></span>Upload</label>
+                    </div>
+                </form>
+            </div>
+            <!-- <div class="col-2"></div> -->
+        </div>
     </div>
-
-    <form method=post action="/" enctype=multipart/form-data>
-
-        <input id="choose-file" type="file" name="file" required>
-        
-        <label class="custom-input" for="choose-file"><span class="jam-icon browse" data-jam="search-folder" data-fill="#feffff"></span>Choose a file...</label>
-
-        <input class="custom-input" id="upload-file" class="btn btn-outline-primary" type=submit value=Upload>
-        <label class="custom-input upload" for="upload-file"><span class="jam-icon upload" data-jam="upload" data-fill="#feffff"></span>Upload</label>
-    </form>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>

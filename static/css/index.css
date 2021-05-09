@@ -1,9 +1,10 @@
 /* Color Scheme */
-/* aqua/teal - #3aafa9 */
+/* aqua/teal - #00a66e */
 /* dark blue/green - #17252A */
 /* slightly off white - #feffff */
-/* red with tint of pink - #D84F68 */
+/* red with tint of pink - #ff004f */
 /* squash - #F7A553 */
+/*brown? 433421*/
 
 div#content {
     display: block;
@@ -25,17 +26,34 @@ table {
 }
 
 body {
-    background-color: #3aafa9;
+    background-color: #00a66e;
+}
+
+h1, h3, h6, p, label {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500;
 }
 
 .title {
-    font-family: 'Roboto', sans-serif;
+    /*font-family: 'Roboto', sans-serif;*/
     font-weight: 900;
     color: #feffff;
+    margin-top: 1rem;
 }
 
 .subtitle {
     color: #17252a;
+}
+
+img {
+    border: 7px solid;
+    border-color: #17252a;    
+}
+
+.prediction {
+    color: #17252a;
+    margin-top: .2rem;
+    margin-bottom: 1rem;
 }
 
 /* hide original input buttons */
@@ -45,7 +63,7 @@ input[type="file"], input[type="submit"] {
 
 .custom-input {
     font-size: 1.25em;
-    font-weight: 700;
+    font-weight: 500;
     padding-right: 1rem;
     padding-left: .5rem;
     color: white;
@@ -55,22 +73,15 @@ input[type="file"], input[type="submit"] {
     color: #feffff;
 }
 
-
-
 .custom-input:hover {
 
-    /*maroon*/
-    /*background-color: #723B3F;*/
-
     /*red pink*/
-    /*background-color: #D84F68;*/
-    /*color: #D84F68;*/
-    background-color: #D84F68;
+    background-color: #ff004f;
+
 } 
 
-
 .jam-icon {
-       color: #feffff;
+    fill: #feffff;
 }
 
 .jam-icon.browse {

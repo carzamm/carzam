@@ -68,7 +68,16 @@ input[type="file"], input[type="submit"] {
     background-color: #D84F68;
 } 
 
+
 .jam-icon {
-    color: white;
-    padding-right: 0rem;
+       color: #feffff;
+}
+
+.jam-icon.browse {
+    margin-right: .5rem;
+}
+
+.jam-icon.upload {
+    margin-right: .25rem;
+    margin-bottom: .15rem;
 }

@@ -21,7 +21,7 @@ import warnings
 from PIL import Image
 import sys
 
-MIN_SIZE = 400, 400 # This can be modified to any width, height
+MIN_SIZE = 200, 200 # This can be modified to any width, height
 
 # Override the warnings from showing, they're not very helpful
 def ignore():

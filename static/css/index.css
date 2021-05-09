@@ -47,7 +47,7 @@ input[type="file"], input[type="submit"] {
     font-size: 1.25em;
     font-weight: 700;
     padding-right: 1rem;
-    padding-left: .6rem;
+    padding-left: .5rem;
     color: white;
     background-color: #17252a;
     display: inline-block;

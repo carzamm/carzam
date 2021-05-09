@@ -18,11 +18,17 @@ function domLoaded() {
 	    var fileNameStart = filePath.lastIndexOf('\\');
 	    filePath = filePath.substr(fileNameStart + 1);
 
+	    // truncate the file name if too long
+	   	if (filePath.length > 13) {
+	   		filePath = filePath.substring(0, 13);
+	   		filePath = filePath + "...";
+	    }
+
 	    // select the label element
-	    var newLabelText = document.querySelector('label[for="choose-file"]');
+	    var labelToEdit = document.querySelector('label[for="choose-file"]');
 
 	    // iterate the children of the label element and only change the text
-		for(const node of newLabelText.childNodes) {
+		for(const node of labelToEdit.childNodes) {
 			if(node.nodeName === '#text') {
 				if (filePath !== '') {
 	        		node.textContent = filePath;

@@ -12,6 +12,7 @@ Description: The routes for this application. Utilizes Flask and sets up routes 
 # Need this so the web app can read common directory scripts
 import os
 import sys
+import shutil
 sys.path.append('./common')
 
 # Outside dependencies
@@ -33,8 +34,8 @@ OUT_DIRECTORY = "./static/outimages/"
 IN_DIRECTORY = "./static/testimages/"
 
 # Make the directories declared as constants if they do not exist
-Path(IN_DIRECTORY).mkdir(parents=True, exist_ok=True)
-Path(OUT_DIRECTORY).mkdir(parents=True, exist_ok=True)
+# Path(IN_DIRECTORY).mkdir(parents=True, exist_ok=True)
+# Path(OUT_DIRECTORY).mkdir(parents=True, exist_ok=True)
 PATH = os.getcwd()
 UPLOAD_FOLDER = os.path.join(PATH, IN_DIRECTORY[2:])
 
@@ -62,6 +63,13 @@ def save_file_to_upload_directory(file: FileStorage):
 @app.route("/", methods=['GET', 'POST'])
 def home_page():
     if request.method == 'POST':
+        
+        # on new upload event, remove old images from server
+        shutil.rmtree(IN_DIRECTORY)
+        shutil.rmtree(OUT_DIRECTORY)
+        Path(IN_DIRECTORY).mkdir(parents=True, exist_ok=True)
+        Path(OUT_DIRECTORY).mkdir(parents=True, exist_ok=True)
+
         # check if the post request has the file part
         if 'file' not in request.files:
             flash('No file')

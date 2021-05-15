@@ -17,8 +17,6 @@
     <!-- JS -->
     <script src="../static/js/index.js"></script>
 
-
-
     <title>Upload new File</title>
 </head>
 <body>
@@ -48,11 +46,11 @@
             </div>
 
             <div class="d-flex justify-content-end formats-row">
-                <img class="formats" src="./static/defaultimages/formats.svg"> 
+                <img class="formats" src="./static/ui-images/formats.svg"> 
             </div>
 
             <div class="d-flex justify-content-center orientations-row">
-                <img class="orientations" src="./static/defaultimages/orientations.svg"> 
+                <img class="orientations" src="./static/ui-images/orientations.svg"> 
             </div>
 
             <!-- 
@@ -83,7 +81,7 @@
                         </tbody>
                     </table>
                 {% else %}
-                    <img class="instructions" src="./static/defaultimages/instructions.svg">
+                    <img class="instructions" src="./static/ui-images/instructions.svg">
                 {% endif %}
             </div>
             
@@ -91,10 +89,11 @@
                 <div class="d-flex justify-content-evenly">
                     <input id="choose-file" type="file" name="file" required>
                 
-                    <label class="custom-input" for="choose-file"><span class="jam-icon browse" data-jam="search-folder"></span>Choose a file...</label>
+                    <label class="custom-input" for="choose-file"><img class="upload" src="./static/ui-images/search-folder.svg"></span>Choose a file...</label>
 
                     <input class="custom-input" id="upload-file" class="btn btn-outline-primary" type=submit value=Upload>
-                    <label class="custom-input upload" for="upload-file"><span class="jam-icon upload" data-jam="upload"></span>Upload</label>
+<!--                     <label class="custom-input upload" for="upload-file"><span class="jam-icon upload" data-jam="upload"></span>Upload</label> -->
+                    <label class="custom-input upload" for="upload-file"><img class="upload" src="./static/ui-images/upload.svg">Upload</label>
                 </div>
             </form>
         </div>
@@ -104,7 +103,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 
         <!-- Jam Icons (https://jam-icons.com/) -->
-    <script src="https://unpkg.com/jam-icons/js/jam.min.js"></script>
+    <!-- <script src="https://unpkg.com/jam-icons/js/jam.min.js"></script> -->
 
 
 

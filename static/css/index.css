@@ -111,15 +111,13 @@ input[type="file"], input[type="submit"] {
     background-color: #003f7f; /* darker blue */
 } 
 
-.jam-icon {
+img.folder-search {
     fill: #ffffff; /* white */
-}
-
-.jam-icon.browse {
     margin-right: .5rem;
 }
 
-.jam-icon.upload {
+img.upload {
+    color: #ffffff; /* white */
     margin-right: .25rem;
     margin-bottom: .15rem;
 }

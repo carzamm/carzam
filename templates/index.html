@@ -17,83 +17,96 @@
     <!-- JS -->
     <script src="../static/js/index.js"></script>
 
+
+
     <title>Upload new File</title>
 </head>
 <body>
 
-    <div class="container">
-        <div class="row">
-            <!-- <div class="col-2"></div> -->
-            <div class="col-12">
+    <div class="container main-container">
+        <div class="col-12">
 
-                <div class="d-flex justify-content-center">
-                    <h1 class="title">CARZAM</h1>
-                </div>
-
-                <div class="d-flex justify-content-center">
-                    <h3 class="subtitle">Vehicle Recognition</h3>
-                </div>
-
-                <div class="d-flex justify-content-center">
-                    <p>The minimum size of the vehicle within the uploaded picture must be greater than 200x200 pixels.</p>
-                </div>
-
-                <div class="d-flex justify-content-center">
-                    <p>Photo must be in JPG or PNG format.</p>
-                </div>    
-
-                <!-- 
-                    Reference: 
-                    https://roytuts.com/upload-and-display-image-using-python-flask/ 
-                -->
-
-                <div id="loading"></div>
-                <div id="content">
-                    {% if filename %}
-                        <table>
-                            <tbody>
-                                {% for img_name, img_class, img_conf in filename %}
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex justify-content-center">
-                                                <img src="{{img_name}}">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex justify-content-center prediction">
-                                                {{img_class}} - Confidence: {{img_conf}} SD
-                                            </div>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
-                    {% endif %}
-                </div>
-
-                
-                <form method=post action="/" enctype=multipart/form-data>
-                    <div class="d-flex justify-content-evenly">
-                        <input id="choose-file" type="file" name="file" required>
-                    
-                        <label class="custom-input" for="choose-file"><span class="jam-icon browse" data-jam="search-folder"></span>Choose a file...</label>
-
-                        <input class="custom-input" id="upload-file" class="btn btn-outline-primary" type=submit value=Upload>
-                        <label class="custom-input upload" for="upload-file"><span class="jam-icon upload" data-jam="upload"></span>Upload</label>
-                    </div>
-                </form>
+            <!-- <div class="d-flex justify-content-center"> -->
+            <div class="d-flex justify-content-end title-row">
+               <h1 class="title">CARZAM</h1>
             </div>
-            <!-- <div class="col-2"></div> -->
+
+
+ <!--            <div>
+
+            </div>
+            <svg viewBox="0 0 75 15">
+              <text class="title" x="0" y="15">CARZAM</text>
+            </svg>
+ -->
+
+
+
+            <div class="d-flex justify-content-end subtitle-row">
+
+                <h3 class="subtitle">Vehicle Recognition</h3>
+            </div>
+
+            <div class="d-flex justify-content-end formats-row">
+                <img class="formats" src="./static/defaultimages/formats.svg"> 
+            </div>
+
+            <div class="d-flex justify-content-center orientations-row">
+                <img class="orientations" src="./static/defaultimages/orientations.svg"> 
+            </div>
+
+            <!-- 
+                Reference: 
+                https://roytuts.com/upload-and-display-image-using-python-flask/ 
+            -->
+            <div id="content" class="d-flex justify-content-center">
+                {% if filename %}
+                    <table>
+                        <tbody>
+                            {% for img_name, img_class, img_conf in filename %}
+                                <tr>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <img class="userimg" src="{{img_name}}">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <div class="d-flex justify-content-center prediction">
+                                            <!-- {{img_class}} - Confidence: {{img_conf}} SD -->
+                                            {{img_class}}
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <img class="instructions" src="./static/defaultimages/instructions.svg">
+                {% endif %}
+            </div>
+            
+            <form method=post action="/" enctype=multipart/form-data>
+                <div class="d-flex justify-content-evenly">
+                    <input id="choose-file" type="file" name="file" required>
+                
+                    <label class="custom-input" for="choose-file"><span class="jam-icon browse" data-jam="search-folder"></span>Choose a file...</label>
+
+                    <input class="custom-input" id="upload-file" class="btn btn-outline-primary" type=submit value=Upload>
+                    <label class="custom-input upload" for="upload-file"><span class="jam-icon upload" data-jam="upload"></span>Upload</label>
+                </div>
+            </form>
         </div>
     </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-p34f1UUtsS3wqzfto5wAAmdvj+osOnFyQFpp4Ua3gs/ZVWx6oOypYoCJhGGScy+8" crossorigin="anonymous"></script>
 
-    <!-- Jam Icons (https://jam-icons.com/) -->
+        <!-- Jam Icons (https://jam-icons.com/) -->
     <script src="https://unpkg.com/jam-icons/js/jam.min.js"></script>
+
+
 
 
 </body>

@@ -1,11 +1,3 @@
-/* Color Scheme */
-/* aqua/teal - #00a66e */
-/* dark blue/green - #17252A */
-/* slightly off white - #feffff */
-/* red with tint of pink - #ff004f */
-/* squash - #F7A553 */
-/*brown? 433421*/
-
 div#content {
     display: block;
 }
@@ -26,34 +18,74 @@ table {
 }
 
 body {
-    background-color: #00a66e;
+    background-color: #fec357; /* dark yellow */
 }
 
-h1, h3, h6, p, label {
+.main-container {
+    width: 60%;
+    padding: 0;
+}
+
+h1 h3 {
     font-family: 'Roboto', sans-serif;
-    font-weight: 500;
+    color: #000000; /* black */
+    width: 22.5%;
+}
+
+.title-row {
+    margin-top: 1rem;
+    margin-bottom: 0rem;
 }
 
 .title {
-    /*font-family: 'Roboto', sans-serif;*/
     font-weight: 900;
-    color: #feffff;
-    margin-top: 1rem;
+    margin-bottom: 0rem;
+    font-size: 4vw;
+}
+
+.subtitle-row {
+    /*margin-bottom: 2rem;*/
+    margin-bottom: 2vw;
 }
 
 .subtitle {
-    color: #17252a;
+    font-weight: 300;
+    margin-bottom: 0rem;
+    font-size: 2.5vw;
 }
 
-img {
+.formats-row {
+    /*margin-bottom: 3rem;*/
+    margin-bottom: 3vw;
+}
+
+.formats {
+    width: 25%;
+}
+
+.orientations {
+    margin-bottom: 1rem;
+    width: 100%;
+} 
+
+.instructions {
+    width: 100%;
+}
+
+.userimg {
+    max-width: 100%;
+}
+.instructions, .userimg {
     border: 7px solid;
-    border-color: #17252a;    
+    border-color: #17252a; 
 }
 
 .prediction {
-    color: #17252a;
+    font-family: 'Roboto', sans-serif;
+    color: #000000; /* black */
     margin-top: .2rem;
     margin-bottom: 1rem;
+    font-size: 2vw;
 }
 
 /* hide original input buttons */
@@ -63,25 +95,24 @@ input[type="file"], input[type="submit"] {
 
 .custom-input {
     font-size: 1.25em;
-    font-weight: 500;
+    font-weight: 300;
+    padding-top: .05rem;
     padding-right: 1rem;
     padding-left: .5rem;
     color: white;
-    background-color: #17252a;
+    background-color: #0180ff; /* light blue */
     display: inline-block;
     cursor: pointer;
-    color: #feffff;
+    color: #ffffff; /* white */
+    margin-top: 1vw;
 }
 
 .custom-input:hover {
-
-    /*red pink*/
-    background-color: #ff004f;
-
+    background-color: #003f7f; /* darker blue */
 } 
 
 .jam-icon {
-    fill: #feffff;
+    fill: #ffffff; /* white */
 }
 
 .jam-icon.browse {

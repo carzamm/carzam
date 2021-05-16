@@ -22,7 +22,7 @@ body {
 }
 
 .main-container {
-    width: 60%;
+    width: 98%;
     padding: 0;
 }
 
@@ -40,23 +40,21 @@ h1 h3 {
 .title {
     font-weight: 900;
     margin-bottom: 0rem;
-    font-size: 4vw;
+    font-size: 8vw;
 }
 
 .subtitle-row {
-    /*margin-bottom: 2rem;*/
-    margin-bottom: 2vw;
+    margin-bottom: 4vw;
 }
 
 .subtitle {
     font-weight: 300;
     margin-bottom: 0rem;
-    font-size: 2.5vw;
+    font-size: 5vw;
 }
 
 .formats-row {
-    /*margin-bottom: 3rem;*/
-    margin-bottom: 3vw;
+    margin-bottom: 5vw;
 }
 
 .formats {
@@ -93,31 +91,76 @@ input[type="file"], input[type="submit"] {
     display: none;
 }
 
-.custom-input {
-    font-size: 1.25em;
+.button-row {
+    margin-top: 4vw;
+}
+
+.file-btn {
+    color: #ffffff; /* white */
+    font-size: 4vw;
     font-weight: 300;
-    padding-top: .05rem;
-    padding-right: 1rem;
-    padding-left: .5rem;
-    color: white;
+    padding-top: .25rem;
+    padding-right: .75rem;
+    padding-left: .75rem;
     background-color: #0180ff; /* light blue */
     display: inline-block;
     cursor: pointer;
-    color: #ffffff; /* white */
-    margin-top: 1vw;
 }
 
-.custom-input:hover {
+.upload-btn {
+    color: #ffffff; /* white */
+    font-size: 4vw;
+    font-weight: 300;
+    padding-top: .35rem;
+    padding-right: .75rem;
+    padding-left: .75rem;
+    background-color: #0180ff; /* light blue */
+    display: inline-block;
+    cursor: pointer;
+}
+
+.file-btn:hover, .upload-btn:hover {
     background-color: #003f7f; /* darker blue */
 } 
 
-img.folder-search {
-    fill: #ffffff; /* white */
-    margin-right: .5rem;
+img.folder-search-img {
+    padding-top: .2rem;
+    padding-bottom: .2rem;
+    padding-right: .2rem;
 }
 
-img.upload {
-    color: #ffffff; /* white */
-    margin-right: .25rem;
-    margin-bottom: .15rem;
+img.upload-img {
+    padding-bottom: .1rem;
+    padding-right: .2rem;
+}
+
+
+@media (min-width: 576px) {
+    body {
+        background-color: grey;
+    }
+}
+
+@media (min-width: 768px) {
+    body {
+        background-color: green;
+    }
+}
+
+@media (min-width: 992px) {
+    body {
+        background-color: orange;
+    }
+}
+
+@media (min-width: 1200px) {
+    body {
+        background-color: pink;
+    }
+}
+
+@media (min-width: 1400px) {
+        body {
+        background-color: purple;
+    }
 }

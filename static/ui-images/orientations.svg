@@ -7,9 +7,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="158.75mm"
+   width="152.09988mm"
    height="19.94455mm"
-   viewBox="0 0 158.75 19.94455"
+   viewBox="0 0 152.09988 19.94455"
    version="1.1"
    id="svg8"
    inkscape:export-filename="/Users/kevinjoy/Desktop/capstone-467/carzam/static/defaultimages/default1.png"
@@ -512,6 +512,17 @@
          x="-4.4383397"
          y="14.447879" />
     </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2368">
+      <rect
+         style="fill:none;fill-opacity:0.245968;stroke:none;stroke-width:0.570296"
+         id="rect2370"
+         width="152.09988"
+         height="48.727379"
+         x="26.289846"
+         y="126.84469" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -521,17 +532,17 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.6879908"
-     inkscape:cx="348.64884"
-     inkscape:cy="-9.2999797"
+     inkscape:cx="149.27099"
+     inkscape:cy="-129.27255"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      inkscape:document-rotation="0"
      showgrid="false"
-     inkscape:window-width="1280"
-     inkscape:window-height="680"
+     inkscape:window-width="2560"
+     inkscape:window-height="1387"
      inkscape:window-x="0"
      inkscape:window-y="25"
-     inkscape:window-maximized="0"
+     inkscape:window-maximized="1"
      showguides="true"
      inkscape:guide-bbox="true"
      inkscape:snap-global="true"
@@ -540,39 +551,39 @@
      fit-margin-right="0"
      fit-margin-bottom="0">
     <sodipodi:guide
-       position="117.16661,14.39984"
+       position="114.06322,14.39984"
        orientation="0,-1"
        id="guide5927" />
     <sodipodi:guide
-       position="79.446859,-3.9487806"
+       position="76.343472,-3.9487803"
        orientation="1,0"
        id="guide5929" />
     <sodipodi:guide
-       position="0.64308855,0.26295943"
+       position="-2.4602958,0.26295962"
        orientation="0,-1"
        id="guide5931" />
     <sodipodi:guide
-       position="12.059107,0.26295943"
+       position="8.9557223,0.26295962"
        orientation="1,0"
        id="guide2496" />
     <sodipodi:guide
-       position="40.765404,0.26295943"
+       position="37.662018,0.26295962"
        orientation="1,0"
        id="guide2498" />
     <sodipodi:guide
-       position="115.57911,-4.1704506"
+       position="112.47572,-4.1704503"
        orientation="1,0"
        id="guide2500" />
     <sodipodi:guide
-       position="144.09955,18.02158"
+       position="140.99616,18.02158"
        orientation="1,0"
        id="guide2502" />
     <sodipodi:guide
-       position="120.73794,19.75684"
+       position="117.63455,19.75684"
        orientation="0,-1"
        id="guide2548" />
     <sodipodi:guide
-       position="12.336625,13.44882"
+       position="9.2332403,13.44882"
        orientation="0,-1"
        id="guide3371" />
   </sodipodi:namedview>
@@ -592,9 +603,10 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-23.186462,-150.56115)">
+     transform="translate(-26.289846,-150.56115)">
     <g
-       id="g3230">
+       id="g3230"
+       clip-path="url(#clipPath2368)">
       <rect
          style="fill:none;fill-opacity:1;stroke-width:0.116619"
          id="rect833-9-5"
@@ -1636,7 +1648,7 @@
                style="fill:#ff0000;stroke:none;stroke-width:29.0383;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
               <polygon
                  class="fil0"
-                 points="140,827 20,707 304,423 20,140 140,20 423,304 707,20 827,140 543,423 827,707 707,827 423,543 "
+                 points="304,423 20,140 140,20 423,304 707,20 827,140 543,423 827,707 707,827 423,543 140,827 20,707 "
                  id="polygon8321-7"
                  style="fill:#ff0000;stroke:none;stroke-width:29.0383;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
             </g>

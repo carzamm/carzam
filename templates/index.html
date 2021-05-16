@@ -76,13 +76,20 @@
             </div>
             
             <form method=post action="/" enctype=multipart/form-data>
-                <div class="d-flex justify-content-evenly">
+                <div class="d-flex justify-content-evenly button-row">
                     <input id="choose-file" type="file" name="file" required>
                 
-                    <label class="custom-input" for="choose-file"><img class="upload" src="./static/ui-images/search-folder.svg"></span>Choose a file...</label>
+                    <label class="file-btn" for="choose-file">
+                        <img class="folder-search-img" src="./static/ui-images/search-folder.svg">
+                        <span class="file-text">Choose a file...</span>
+                    </label>
 
-                    <input class="custom-input" id="upload-file" class="btn btn-outline-primary" type=submit value=Upload>
-                    <label class="custom-input upload" for="upload-file"><img class="upload" src="./static/ui-images/upload.svg">Upload</label>
+                    <input id="upload-file" class="btn btn-outline-primary" type=submit value=Upload>
+
+                    <label class="upload-btn" for="upload-file">
+                        <img class="upload-img" src="./static/ui-images/upload.svg">
+                        <span class="upload-text">Upload</span>
+                    </label>
                 </div>
             </form>
         </div>

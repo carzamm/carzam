@@ -39,7 +39,7 @@
                 <img class="formats" src="./static/ui-images/formats.svg"> 
             </div>
 
-            <div class="d-flex justify-content-center orientations-row">
+            <div class="d-flex justify-content-end orientations-row">
                 <img class="orientations" src="./static/ui-images/orientations.svg"> 
             </div>
 
@@ -71,7 +71,26 @@
                         </tbody>
                     </table>
                 {% else %}
-                    <img class="instructions" src="./static/ui-images/instructions.svg">
+                <table>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <img class="instructions" src="./static/ui-images/instructions.svg">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="d-flex justify-content-center prediction">
+                                        Volkswagon Jetta, 2015-2018
+                                    </div>
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                    <!-- <img class="instructions" src="./static/ui-images/instructions.svg"> -->
                 {% endif %}
             </div>
             
@@ -79,17 +98,11 @@
                 <div class="d-flex justify-content-evenly button-row">
                     <input id="choose-file" type="file" name="file" required>
                 
-                    <label class="file-btn" for="choose-file">
-                        <img class="folder-search-img" src="./static/ui-images/search-folder.svg">
-                        <span class="file-text">Choose a file...</span>
-                    </label>
+                    <label class="file-btn" for="choose-file"><img class="folder-search-img" src="./static/ui-images/search-folder.svg">Choose a file...</label>
 
                     <input id="upload-file" class="btn btn-outline-primary" type=submit value=Upload>
 
-                    <label class="upload-btn" for="upload-file">
-                        <img class="upload-img" src="./static/ui-images/upload.svg">
-                        <span class="upload-text">Upload</span>
-                    </label>
+                    <label class="upload-btn" for="upload-file"><img class="upload-img" src="./static/ui-images/upload.svg">Upload</label>
                 </div>
             </form>
         </div>

@@ -22,12 +22,17 @@ body {
 }
 
 .main-container {
-    width: 98%;
+    width: 99%;
+    max-width: 700px;
     padding: 0;
 }
 
+/*
+    headers
+*/
+
 .title-row {
-    margin-top: 1rem;
+    margin-top: .25rem;
     margin-bottom: 0rem;
 }
 
@@ -36,11 +41,11 @@ body {
     color: #000000;  /* black */ 
     font-weight: 900;
     margin-bottom: 0rem;
-    font-size: 8vw;
+    font-size: 1.5rem;
 }
 
 .subtitle-row {
-    margin-bottom: 4vw;
+    margin-bottom: .25rem;
 }
 
 .subtitle {
@@ -48,19 +53,23 @@ body {
     color: #000000;  /* black */ 
     font-weight: 300;
     margin-bottom: 0rem;
-    font-size: 5vw;
+    font-size: 1rem;
 }
 
 .formats-row {
-    margin-bottom: 5vw;
+    margin-bottom: .5rem;
 }
 
 .formats {
     width: 25%;
 }
 
+/*
+    instructions
+*/
+
 .orientations {
-    margin-bottom: 2vw;
+    margin-bottom: .25rem;
     width: 100%;
 } 
 
@@ -68,21 +77,30 @@ body {
     width: 100%;
 }
 
+/*
+    images
+*/
+
 .userimg {
     max-width: 100%;
 }
+
 .instructions, .userimg {
-    border: 7px solid;
-    border-color: #000000; /* black  
+    border: 3px solid;
+    border-color: #000000; /* black */
 }
 
 .prediction {
     font-family: 'Roboto', sans-serif;
     color: #000000; /* black */
-    margin-top: .2rem;
-    margin-bottom: 1rem;
-    font-size: 2vw;
+    margin-top: .15rem;
+    font-size: .6rem;
 }
+
+
+/*
+    buttons
+*/
 
 /* hide original input buttons */
 input[type="file"], input[type="submit"] {
@@ -90,17 +108,15 @@ input[type="file"], input[type="submit"] {
 }
 
 .button-row {
-    margin-top: 4vw;
+    margin-top: .5rem;
 }
 
 .file-btn {
     color: #ffffff; /* white */
-    font-size: 4vw;
+    font-size: .6rem;
     font-weight: 300;
-    padding-top: .3rem;
-    padding-right: .75rem;
-    padding-left: .75rem;
-    padding-bottom: .2rem;
+    padding-right: .5rem;
+    padding-left: .5rem;
     background-color: #0180ff; /* light blue */
     display: inline-block;
     cursor: pointer;
@@ -108,119 +124,203 @@ input[type="file"], input[type="submit"] {
 
 .upload-btn {
     color: #ffffff; /* white */
-    font-size: 4vw;
+    font-size: .6rem;
     font-weight: 300;
-    padding-top: .3rem;
-    padding-right: .75rem;
-    padding-left: .75rem;
+    padding-right: .5rem;
+    padding-left: .5rem;
     background-color: #0180ff; /* light blue */
     display: inline-block;
     cursor: pointer;
+}
+
+img.folder-search-img {
+    height: .8rem;
+    padding-right: .2rem;
+    padding-top: .1rem;
+    padding-bottom: .2rem;
+}
+
+img.upload-img {
+    height: .8rem;
+    padding-right: .2rem;
+    padding-top: .05rem;
+    padding-bottom: .2rem;
 }
 
 .file-btn:hover, .upload-btn:hover {
     background-color: #003f7f; /* darker blue */
 } 
 
-img.folder-search-img {
-    padding-top: .2rem;
-    padding-bottom: .4rem;
-    padding-right: .2rem;
-}
-
-img.upload-img {
-    height: 1.5rem;
-    padding-bottom: .25rem;
-    padding-right: .2rem;
-}
-
-
-@media (min-width: 576px) {
-    .file-btn {
-        font-size: 3.5vw; 
-        padding-top: .3rem;
-        padding-right: 1rem;
-        padding-left: 1rem;
+@media (min-width: 375px) {
+    .title-row {
+        margin-top: 1rem;
     }
 
-    .upload-btn {
-        font-size: 3.5vw;
-        padding-top: .3rem;
-        padding-right: 1rem;
-        padding-left: 1rem;
-    }
-
-    img.folder-search-img {
-        height: 2rem;
-        padding-bottom: .4rem;
-    }
-
-    img.upload-img {
-        height: 1.6rem;
-        padding-bottom: .2rem;
-    }
-
-}
-
-@media (min-width: 768px) {
-    .file-btn {
-        font-size: 1.6rem; 
-        padding-top: .45rem;
-    }
-
-    .upload-btn {
-        font-size: 1.6rem;
-        padding-top: .4rem;
-    }
-
-    img.folder-search-img {
-        height: 2.4rem;
-        padding-bottom: .4rem;
-    }
-
-    img.upload-img {
-        height: 1.8rem;
-        padding-bottom: .4rem;
-    }
-
-    .main-container {
-        width: 70%;
-    }    
-
-}
-
-@media (min-width: 992px) {
     .title {
-        font-size: 5rem;
+        font-size: 2rem;
     }
 
     .subtitle-row {
-        margin-bottom: 3rem;
+        margin-bottom: .5rem;
     }
 
     .subtitle {
-        font-size: 3.15rem;
+        font-size: 1.5rem;
     }
 
     .formats-row {
-        margin-bottom: 3rem;
+        margin-bottom: 1rem;
+    }
+
+    .formats {
+        width: 25%;
     }
 
     .orientations {
-        margin-bottom: 1.5rem;
-        width: 100%;
+        margin-bottom: .5rem;
     } 
-}
 
-@media (min-width: 1200px) {
-    .button-row 
-    {
-        margin-top: 3rem;
+    .instructions {
+        width: 100%;
+    }
+
+    .prediction {
+        font-size: 1rem;
+    }
+
+    .button-row {
+        margin-top: 1rem;
+    }
+
+    .file-btn {
+        font-size: 1rem;
+    }
+
+    .upload-btn {
+        font-size: 1rem;
+    }
+
+    img.folder-search-img {
+        height: 1.3rem;
+        padding-top: .1rem;
+        padding-bottom: .2rem;
+    }
+
+    img.upload-img {
+        height: 1.2rem;
+        padding-bottom: .25rem;
     }
 }
 
-@media (min-width: 1400px) {
+@media (min-width: 576px) {
     .main-container {
-        width: 840px;
-    }  
+        width: 70%;
+    }
+
+    .title {
+        font-size: 3rem;
+    }
+
+    .subtitle-row {
+        margin-bottom: 1rem;
+    }
+
+    .subtitle {
+        font-size: 2.5rem;
+    }
+
+    .formats-row {
+        margin-bottom: 1rem;
+    }
+
+    .orientations {
+        margin-bottom: 1rem;
+    } 
+
+    .prediction {
+        font-size: 1.5rem;
+    }
+
+    .button-row {
+        margin-top: 2rem;
+    }
+
+    .file-btn {
+        font-size: 1.25rem;
+    }
+
+    .upload-btn {
+        font-size: 1.25rem;
+    }
+
+    img.folder-search-img {
+        height: 1.5rem;
+        padding-left: .25rem;
+        padding-right: .25rem;
+    }
+
+    img.upload-img {
+        height: 1.2rem;
+        padding-left: .25rem;
+        padding-right: .25rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .main-container {
+        width: 50%;
+    }
+
+    .title {
+        font-size: 1.5rem;
+    }
+
+    .subtitle-row {
+        margin-bottom: .5rem;
+    }
+
+    .subtitle {
+        font-size: 1.25rem;
+    }
+
+    .formats-row {
+        margin-bottom: .5rem;
+    }
+
+    .formats {
+        width: 12.5%;
+    }
+
+    .orientations {
+        margin-bottom: .5rem;
+        width: 60%;
+    } 
+
+    .prediction {
+        font-size: 1rem;
+    }
+
+    .button-row {
+        margin-top: .5rem;
+    }
+
+    .file-btn {
+        font-size: 1rem;
+    }
+
+    .upload-btn {
+        font-size: 1rem;
+    }
+
+    img.folder-search-img {
+        height: 1.5rem;
+        padding-left: .25rem;
+        padding-right: .25rem;
+    }
+
+    img.upload-img {
+        height: 1rem;
+        padding-left: .25rem;
+        padding-right: .25rem;
+    }
 }

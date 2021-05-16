@@ -14,7 +14,7 @@ div#loading {
 }
 
 table {
-    width: 100%
+    width: 100%;
 }
 
 body {
@@ -26,18 +26,14 @@ body {
     padding: 0;
 }
 
-h1 h3 {
-    font-family: 'Roboto', sans-serif;
-    color: #000000; /* black */
-    width: 22.5%;
-}
-
 .title-row {
     margin-top: 1rem;
     margin-bottom: 0rem;
 }
 
 .title {
+    font-family: 'Roboto', sans-serif;
+    color: #000000;  /* black */ 
     font-weight: 900;
     margin-bottom: 0rem;
     font-size: 8vw;
@@ -48,6 +44,8 @@ h1 h3 {
 }
 
 .subtitle {
+    font-family: 'Roboto', sans-serif;
+    color: #000000;  /* black */ 
     font-weight: 300;
     margin-bottom: 0rem;
     font-size: 5vw;
@@ -62,7 +60,7 @@ h1 h3 {
 }
 
 .orientations {
-    margin-bottom: 1rem;
+    margin-bottom: 2vw;
     width: 100%;
 } 
 
@@ -75,7 +73,7 @@ h1 h3 {
 }
 .instructions, .userimg {
     border: 7px solid;
-    border-color: #17252a; 
+    border-color: #000000; /* black  
 }
 
 .prediction {
@@ -99,9 +97,10 @@ input[type="file"], input[type="submit"] {
     color: #ffffff; /* white */
     font-size: 4vw;
     font-weight: 300;
-    padding-top: .25rem;
+    padding-top: .3rem;
     padding-right: .75rem;
     padding-left: .75rem;
+    padding-bottom: .2rem;
     background-color: #0180ff; /* light blue */
     display: inline-block;
     cursor: pointer;
@@ -111,7 +110,7 @@ input[type="file"], input[type="submit"] {
     color: #ffffff; /* white */
     font-size: 4vw;
     font-weight: 300;
-    padding-top: .35rem;
+    padding-top: .3rem;
     padding-right: .75rem;
     padding-left: .75rem;
     background-color: #0180ff; /* light blue */
@@ -125,42 +124,103 @@ input[type="file"], input[type="submit"] {
 
 img.folder-search-img {
     padding-top: .2rem;
-    padding-bottom: .2rem;
+    padding-bottom: .4rem;
     padding-right: .2rem;
 }
 
 img.upload-img {
-    padding-bottom: .1rem;
+    height: 1.5rem;
+    padding-bottom: .25rem;
     padding-right: .2rem;
 }
 
 
 @media (min-width: 576px) {
-    body {
-        background-color: grey;
+    .file-btn {
+        font-size: 3.5vw; 
+        padding-top: .3rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
     }
+
+    .upload-btn {
+        font-size: 3.5vw;
+        padding-top: .3rem;
+        padding-right: 1rem;
+        padding-left: 1rem;
+    }
+
+    img.folder-search-img {
+        height: 2rem;
+        padding-bottom: .4rem;
+    }
+
+    img.upload-img {
+        height: 1.6rem;
+        padding-bottom: .2rem;
+    }
+
 }
 
 @media (min-width: 768px) {
-    body {
-        background-color: green;
+    .file-btn {
+        font-size: 1.6rem; 
+        padding-top: .45rem;
     }
+
+    .upload-btn {
+        font-size: 1.6rem;
+        padding-top: .4rem;
+    }
+
+    img.folder-search-img {
+        height: 2.4rem;
+        padding-bottom: .4rem;
+    }
+
+    img.upload-img {
+        height: 1.8rem;
+        padding-bottom: .4rem;
+    }
+
+    .main-container {
+        width: 70%;
+    }    
+
 }
 
 @media (min-width: 992px) {
-    body {
-        background-color: orange;
+    .title {
+        font-size: 5rem;
     }
+
+    .subtitle-row {
+        margin-bottom: 3rem;
+    }
+
+    .subtitle {
+        font-size: 3.15rem;
+    }
+
+    .formats-row {
+        margin-bottom: 3rem;
+    }
+
+    .orientations {
+        margin-bottom: 1.5rem;
+        width: 100%;
+    } 
 }
 
 @media (min-width: 1200px) {
-    body {
-        background-color: pink;
+    .button-row 
+    {
+        margin-top: 3rem;
     }
 }
 
 @media (min-width: 1400px) {
-        body {
-        background-color: purple;
-    }
+    .main-container {
+        width: 840px;
+    }  
 }

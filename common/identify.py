@@ -113,12 +113,13 @@ class Identifier:
         output = self.model_ft(image)
         conf, predicted = torch.max(output.data, 1)
 
-        classes, c_to_idx = self.find_classes("../data/CARZAM_102")
-        # classes = [
-        #     'Acura TL', 'Audi A4', 'BMW X3', 'Buick Enclave', 'Cheverolet Silverado 1500',
-        #     'Ford Crown Victoria', 'Ford Fusion', 'Honda Civic', 'Jeep Wrangler Unlimited', 
-        #     'Toyota RAV4', 'Volkswagen Jetta'
-        # ]
+
+        # This takes a plain text file and treats each separate line as a car class
+        # The text file must have each class sorted alphabetically
+        with open('./common/carzam102.dat', 'r') as class_file:
+            lines = class_file.readlines()
+            print(lines)
+            classes = lines
 
         # get the class name of the prediction
         print("\nSupposed to be {}".format(filename))

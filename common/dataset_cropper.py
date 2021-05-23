@@ -67,34 +67,37 @@ if __name__ == "__main__":
         # Begin cropping each of the files
         for file in files:
 
-            # The exact relative path to the file
-            image_loc = os.path.join(in_car_dir, file)
+            # Skip hidden files
+            if not file.startswith('.'):
 
-            # Make sure its a valid file (and not a directory)
-            if os.path.isfile(image_loc):
+                # The exact relative path to the file
+                image_loc = os.path.join(in_car_dir, file)
 
-                # Identify the cars and trucks in the photograph
-                crop_instructions = recognizer.recognize_objects(image_loc)
+                # Make sure its a valid file (and not a directory)
+                if os.path.isfile(image_loc):
 
-                # If we got nothing back, report an error
-                if len(crop_instructions) == 0:
-                    print("File Error: {}".format(image_loc))
+                    # Identify the cars and trucks in the photograph
+                    crop_instructions = recognizer.recognize_objects(image_loc)
 
-                # Pick the biggest image in the picture, it's probably the subject of the image
-                crop_instructions = get_largest(crop_instructions)
+                    # If we got nothing back, report an error
+                    if len(crop_instructions) == 0:
+                        print("File Error: {}".format(image_loc))
 
-                # Crop the image
-                did_crop, _ = generate_cropped_images(
-                    out_car_dir, 
-                    crop_instructions, 
-                    min_size=(200, 200), 
-                    padding=True)
+                    # Pick the biggest image in the picture, it's probably the subject of the image
+                    crop_instructions = get_largest(crop_instructions)
 
-                # Keep track of successes and failures.
-                if (did_crop):
-                    imgs_processed += 1
-                else:
-                    imgs_rejected += 1
+                    # Crop the image
+                    did_crop, _ = generate_cropped_images(
+                        out_car_dir, 
+                        crop_instructions, 
+                        min_size=(200, 200), 
+                        padding=True)
+
+                    # Keep track of successes and failures.
+                    if (did_crop):
+                        imgs_processed += 1
+                    else:
+                        imgs_rejected += 1
             
         # check whether the out folder for a certain car file
         # is empty, if it is then it removes from

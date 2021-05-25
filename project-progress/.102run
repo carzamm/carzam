@@ -1,0 +1,157 @@
+Cropped: 4143   Rejected: 175
+Class                                   |Total Files |Train       |Test        |Ratio       %                                                                   
+--------------------------------------------------------------------------------------------                                                                    
+Jeep Wrangler Unlimited JK (2007 - 2017)|          42|          38|           4|        90.5%                                                                   
+Chevrolet Corvette C7 (2014 - 2019)     |          39|          35|           4|        89.7%                                                                   
+Honda Pilot (2016 - 2018)               |          42|          38|           4|        90.5%                                                                   
+Toyota RAV4 (2018 - 2021)               |          42|          38|           4|        90.5%                                                                   
+Nissan Armada (2017 - 2021)             |          44|          40|           4|        90.9%                                                                   
+Audi R8 4S (2015 - 2020)                |          37|          33|           4|        89.2%                                                                   
+Chevrolet Corvette C1 (1953-1955)       |          38|          34|           4|        89.5%                                                                   
+Aston Martin V8 Vantage (1993 - 1998)   |          40|          36|           4|        90.0%                                                                   
+Ford Expedition (2018 - 2021)           |          42|          38|           4|        90.5%                                                                   
+Subaru Forester (2019 - 2021)           |          40|          36|           4|        90.0%                                                                   
+Mercury Milan (2006 - 2011)             |          42|          38|           4|        90.5%                                                                   
+Audi A4 (2002 - 2005)                   |          40|          36|           4|        90.0%                                                                   
+Volkswagen Golf GTI (2006 - 2021)       |          41|          37|           4|        90.2%                                                                   
+Chevrolet Malibu (2016 - 2018)          |          40|          36|           4|        90.0%                                                                   
+Chevrolet Avlanche (2007 - 2013)        |          42|          38|           4|        90.5%                                                                   
+Dodge Viper ZB II (2008 - 2010)         |          44|          40|           4|        90.9%                                                                   
+Mazda Protege (1999 - 2003)             |          40|          36|           4|        90.0%                                                                   
+Alfa Romeo Giulia Berlina (1962 - 1978) |          41|          37|           4|        90.2%                                                                   
+Acura MDX (2014 - 2016)                 |          42|          38|           4|        90.5%                                                                   
+Mazda 3 Sedan (2013 - 2018)             |          43|          39|           4|        90.7%                                                                   
+Toyota Land Cruiser J70 Workmate (2015 - 2021)|          39|          35|           4|        89.7%          
+Chevrolet Silverado 1500 (2006 - 2014)  |          45|          41|           4|        91.1%                                                                   
+Nissan Altima (2016 - 2018)             |          42|          38|           4|        90.5%                                                                   
+Audi A4 (2016 - 2018)                   |          44|          40|           4|        90.9%                                                                   
+Subaru Impreza Hatchback (2017 - 2021)  |          40|          36|           4|        90.0%                                                                   
+Pontiac Firebird (1998 - 2002)          |          42|          38|           4|        90.5%                                                                   
+Buick Enclave (2012 - 2017)             |          38|          34|           4|        89.5%                                                                   
+BMW 2002 (1968 - 1975)                  |          40|          36|           4|        90.0%                                                                   
+Toyota Corolla Sedan (2018 - 2021)      |          40|          36|           4|        90.0%                                                                   
+Honda Fit (2013 - 2021)                 |          40|          36|           4|        90.0%                                                                   
+Volkswagon Beetle (2011 - 2019)         |          41|          37|           4|        90.2%
+Honda Civic (2006 - 2010)               |          43|          39|           4|        90.7%
+Mercedes-Benz C-Class (2015 - 2019)     |          42|          38|           4|        90.5%
+Porsche Cayenne (2011 - 2018)           |          40|          36|           4|        90.0%
+Chevrolet Corvette C6 (2005 - 2013)     |          40|          36|           4|        90.0%
+Jeep Wrangler YJ (1987 - 1995)          |          40|          36|           4|        90.0%
+Tesla Model 3 (2017 - 2021)             |          40|          36|           4|        90.0%
+BMW 3 Series (2016 - 2018)              |          40|          36|           4|        90.0%
+Dodge Viper VX I (2013 - 2017)          |          41|          37|           4|        90.2%
+Porsche 911 (1964 - 1975)               |          40|          36|           4|        90.0%
+Ford F-150 (2009 - 2014)                |          38|          34|           4|        89.5%
+Toyota Tundra (2014 - 2021)             |          43|          39|           4|        90.7%
+Honda Accord (2013 - 2015)              |          41|          37|           4|        90.2%
+Pontiac Firebird (1993 - 1997)          |          42|          38|           4|        90.5%
+Dodge Durango (2011 - 2020)             |          43|          39|           4|        90.7%
+Chevrolet Impala (2006 - 2016)          |          36|          32|           4|        88.9%
+Honda Pilot (2019 - 2021)               |          40|          36|           4|        90.0%
+Acura TL (2008 - 2014)                  |          33|          30|           3|        90.9%
+Volkswagen Jetta (2011 - 2018)          |          37|          33|           4|        89.2%
+Dodge Viper SR I (1991 - 1995)          |          42|          38|           4|        90.5%
+Nissan GTR (2017 - 2021)                |          39|          35|           4|        89.7%
+Ford Explorer (2020 - 2021)             |          44|          40|           4|        90.9%
+Toyota Camry (2001 - 2006)              |          39|          35|           4|        89.7%
+Toyota Prius (2003 - 2009)              |          37|          33|           4|        89.2%
+BMW E36 (1990 - 2000)                   |          41|          37|           4|        90.2%
+Volkswagen Microbus (1968 - 1978)       |          25|          23|           2|        92.0%
+Honda Civic (2016 - 2020)               |          36|          32|           4|        88.9%
+Porsche 911 (2005 - 2013)               |          41|          37|           4|        90.2%
+Mazda Miata MX-5 ND (2015-2021)         |          37|          33|           4|        89.2%
+Toyota Tacoma (2020 - 2021)             |          43|          39|           4|        90.7%
+Dodge Viper SR II (1996 - 2002)         |          42|          38|           4|        90.5%
+Chevrolet Corvette C8 (2020 - 2021)     |          40|          36|           4|        90.0%
+Tesla Model S (2012 - 2021)             |          42|          38|           4|        90.5%
+Toyota Sequoia (2017 - 2021)            |          40|          36|           4|        90.0%
+Subaru Crosstrek (2017 - 2021)          |          45|          41|           4|        91.1%
+Kia Stinger (2017 - 2021)               |          38|          34|           4|        89.5%
+Hyundai Sonata (2018 - 2019)            |          40|          36|           4|        90.0%
+Mini Countryman (2016 - 2020)           |          40|          36|           4|        90.0%
+Mazda CX-5 (2017 - 2021)                |          41|          37|           4|        90.2%
+Lexus IS (2014 - 2021)                  |          42|          38|           4|        90.5%
+Mitsubishi Lancer Evolution (1992 - 2006)|          40|          36|           4|        90.0%
+Jeep Wrangler TJ (1997 - 2006)          |          48|          43|           5|        89.6%
+BMW 3 Series (2012 - 2015)              |          39|          35|           4|        89.7%
+BMW E30 (1982-1994)                     |          36|          32|           4|        88.9%
+Volkswagen Passat (2006 - 2010)         |          41|          37|           4|        90.2%
+Aston Martin V8 Vantage (2005 - 2021)   |          40|          36|           4|        90.0%
+Ford Mustang (1999 - 2004)              |          45|          41|           4|        91.1%
+Alfa Romeo Giulia (2016 - 2021)         |          40|          36|           4|        90.0%
+Honda CR-V (2011 - 2014)                |          40|          36|           4|        90.0%
+Subaru Outback (2020 - 2021)            |          39|          35|           4|        89.7%
+Nissan Pathfinder (2005 - 2012)         |          38|          34|           4|        89.5%
+Acura MDX (2017 - 2020)                 |          43|          39|           4|        90.7%
+Jeep Grand Cherokee WK2 (2014 - 2020)   |          44|          40|           4|        90.9%
+Hyundai Sonata (2008 - 2010)            |          43|          39|           4|        90.7%
+GMC Acadia (2007 - 2012)                |          43|          39|           4|        90.7%
+Lexus IS (1999 - 2013)                  |          39|          35|           4|        89.7%
+Dodge Charger (2015 - 2020)             |          46|          41|           5|        89.1%
+Fiat 500 Abarth (2008 - 2016)           |          36|          32|           4|        88.9%
+Dodge Viper ZB I (2003 - 2007)          |          44|          40|           4|        90.9%
+BMW X3 (2014 - 2017)                    |          51|          46|           5|        90.2%
+Chevrolet Camaro (2010 - 2015)          |          43|          39|           4|        90.7%
+Audi A4 (1994 - 1998)                   |          39|          35|           4|        89.7%
+Toyota Sienna (2020 - 2021)             |          41|          37|           4|        90.2%
+Toyota RAV4 (2013 - 2018)               |          44|          40|           4|        90.9%
+Ford Fusion (2013 - 2020)               |          36|          32|           4|        88.9%
+Honda Civic (2011 - 2015)               |          46|          41|           5|        89.1%
+Alfa Romeo Stelvio (2017 - 2021)        |          40|          36|           4|        90.0%
+Subaru Impreza Sedan (2017 - 2021)      |          38|          34|           4|        89.5%
+Subaru Forester (2014 - 2016)           |          42|          38|           4|        90.5%
+Hyundai Sonata (2015 - 2017)            |          40|          36|           4|        90.0%
+Ford Crown Victoria (1998 - 2012)       |          35|          31|           4|        88.6%
+Toyota Camry (2015 - 2019)              |          39|          35|           4|        89.7%
+--------------------------------------------------------------------------------------------
+Number of Classes: 102
+Verification Images: 102
+Total Images: 4245
+Average Photos Per Class: 40.6
+
+VERIFCATION MISSES
+
+Supposed to be ../data/VALIDATE/2009-volkswagen-golf-gti.jpg
+Dodge Viper VX I (2013 - 2017) confidence:  4.857851505279541
+
+Supposed to be ../data/VALIDATE/2017-toyota-rav4.jpg       
+Subaru Outback (2020 - 2021) confidence:  6.307400226593018
+
+Supposed to be ../data/VALIDATE/2020-toyota-corolla-sedan.jpeg
+Toyota Camry (2015 - 2019) confidence:  3.329817533493042
+
+Supposed to be ../data/VALIDATE/2011-honda-civic.jpeg
+Volkswagen Jetta (2011 - 2018) confidence:  4.50058126449585
+
+Supposed to be ../data/VALIDATE/2003-mazda-protege.jpeg
+Mitsubishi Lancer Evolution (1992 - 2006) confidence:  5.758503437042236
+
+Supposed to be ../data/VALIDATE/2014-acura-mdx.jpg
+Volkswagen Jetta (2011 - 2018) confidence:  3.9379067420959473
+
+Supposed to be ../data/VALIDATE/2003-ford-mustang.jp
+Audi A4 (2002 - 2005) confidence:  5.547529220581055
+
+Supposed to be ../data/VALIDATE/2018-hyundai-sonata.jpeg
+Chevrolet Malibu (2016 - 2018) confidence:  5.771904468536377
+
+Supposed to be ../data/VALIDATE/2012-chevrolet-camaro.jpg
+Volkswagen Jetta (2011 - 2018) confidence:  3.447113513946533
+
+Supposed to be ../data/VALIDATE/2011-chevrolet-avalanche.jpg         
+Chevrolet Silverado 1500 (2006 - 2014) confidence:  9.058429718017578
+
+Supposed to be ../data/VALIDATE/2001-lexus-is.jpeg              
+Ford Crown Victoria (1998 - 2012) confidence:  5.460335731506348
+
+Supposed to be ../data/VALIDATE/2016-mercedes-benz-c-class.jpg
+Volkswagen Jetta (2011 - 2018) confidence:  6.613602161407471 
+
+Supposed to be ../data/VALIDATE/2016-bmw-3-series.jpg                                                                                                           
+Audi A4 (1994 - 1998) confidence:  4.85773229598999
+
+Supposed to be ../data/VALIDATE/2016-bmw-3-series.jpg                                                                                                           
+Audi A4 (1994 - 1998) confidence:  4.85773229598999
+
+Supposed to be ../data/VALIDATE/1993-aston-martin-v8-vantage.jpeg                                                                                               
+Audi A4 (1994 - 1998) confidence:  6.472897529602051

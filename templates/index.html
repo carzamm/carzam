@@ -20,92 +20,113 @@
     <title>Upload new File</title>
 </head>
 <body>
+    <h1 class="title text-end me-4 mt-4">CARZAM</h1>
+    <h3 class="subtitle text-end me-4">Vehicle Recognition</h3>
+    <p class="text-end me-4"><a href="#about">About Carzam and it's Creators</a></p>
+    <div class="container">
+            <div class="d-grid gap-4 mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <div class="row">
+                            <div class="col-md-3 justify-content-center">
+                                <img class="img-fluid formats mx-auto d-block" src="./static/ui-images/formats.svg">
+                            </div>
+                            <div class="col-md-9 justify-content-center">
+                                <img class="img-fluid orientations mx-auto d-block" src="./static/ui-images/orientations.svg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <!-- 
+                    Reference: 
+                    https://roytuts.com/upload-and-display-image-using-python-flask/ 
+                -->
+                <div class="row">
+                    <div class="col-2"></div>
+                    <div id="content" class="d-flex col-8 justify-content-center">
+                        {% if filename %}
+                            <table>
+                                <tbody>
+                                    {% for img_name, img_class, img_conf in filename %}
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex justify-content-center">
+                                                    <img class="userimg" src="{{img_name}}">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex justify-content-center prediction">
+                                                    <!-- {{img_class}} - Confidence: {{img_conf}} SD -->
+                                                    {{img_class}}
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        {% else %}
+                     <!--        <table> 
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex justify-content-center">
+                                                <img class="instructions" src="./static/ui-images/instructions.svg">
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <div class="d-flex justify-content-center prediction">
+                                                Volkswagon Jetta, 2015-2018
+                                            </div>
+                                        </td>
+                                    </tr>
+        
+                                </tbody>
+                            </table> -->
+                            <img class="instructions" src="./static/ui-images/instructions.svg">
+                        {% endif %}
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+    
+                <div class="row">
+                    <div class="col">
+                        <form method=post action="/" enctype=multipart/form-data>
+                            <div class="d-grid d-md-flex gap-2 justify-content-center">
 
-    <div class="container-fluid main-container">
-        <div class="col-12">
+                                    <input id="choose-file" type="file" name="file" required>
+                        
+                                    <label class="btn" for="choose-file"><img class="folder-search-img" src="./static/ui-images/search-folder.svg">Choose a file...</label>
+                
 
-            <!-- <div class="d-flex justify-content-center"> -->
-            <div class="d-flex justify-content-end title-row">
-               <h1 class="title">CARZAM</h1>
-            </div>
+                                    <input id="upload-file" class="btn btn-outline-primary" type=submit value=Upload>
+            
+                                    <label class="btn" for="upload-file"><img class="upload-img" src="./static/ui-images/upload.svg">Upload</label>
 
+                            </div>
+                        </form>
+                    </div>
+                </div>
 
-            <div class="d-flex justify-content-end subtitle-row">
-
-                <h3 class="subtitle">Vehicle Recognition</h3>
-            </div>
-
-            <div class="d-flex justify-content-end formats-row">
-                <img class="formats" src="./static/ui-images/formats.svg"> 
-            </div>
-
-            <div class="d-flex justify-content-end orientations-row">
-                <img class="orientations" src="./static/ui-images/orientations.svg"> 
-            </div>
-
-            <!-- 
-                Reference: 
-                https://roytuts.com/upload-and-display-image-using-python-flask/ 
-            -->
-            <div id="content" class="d-flex justify-content-center">
-                {% if filename %}
-                    <table>
-                        <tbody>
-                            {% for img_name, img_class, img_conf in filename %}
-                                <tr>
-                                    <td>
-                                        <div class="d-flex justify-content-center">
-                                            <img class="userimg" src="{{img_name}}">
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="d-flex justify-content-center prediction">
-                                            <!-- {{img_class}} - Confidence: {{img_conf}} SD -->
-                                            {{img_class}}
-                                        </div>
-                                    </td>
-                                </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
-                {% else %}
-             <!--        <table> 
-                        <tbody>
-                            <tr>
-                                <td>
-                                    <div class="d-flex justify-content-center">
-                                        <img class="instructions" src="./static/ui-images/instructions.svg">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="d-flex justify-content-center prediction">
-                                        Volkswagon Jetta, 2015-2018
-                                    </div>
-                                </td>
-                            </tr>
-
-                        </tbody>
-                    </table> -->
-                    <img class="instructions" src="./static/ui-images/instructions.svg">
-                {% endif %}
+                <div id="about" class="row border-top border-dark pt-3">
+                    <h3 class="fw-bold text-center">About Carzam</h3>
+                    <p class="lead">Carzam is an AI-Drive Web Application that leverages multiple Artificial Intelligence technologies and libraries to identify the year range, make and model of vehicles in an uploaded image.</p>
+                    <p>The Carzam web application is built using Flask as is it's backend technology. Bootstrap was used to tidy up the front-end. Behind the scenes, an uploaded image is initially processed through 1 of 2 AI frameworks. The first one is YOLOv5 which recognizes objects in the uploaded image. Specifically, we pick out cars or trucks. If there are other things like Fire Extinguishers, People or Candles, those are disregarded.</p>
+                    <p>The object's locations are then fed to a script which utilizes the Python Image Library and crops the individual vehicles out of the source image into separate images.</p>
+                    <p>Lastly, each cropped image is fed into the 2nd AI Framework which is an implementation of ResNet34 using PyTorch. The AI will make a guess as to what car is in the image and provide that data back to the user.</p>
+                    <p>To identify your vehicle, we had to train a model on over 100 different classes of vehicles. This meant scouring the internet for over 4000 images that were of sufficent quality and size. While our AI doesn't recognize all vehicles on the road, we feel we've trained it for a good cross-section of modern vehicles.</p>
+                </div>
+                <div class="row border-top border-dark pt-3">
+                    <h3 class="fw-bold text-center">About the Creators</h3>
+                    <p class="lead text-center"> This project is Capstone Project for Kevin Joy, Gabrielle Pang and George Kochera. It is a component of Oregon State University's Post-Baccalaureate Computer Science Program</p>
+                </div>
             </div>
             
-            <form method=post action="/" enctype=multipart/form-data>
-                <div class="d-flex justify-content-evenly button-row">
-                    <input id="choose-file" type="file" name="file" required>
-                
-                    <label class="file-btn" for="choose-file"><img class="folder-search-img" src="./static/ui-images/search-folder.svg">Choose a file...</label>
 
-                    <input id="upload-file" class="btn btn-outline-primary" type=submit value=Upload>
-
-                    <label class="upload-btn" for="upload-file"><img class="upload-img" src="./static/ui-images/upload.svg">Upload</label>
-                </div>
-            </form>
-        </div>
     </div>
 
     <!-- Bootstrap JS -->

@@ -41,6 +41,10 @@ a, h1, h3, p, .prediction {
     font-size: 2rem;
 }
 
+.link:hover {
+    color: #5792FE; /* cornflower blue */
+}
+
 .formats-row {
     margin-bottom: .5rem;
 }
@@ -80,7 +84,8 @@ a, h1, h3, p, .prediction {
 
 .prediction {
     margin-top: .15rem;
-    font-size: 3rem;
+    font-size: 1.5rem; /* for smallest screen size */
+    text-align: center;
 }
 
 
@@ -129,3 +134,14 @@ img.upload-img {
     Text
 */
 
+@media (min-width: 576px) {
+    .prediction {
+        font-size: 2rem;
+    }
+}
+
+@media (min-width: 768px) {
+    .prediction {
+        font-size: 3rem;
+    }
+}

@@ -13,12 +13,14 @@ div#loading {
     cursor: wait;
 }
 
-table {
-    width: 100%;
-}
-
 body {
     background-color: #fec357; /* maximum yellow red */
+}
+
+a, h1, h3, p, .prediction {
+    font-family: 'Roboto', sans-serif;
+    color: #2f2f2f;  /* jet */ 
+    text-decoration: none;
 }
 
 
@@ -28,16 +30,12 @@ body {
 
 
 .title {
-    font-family: 'Roboto', sans-serif;
-    color: #2f2f2f;  /* jet */ 
     font-weight: 900;
     margin-bottom: 0rem;
     font-size: 4rem;
 }
 
-.subtitle {
-    font-family: 'Roboto', sans-serif;
-    color: #2f2f2f;  /* jet */ 
+.subtitle { 
     font-weight: 300;
     margin-bottom: 0rem;
     font-size: 2rem;
@@ -63,6 +61,10 @@ body {
     width: 100%;
 }
 
+.userimg {
+    width: 100%;
+}
+
 /*
     images
 */
@@ -77,8 +79,6 @@ body {
 }
 
 .prediction {
-    font-family: 'Roboto', sans-serif;
-    color: #2f2f2f; /* jet */
     margin-top: .15rem;
     font-size: 3rem;
 }
@@ -103,6 +103,7 @@ input[type="file"], input[type="submit"] {
     font-size: 2rem;
     padding: 0.5rem 1.5rem;
     border-radius: 10px;
+    /*0180ff - alternate blue*/
     background-color: #5792FE; /* cornflower blue */
     display: inline-block;
     cursor: pointer;
@@ -117,7 +118,6 @@ img.folder-search-img {
 img.upload-img {
     height: 2rem;
     padding: 0 20px 0 0;
-
 }
 
 .btn:hover {
@@ -129,7 +129,3 @@ img.upload-img {
     Text
 */
 
-a {
-    text-decoration: none;
-    color: #2f2f2f; /* jet */
-}

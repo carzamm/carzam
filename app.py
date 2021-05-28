@@ -21,13 +21,8 @@ from flask import Flask, flash, request, redirect, url_for, render_template
 from werkzeug.datastructures import FileStorage
 from werkzeug.utils import secure_filename
 
-
 # Dependencies we created
 from common.carzam import allowed_file, parse_file
-
-
-
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 # CONSTANTS - CAN BE CHANGED
 OUT_DIRECTORY = "./static/outimages/"
@@ -82,7 +77,10 @@ def home_page():
             return redirect(request.url)
 
         # This looks like the case when the file was uploaded and it was valid
-        if file and allowed_file(file.filename):
+        file_type_result = allowed_file(file.filename)
+        print(f"file_type_result: {file_type_result}")
+        if file and file_type_result and type(file_type_result) == type(True):
+            print("test 123")
             path_to_file = save_file_to_upload_directory(file)
             # pass file to carzam.py
             results = parse_file(path_to_file)
@@ -90,6 +88,8 @@ def home_page():
 
             return render_template('index.html', filename = cropped_file_list)
             #return str(cropped_file_list)
+        else:
+            return render_template('index.html', filename = file_type_result)
 
     # return redirect(request.url)
     return render_template('index.html')

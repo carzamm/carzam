@@ -20,11 +20,20 @@
     <title>Upload new File</title>
 </head>
 <body>
-    <h1 class="title text-end me-4 mt-4">CARZAM</h1>
-    <h3 class="subtitle text-end me-4">Vehicle Recognition</h3>
-    <p class="text-end me-4"><a href="#about">About Carzam and it's Creators</a></p>
+
     <div class="container">
             <div class="d-grid gap-4 mt-5">
+                <!-- Header -->
+                <div class="row justify-content-center">
+                    <div class="col-8">
+                        <h1 class="title text-end mt-4">CARZAM</h1>
+                        <h3 class="subtitle text-end">Vehicle Recognition</h3>
+                        <p class="text-end mb-0"><a href="#about" class="link">About Carzam and it's Creators</a></p>
+                        <p class="text-end"><a href="#classes" class="link">Supported Vehicle Classes</a></p>
+                    </div>
+                </div>   
+
+                <!-- Instructions  -->
                 <div class="row justify-content-center">
                     <div class="col-8">
                         <div class="row">
@@ -38,56 +47,27 @@
                     </div>
                 </div>
     
+                <!-- Images -->
                 <!-- 
                     Reference: 
                     https://roytuts.com/upload-and-display-image-using-python-flask/ 
                 -->
                 <div class="row">
                     <div class="col-2"></div>
-                    <div id="content" class="d-flex col-8 justify-content-center">
+                    <div id="content" class="col-8 justify-content-center">
                         {% if filename %}
-                            <table>
-                                <tbody>
-                                    {% for img_name, img_class, img_conf in filename %}
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex justify-content-center">
-                                                    <img class="userimg" src="{{img_name}}">
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>
-                                                <div class="d-flex justify-content-center prediction">
-                                                    <!-- {{img_class}} - Confidence: {{img_conf}} SD -->
-                                                    {{img_class}}
-                                                </div>
-                                            </td>
-                                        </tr>
-                                    {% endfor %}
-                                </tbody>
-                            </table>
+                            {% for img_name, img_class, img_conf in filename %}
+                                <img class="userimg" src="{{img_name}}">
+
+                                <div class="d-flex justify-content-center prediction">
+                                    {{img_class}}
+                                </div>
+                        {% endfor %}
                         {% else %}
-                     <!--        <table> 
-                                <tbody>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex justify-content-center">
-                                                <img class="instructions" src="./static/ui-images/instructions.svg">
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>
-                                            <div class="d-flex justify-content-center prediction">
-                                                Volkswagon Jetta, 2015-2018
-                                            </div>
-                                        </td>
-                                    </tr>
-        
-                                </tbody>
-                            </table> -->
                             <img class="instructions" src="./static/ui-images/instructions.svg">
+   <!--                          <div class="d-flex justify-content-center prediction">
+                                Toyota Land Cruiser J70 Workmate (2015 - 2021)
+                            </div> -->
                         {% endif %}
                     </div>
                     <div class="col-2"></div>
@@ -102,7 +82,6 @@
                         
                                     <label class="btn" for="choose-file"><img class="folder-search-img" src="./static/ui-images/search-folder.svg">Choose a file...</label>
                 
-
                                     <input id="upload-file" class="btn btn-outline-primary" type=submit value=Upload>
             
                                     <label class="btn" for="upload-file"><img class="upload-img" src="./static/ui-images/upload.svg">Upload</label>
@@ -112,6 +91,7 @@
                     </div>
                 </div>
 
+                <!-- About Section -->
                 <div id="about" class="row border-top border-dark pt-3">
                     <h3 class="fw-bold text-center">About Carzam</h3>
                     <p class="lead">Carzam is an AI-Drive Web Application that leverages multiple Artificial Intelligence technologies and libraries to identify the year range, make and model of vehicles in an uploaded image.</p>
@@ -124,9 +104,114 @@
                     <h3 class="fw-bold text-center">About the Creators</h3>
                     <p class="lead text-center"> This project is Capstone Project for Kevin Joy, Gabrielle Pang and George Kochera. It is a component of Oregon State University's Post-Baccalaureate Computer Science Program</p>
                 </div>
-            </div>
-            
 
+                <!-- Supported Car Classes -->
+                <div id="classes" class="row border-top border-dark pt-3">
+                    <h3 class="fw-bold text-center">Supported Vehicle Classes</h3>
+                    <p class="lead text-center mb-0">Acura MDX (2014 - 2016)</p>
+                    <p class="lead text-center mb-0">Acura MDX (2017 - 2020)</p>
+                    <p class="lead text-center mb-0">Acura TL (2008 - 2014)</p>
+                    <p class="lead text-center mb-0">Alfa Romeo Giulia (2016 - 2021)</p>
+                    <p class="lead text-center mb-0">Alfa Romeo Giulia Berlina (1962 - 1978)</p>
+                    <p class="lead text-center mb-0">Alfa Romeo Stelvio (2017 - 2021)</p>
+                    <p class="lead text-center mb-0">Aston Martin V8 Vantage (1993 - 1998)</p>
+                    <p class="lead text-center mb-0">Aston Martin V8 Vantage (2005 - 2021)</p>
+                    <p class="lead text-center mb-0">Audi A4 (1994 - 1998)</p>
+                    <p class="lead text-center mb-0">Audi A4 (2002 - 2005)</p>
+                    <p class="lead text-center mb-0">Audi A4 (2016 - 2018)</p>
+                    <p class="lead text-center mb-0">Audi R8 4S (2015 - 2020)</p>
+                    <p class="lead text-center mb-0">BMW 2002 (1968 - 1975)</p>
+                    <p class="lead text-center mb-0">BMW 3 Series (2012 - 2015)</p>
+                    <p class="lead text-center mb-0">BMW 3 Series (2016 - 2018)</p>
+                    <p class="lead text-center mb-0">BMW E30 (1982-1994)</p>
+                    <p class="lead text-center mb-0">BMW E36 (1990 - 2000)</p>
+                    <p class="lead text-center mb-0">BMW X3 (2014 - 2017)</p>
+                    <p class="lead text-center mb-0">Buick Enclave (2012 - 2017)</p>
+                    <p class="lead text-center mb-0">Chevrolet Avalanche (2007 - 2013)</p>
+                    <p class="lead text-center mb-0">Chevrolet Camaro (2010 - 2015)</p>
+                    <p class="lead text-center mb-0">Chevrolet Corvette C1 (1953-1955)</p>
+                    <p class="lead text-center mb-0">Chevrolet Corvette C6 (2005 - 2013)</p>
+                    <p class="lead text-center mb-0">Chevrolet Corvette C7 (2014 - 2019)</p>
+                    <p class="lead text-center mb-0">Chevrolet Corvette C8 (2020 - 2021)</p>
+                    <p class="lead text-center mb-0">Chevrolet Impala (2006 - 2016)</p>
+                    <p class="lead text-center mb-0">Chevrolet Malibu (2016 - 2018)</p>
+                    <p class="lead text-center mb-0">Chevrolet Silverado 1500 (2006 - 2014)</p>
+                    <p class="lead text-center mb-0">Dodge Charger (2015 - 2020)</p>
+                    <p class="lead text-center mb-0">Dodge Durango (2011 - 2020)</p>
+                    <p class="lead text-center mb-0">Dodge Viper SR I (1991 - 1995)</p>
+                    <p class="lead text-center mb-0">Dodge Viper SR II (1996 - 2002)</p>
+                    <p class="lead text-center mb-0">Dodge Viper VX I (2013 - 2017)</p>
+                    <p class="lead text-center mb-0">Dodge Viper ZB I (2003 - 2007)</p>
+                    <p class="lead text-center mb-0">Dodge Viper ZB II (2008 - 2010)</p>
+                    <p class="lead text-center mb-0">Fiat 500 Abarth (2008 - 2016)</p>
+                    <p class="lead text-center mb-0">Ford Crown Victoria (1998 - 2012)</p>
+                    <p class="lead text-center mb-0">Ford Expedition (2018 - 2021)</p>
+                    <p class="lead text-center mb-0">Ford Explorer (2020 - 2021)</p>
+                    <p class="lead text-center mb-0">Ford F-150 (2009 - 2014)</p>
+                    <p class="lead text-center mb-0">Ford Fusion (2013 - 2020)</p>
+                    <p class="lead text-center mb-0">Ford Mustang (1999 - 2004)</p>
+                    <p class="lead text-center mb-0">GMC Acadia (2007 - 2012)</p>
+                    <p class="lead text-center mb-0">Honda Accord (2013 - 2015)</p>
+                    <p class="lead text-center mb-0">Honda Civic (2006 - 2010)</p>
+                    <p class="lead text-center mb-0">Honda Civic (2011 - 2015)</p>
+                    <p class="lead text-center mb-0">Honda Civic (2016 - 2020)</p>
+                    <p class="lead text-center mb-0">Honda CR-V (2011 - 2014)</p>
+                    <p class="lead text-center mb-0">Honda Fit (2013 - 2021)</p>
+                    <p class="lead text-center mb-0">Honda Pilot (2016 - 2018)</p>
+                    <p class="lead text-center mb-0">Honda Pilot (2019 - 2021)</p>
+                    <p class="lead text-center mb-0">Hyundai Sonata (2008 - 2010)</p>
+                    <p class="lead text-center mb-0">Hyundai Sonata (2015 - 2017)</p>
+                    <p class="lead text-center mb-0">Hyundai Sonata (2018 - 2019)</p>
+                    <p class="lead text-center mb-0">Jeep Grand Cherokee WK2 (2014 - 2020)</p>
+                    <p class="lead text-center mb-0">Jeep Wrangler TJ (1997 - 2006)</p>
+                    <p class="lead text-center mb-0">Jeep Wrangler Unlimited JK (2007 - 2017)</p>
+                    <p class="lead text-center mb-0">Jeep Wrangler YJ (1987 - 1995)</p>
+                    <p class="lead text-center mb-0">Kia Stinger (2017 - 2021)</p>
+                    <p class="lead text-center mb-0">Lexus IS (1999 - 2013)</p>
+                    <p class="lead text-center mb-0">Lexus IS (2014 - 2021)</p>
+                    <p class="lead text-center mb-0">Mazda 3 Sedan (2013 - 2018)</p>
+                    <p class="lead text-center mb-0">Mazda CX-5 (2017 - 2021)</p>
+                    <p class="lead text-center mb-0">Mazda Miata MX-5 ND (2015-2021)</p>
+                    <p class="lead text-center mb-0">Mazda Protege (1999 - 2003)</p>
+                    <p class="lead text-center mb-0">Mercedes-Benz C-Class (2015 - 2019)</p>
+                    <p class="lead text-center mb-0">Mercury Milan (2006 - 2011)</p>
+                    <p class="lead text-center mb-0">Mini Countryman (2016 - 2020)</p>
+                    <p class="lead text-center mb-0">Mitsubishi Lancer Evolution (1992 - 2006)</p>
+                    <p class="lead text-center mb-0">Nissan Altima (2016 - 2018)</p>
+                    <p class="lead text-center mb-0">Nissan Armada (2017 - 2021)</p>
+                    <p class="lead text-center mb-0">Nissan GTR (2017 - 2021)</p>
+                    <p class="lead text-center mb-0">Nissan Pathfinder (2005 - 2012)</p>
+                    <p class="lead text-center mb-0">Pontiac Firebird (1993 - 1997)</p>
+                    <p class="lead text-center mb-0">Pontiac Firebird (1998 - 2002)</p>
+                    <p class="lead text-center mb-0">Porsche 911 (1964 - 1975)</p>
+                    <p class="lead text-center mb-0">Porsche 911 (2005 - 2013)</p>
+                    <p class="lead text-center mb-0">Porsche Cayenne (2011 - 2018)</p>
+                    <p class="lead text-center mb-0">Subaru Crosstrek (2017 - 2021)</p>
+                    <p class="lead text-center mb-0">Subaru Forester (2014 - 2016)</p>
+                    <p class="lead text-center mb-0">Subaru Forester (2019 - 2021)</p>
+                    <p class="lead text-center mb-0">Subaru Impreza Hatchback (2017 - 2021)</p>
+                    <p class="lead text-center mb-0">Subaru Impreza Sedan (2017 - 2021)</p>
+                    <p class="lead text-center mb-0">Subaru Outback (2020 - 2021)</p>
+                    <p class="lead text-center mb-0">Tesla Model 3 (2017 - 2021)</p>
+                    <p class="lead text-center mb-0">Tesla Model S (2012 - 2021)</p>
+                    <p class="lead text-center mb-0">Toyota Camry (2001 - 2006)</p>
+                    <p class="lead text-center mb-0">Toyota Camry (2015 - 2019)</p>
+                    <p class="lead text-center mb-0">Toyota Corolla Sedan (2018 - 2021)</p>
+                    <p class="lead text-center mb-0">Toyota Land Cruiser J70 Workmate (2015 - 2021)</p>
+                    <p class="lead text-center mb-0">Toyota Prius (2003 - 2009)</p>
+                    <p class="lead text-center mb-0">Toyota RAV4 (2013 - 2018)</p>
+                    <p class="lead text-center mb-0">Toyota RAV4 (2018 - 2021)</p>
+                    <p class="lead text-center mb-0">Toyota Sequoia (2017 - 2021)</p>
+                    <p class="lead text-center mb-0">Toyota Sienna (2020 - 2021)</p>
+                    <p class="lead text-center mb-0">Toyota Tacoma (2020 - 2021)</p>
+                    <p class="lead text-center mb-0">Toyota Tundra (2014 - 2021)</p>
+                    <p class="lead text-center mb-0">Volkswagen Golf GTI (2006 - 2021)</p>
+                    <p class="lead text-center mb-0">Volkswagen Jetta (2011 - 2018)</p>
+                    <p class="lead text-center mb-0">Volkswagen Microbus (1968 - 1978)</p>
+                    <p class="lead text-center mb-0">Volkswagen Passat (2006 - 2010)</p>
+                    <p class="lead text-center mb-5">Volkswagen Beetle (2011 - 2019)</p>
+                </div>
+            </div>
     </div>
 
     <!-- Bootstrap JS -->

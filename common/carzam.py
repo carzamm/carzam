@@ -69,9 +69,10 @@ def parse_file(file):
     results = identifier.test_all_cars(list_of_paths=cropped_file_list)
     print(f'results: {results}')
 
-    # If the confidence of the prediction is below 6.7
-    if results[0][2] < 6.7:
-        return [(results[0][0], "Vehicle not recognized", None)]
+    # replace prediction with error for all vehicles in photo with confidence < 6.7
+    for i in range(len(results)):
+    	if results[i][2] < 6.7:
+    		results[i] = (results[i][0], "Vehicle not recognized", results[i][2])
 
     # in the event that the list is empty
     if not cropped_file_list:

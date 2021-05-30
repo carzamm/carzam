@@ -80,7 +80,6 @@ def home_page():
         file_type_result = allowed_file(file.filename)
         print(f"file_type_result: {file_type_result}")
         if file and file_type_result and type(file_type_result) == type(True):
-            print("test 123")
             path_to_file = save_file_to_upload_directory(file)
             # pass file to carzam.py
             results = parse_file(path_to_file)

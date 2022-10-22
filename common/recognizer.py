@@ -39,7 +39,7 @@ class Recognizer:
                 print("\nFile ---> {}".format(path_to_image))
 
             # Bring the 'xyxy' tensors off the GPU back to the CPU and convert to a list
-            vehicles = detection.xyxy.cpu().numpy().tolist()
+            vehicles = detection.xyxy[0].cpu().numpy().tolist()
 
             # For vehicle detected in the detection object, get the relevant information
             for index, vehicle in enumerate(vehicles):
